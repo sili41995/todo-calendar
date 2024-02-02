@@ -1,19 +1,22 @@
-import { GeneralParams } from '@/constants';
 import {
   startOfMonth,
   endOfMonth,
   startOfWeek,
   endOfWeek,
   setDefaultOptions,
-  format,
+  eachDayOfInterval,
+  // format,
 } from 'date-fns';
 import { es } from 'date-fns/locale';
+import getWeeksOfMonth from './getWeeksOfMonth';
 
 export interface IMonthParams {
-  firstDayOfMonth: string;
-  lastDayOfMonth: string;
-  firstDayOfFirstWeek: string;
-  lastDayOfLastWeek: string;
+  firstDayOfMonth: Date;
+  lastDayOfMonth: Date;
+  firstDayOfFirstWeek: Date;
+  lastDayOfLastWeek: Date;
+  daysOfCurrentMonth: Date[];
+  daysOfMonth: Date[];
 }
 
 const getMonthParams = (): IMonthParams => {
@@ -23,12 +26,25 @@ const getMonthParams = (): IMonthParams => {
   const lastDayOfMonth = endOfMonth(currentDate);
   const firstDayOfFirstWeek = startOfWeek(firstDayOfMonth);
   const lastDayOfLastWeek = endOfWeek(lastDayOfMonth);
+  const daysOfCurrentMonth = eachDayOfInterval({
+    start: firstDayOfMonth,
+    end: lastDayOfMonth,
+  });
+  const daysOfMonth = eachDayOfInterval({
+    start: firstDayOfFirstWeek,
+    end: lastDayOfLastWeek,
+  });
+  const weeksOfMonth = getWeeksOfMonth(daysOfMonth);
+
+  console.log(weeksOfMonth);
 
   return {
-    firstDayOfMonth: format(firstDayOfMonth, GeneralParams.dateFormat),
-    lastDayOfMonth: format(lastDayOfMonth, GeneralParams.dateFormat),
-    firstDayOfFirstWeek: format(firstDayOfFirstWeek, GeneralParams.dateFormat),
-    lastDayOfLastWeek: format(lastDayOfLastWeek, GeneralParams.dateFormat),
+    firstDayOfMonth,
+    lastDayOfMonth,
+    firstDayOfFirstWeek,
+    lastDayOfLastWeek,
+    daysOfCurrentMonth,
+    daysOfMonth,
   };
 };
 

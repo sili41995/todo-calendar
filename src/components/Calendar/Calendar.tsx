@@ -1,34 +1,11 @@
 import { getMonthParams } from '@/utils';
+import getWeeksOfMonth from '@/utils/getWeeksOfMonth';
 import { useEffect } from 'react';
 
 const Calendar = () => {
-  const {
-    lastDayOfLastWeek,
-    firstDayOfFirstWeek,
-    firstDayOfMonth,
-    lastDayOfMonth,
-  } = getMonthParams();
+  const { daysOfMonth } = getMonthParams();
 
-  useEffect(() => {
-    console.log(lastDayOfLastWeek);
-  });
-
-  return (
-    <div>
-      <p>
-        firstDayOfMonth <strong>{firstDayOfMonth}</strong>
-      </p>
-      <p>
-        lastDayOfMonth <strong>{lastDayOfMonth}</strong>
-      </p>
-      <p>
-        firstDayOfFirstWeek <strong>{firstDayOfFirstWeek}</strong>
-      </p>
-      <p>
-        lastDayOfLastWeek <strong>{lastDayOfLastWeek}</strong>
-      </p>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Calendar;
