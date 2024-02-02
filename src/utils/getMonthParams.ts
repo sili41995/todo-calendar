@@ -1,17 +1,19 @@
+import { GeneralParams } from '@/constants';
 import {
   startOfMonth,
   endOfMonth,
   startOfWeek,
   endOfWeek,
   setDefaultOptions,
+  format,
 } from 'date-fns';
 import { es } from 'date-fns/locale';
 
 export interface IMonthParams {
-  firstDayOfMonth: Date;
-  lastDayOfMonth: Date;
-  firstDayOfFirstWeek: Date;
-  lastDayOfLastWeek: Date;
+  firstDayOfMonth: string;
+  lastDayOfMonth: string;
+  firstDayOfFirstWeek: string;
+  lastDayOfLastWeek: string;
 }
 
 const getMonthParams = (): IMonthParams => {
@@ -23,10 +25,10 @@ const getMonthParams = (): IMonthParams => {
   const lastDayOfLastWeek = endOfWeek(lastDayOfMonth);
 
   return {
-    firstDayOfMonth,
-    lastDayOfMonth,
-    firstDayOfFirstWeek,
-    lastDayOfLastWeek,
+    firstDayOfMonth: format(firstDayOfMonth, GeneralParams.dateFormat),
+    lastDayOfMonth: format(lastDayOfMonth, GeneralParams.dateFormat),
+    firstDayOfFirstWeek: format(firstDayOfFirstWeek, GeneralParams.dateFormat),
+    lastDayOfLastWeek: format(lastDayOfLastWeek, GeneralParams.dateFormat),
   };
 };
 

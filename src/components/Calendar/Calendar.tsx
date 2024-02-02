@@ -15,10 +15,18 @@ const Calendar = () => {
 
   return (
     <div>
-      <p>firstDayOfMonth {String(firstDayOfMonth)}</p>
-      <p>lastDayOfMonth {String(lastDayOfMonth)}</p>
-      <p>firstDayOfFirstWeek {String(firstDayOfFirstWeek)}</p>
-      <p>lastDayOfLastWeek {String(lastDayOfLastWeek)}</p>
+      <p>
+        firstDayOfMonth <strong>{firstDayOfMonth}</strong>
+      </p>
+      <p>
+        lastDayOfMonth <strong>{lastDayOfMonth}</strong>
+      </p>
+      <p>
+        firstDayOfFirstWeek <strong>{firstDayOfFirstWeek}</strong>
+      </p>
+      <p>
+        lastDayOfLastWeek <strong>{lastDayOfLastWeek}</strong>
+      </p>
     </div>
   );
 };
