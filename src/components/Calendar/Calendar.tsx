@@ -1,11 +1,21 @@
+import CalendarTitle from '@/components/CalendarTitle';
+
+import CalendarDaysList from '@/components/CalendarDaysList';
+import CalendarControls from '@/components/CalendarControls';
 import { getMonthParams } from '@/utils';
-import getWeeksOfMonth from '@/utils/getWeeksOfMonth';
-import { useEffect } from 'react';
+import CalendarNamesOfDays from '@/components/CalendarNamesOfDays';
 
 const Calendar = () => {
-  const { daysOfMonth } = getMonthParams();
+  const { namesOfDays } = getMonthParams();
 
-  return <div></div>;
+  return (
+    <div>
+      <CalendarTitle />
+      <CalendarControls />
+      <CalendarNamesOfDays namesOfDays={namesOfDays} />
+      <CalendarDaysList />
+    </div>
+  );
 };
 
 export default Calendar;

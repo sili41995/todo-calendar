@@ -1,50 +1,45 @@
 import {
   startOfMonth,
-  endOfMonth,
   startOfWeek,
-  endOfWeek,
   setDefaultOptions,
   eachDayOfInterval,
+  addDays,
   // format,
 } from 'date-fns';
-import { es } from 'date-fns/locale';
+import { enAU } from 'date-fns/locale';
 import getWeeksOfMonth from './getWeeksOfMonth';
+import { GeneralParams } from '@/constants';
+import getNamesOfDays from './getNamesOfDays';
 
 export interface IMonthParams {
-  firstDayOfMonth: Date;
-  lastDayOfMonth: Date;
-  firstDayOfFirstWeek: Date;
-  lastDayOfLastWeek: Date;
-  daysOfCurrentMonth: Date[];
-  daysOfMonth: Date[];
+  weeksOfMonth: Date[][];
+  namesOfDays: string[];
 }
 
 const getMonthParams = (): IMonthParams => {
-  setDefaultOptions({ locale: es });
+  setDefaultOptions({ locale: enAU });
   const currentDate = new Date();
   const firstDayOfMonth = startOfMonth(currentDate);
-  const lastDayOfMonth = endOfMonth(currentDate);
+  // const lastDayOfMonth = endOfMonth(currentDate);
   const firstDayOfFirstWeek = startOfWeek(firstDayOfMonth);
-  const lastDayOfLastWeek = endOfWeek(lastDayOfMonth);
-  const daysOfCurrentMonth = eachDayOfInterval({
-    start: firstDayOfMonth,
-    end: lastDayOfMonth,
-  });
+  // const lastDayOfLastWeek = endOfWeek(lastDayOfMonth);
+  // const daysOfCurrentMonth = eachDayOfInterval({
+  //   start: firstDayOfMonth,
+  //   end: lastDayOfMonth,
+  // });
+  const amountOfDays =
+    GeneralParams.calendarColumns * GeneralParams.calendarRows;
+  const lastDayOfCalendarPage = addDays(firstDayOfFirstWeek, amountOfDays - 1);
   const daysOfMonth = eachDayOfInterval({
     start: firstDayOfFirstWeek,
-    end: lastDayOfLastWeek,
+    end: lastDayOfCalendarPage,
   });
   const weeksOfMonth = getWeeksOfMonth(daysOfMonth);
-
-  console.log(weeksOfMonth);
+  const namesOfDays = getNamesOfDays(weeksOfMonth);
 
   return {
-    firstDayOfMonth,
-    lastDayOfMonth,
-    firstDayOfFirstWeek,
-    lastDayOfLastWeek,
-    daysOfCurrentMonth,
-    daysOfMonth,
+    weeksOfMonth,
+    namesOfDays,
   };
 };
 
