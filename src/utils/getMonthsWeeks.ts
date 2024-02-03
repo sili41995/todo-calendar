@@ -1,8 +1,9 @@
 import { GeneralParams } from '@/constants';
+import { MonthsWeeks } from '@/types/types';
 
-const getWeeksOfMonth = (daysOfMonth: Date[]): Date[][] =>
-  daysOfMonth.reduce(
-    (acc: Date[][], day) => {
+const getMonthsWeeks = (monthsDays: Date[]): MonthsWeeks =>
+  monthsDays.reduce(
+    (acc: MonthsWeeks, day) => {
       const listOfWeeks = Array.from(acc);
       const lastWeekOfList = listOfWeeks[listOfWeeks.length - 1];
       const isFullWeek =
@@ -19,4 +20,4 @@ const getWeeksOfMonth = (daysOfMonth: Date[]): Date[][] =>
     [[]]
   );
 
-export default getWeeksOfMonth;
+export default getMonthsWeeks;

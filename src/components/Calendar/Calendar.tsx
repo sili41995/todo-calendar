@@ -1,20 +1,22 @@
 import CalendarTitle from '@/components/CalendarTitle';
-
 import CalendarDaysList from '@/components/CalendarDaysList';
 import CalendarControls from '@/components/CalendarControls';
-import { getMonthParams } from '@/utils';
-import CalendarNamesOfDays from '@/components/CalendarNamesOfDays';
+import { getMonthsParams } from '@/utils';
+import CalendarDaysNames from '@/components/CalendarDaysNames';
+import { DaysContainer } from './Calendar.styled';
 
 const Calendar = () => {
-  const { namesOfDays } = getMonthParams();
+  const { daysNames, monthsWeeks } = getMonthsParams();
 
   return (
-    <div>
+    <>
       <CalendarTitle />
       <CalendarControls />
-      <CalendarNamesOfDays namesOfDays={namesOfDays} />
-      <CalendarDaysList />
-    </div>
+      <DaysContainer>
+        <CalendarDaysNames daysNames={daysNames} />
+        <CalendarDaysList monthsWeeks={monthsWeeks} />
+      </DaysContainer>
+    </>
   );
 };
 

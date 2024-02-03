@@ -1,3 +1,3 @@
 export interface IProps {
-  namesOfDays: string[];
+  daysNames: string[];
 }

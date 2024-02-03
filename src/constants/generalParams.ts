@@ -1,6 +1,7 @@
 const enum GeneralParams {
   dateFormat = 'yyyy-MM-dd',
-  dayFormat = 'iii',
+  dayOfWeekFormat = 'iii',
+  dayOfMonthFormat = 'dd',
   calendarRows = 6,
   calendarColumns = 7,
 }

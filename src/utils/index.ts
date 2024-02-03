@@ -1,2 +1,3 @@
-export { default as getMonthParams } from './getMonthParams';
-export { default as getNamesOfDays } from './getNamesOfDays';
+export { default as getMonthsParams } from './getMonthsParams';
+export { default as getDaysNames } from './getDaysNames';
+export { default as getDaysNumbers } from './getDaysNumbers';
