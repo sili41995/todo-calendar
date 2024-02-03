@@ -1,3 +1,9 @@
+import { MonthsWeeks } from '@/types/types';
+
 export interface IProps {
-  daysNames: string[];
+  monthsWeeks: MonthsWeeks;
+}
+
+export interface IStyledProps {
+  isWeekend: boolean;
 }

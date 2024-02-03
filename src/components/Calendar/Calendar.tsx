@@ -13,7 +13,7 @@ const Calendar = () => {
       <CalendarTitle />
       <CalendarControls />
       <DaysContainer>
-        <CalendarDaysNames daysNames={daysNames} />
+        <CalendarDaysNames monthsWeeks={monthsWeeks} />
         <CalendarDaysList monthsWeeks={monthsWeeks} />
       </DaysContainer>
     </>

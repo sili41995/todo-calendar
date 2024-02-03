@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { IStyledProps } from './CalendarDaysNames.types';
 
 export const DaysList = styled.ul`
   display: flex;
@@ -11,7 +12,7 @@ export const Day = styled.li`
   padding: ${({ theme }) => `${theme.spacing(6)} ${theme.spacing(2)}`};
 `;
 
-export const Name = styled.p`
-  color: #ffffff;
+export const Name = styled.p<IStyledProps>`
+  color: ${({ isWeekend }) => (isWeekend ? '#ED3779' : '#ffffff')};
   text-align: center;
 `;
