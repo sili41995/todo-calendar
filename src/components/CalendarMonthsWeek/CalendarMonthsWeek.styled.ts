@@ -15,6 +15,10 @@ export const Day = styled.li`
 `;
 
 export const Number = styled.p<IStyledProps>`
+  font-family: Manrope;
   color: ${({ isWeekend }) => (isWeekend ? '#ED3779' : '#ffffff')};
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
   text-align: end;
 `;

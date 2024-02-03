@@ -1,10 +1,29 @@
 import { FC } from 'react';
 import { Global, css } from '@emotion/react';
 import 'modern-normalize';
+import { manropeBold, manropeMedium, manropeSemiBold } from '@/fonts';
 
 const GlobalStyles: FC = () => (
   <Global
     styles={css`
+      @font-face {
+        font-family: Manrope;
+        src: local('Manrope'), url(${manropeBold}) format('truetype');
+        font-weight: 700;
+      }
+
+      @font-face {
+        font-family: Manrope;
+        src: local('Manrope'), url(${manropeSemiBold}) format('truetype');
+        font-weight: 600;
+      }
+
+      @font-face {
+        font-family: Manrope;
+        src: local('Manrope'), url(${manropeMedium}) format('truetype');
+        font-weight: 500;
+      }
+
       body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
           'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',

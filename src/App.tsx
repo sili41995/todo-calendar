@@ -1,4 +1,4 @@
-import Calendar from '@/components/Calendar/Calendar';
+import Calendar from '@/components/Calendar';
 
 const App = () => {
   return (

@@ -14,16 +14,14 @@ import { GeneralParams } from '@/constants';
 import { MonthsWeeks } from '@/types/types';
 
 export interface IMonthParams {
-  currentDate: Date;
   monthsWeeks: MonthsWeeks;
   // daysNames: string[];
   // daysNumbers: string[][];
 }
 
-const getMonthsParams = (): IMonthParams => {
+const getMonthsParams = (date: Date): IMonthParams => {
   setDefaultOptions({ locale: enAU });
-  const currentDate = new Date();
-  const firstMonthsDay = startOfMonth(currentDate);
+  const firstMonthsDay = startOfMonth(date);
   // const lastDayOfMonth = endOfMonth(currentDate);
   const firstDayOfFirstWeek = startOfWeek(firstMonthsDay);
   // const lastDayOfLastWeek = endOfWeek(lastDayOfMonth);
@@ -43,7 +41,6 @@ const getMonthsParams = (): IMonthParams => {
   // const daysNumbers = getNumbersOfDays(monthsWeeks);
 
   return {
-    currentDate,
     monthsWeeks,
     // daysNames,
     // daysNumbers,

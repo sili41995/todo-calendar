@@ -1,30 +1,64 @@
 import { FC } from 'react';
 import { IProps } from './CalendarControls.types';
-import { addDays, format } from 'date-fns';
-import { GeneralParams } from '@/constants';
+import { format } from 'date-fns';
+import { AriaLabels, GeneralParams } from '@/constants';
+import {
+  ButtonsList,
+  ButtonsListItem,
+  Container,
+  Date,
+  Month,
+} from './CalendarControls.styled';
+import CalendarButton from '@/components/CalendarButton';
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
-const CalendarControls: FC<IProps> = ({ currentDate }) => {
-  const currentMonth = format(currentDate, GeneralParams.currentMonthFormat);
-  const currentYear = format(currentDate, GeneralParams.currentYearFormat);
-  // console.log(addDays(addDays(currentDate, 1), 1));
-  // console.log(addDays(currentDate, -700));
+const CalendarControls: FC<IProps> = ({
+  date,
+  onIncrementBtnClick,
+  onDecrementBtnClick,
+  onTodayBtnClick,
+}) => {
+  const currentMonth = format(date, GeneralParams.currentMonthFormat);
+  const currentYear = format(date, GeneralParams.currentYearFormat);
+  const buttonsOptions = [
+    {
+      title: <FaAngleLeft />,
+      ariaLabel: AriaLabels.prevMonth,
+      onClick: onDecrementBtnClick,
+      width: 36,
+    },
+    {
+      title: 'Today',
+      ariaLabel: AriaLabels.currentMonth,
+      onClick: onTodayBtnClick,
+      width: 120,
+    },
+    {
+      title: <FaAngleRight />,
+      ariaLabel: AriaLabels.nextMonth,
+      onClick: onIncrementBtnClick,
+      width: 36,
+    },
+  ];
+
   return (
-    <div>
-      <p>
-        <strong>{currentMonth}</strong> {currentYear}
-      </p>
-      <ul>
-        <li>
-          <button type='button'>-</button>
-        </li>
-        <li>
-          <button type='button'>Today</button>
-        </li>
-        <li>
-          <button type='button'>+</button>
-        </li>
-      </ul>
-    </div>
+    <Container>
+      <Date>
+        <Month>{currentMonth}</Month> {currentYear}
+      </Date>
+      <ButtonsList>
+        {buttonsOptions.map(({ ariaLabel, onClick, title, width }) => (
+          <ButtonsListItem key={ariaLabel}>
+            <CalendarButton
+              ariaLabel={ariaLabel}
+              onClick={onClick}
+              title={title}
+              width={width}
+            />
+          </ButtonsListItem>
+        ))}
+      </ButtonsList>
+    </Container>
   );
 };
 

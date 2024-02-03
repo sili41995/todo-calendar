@@ -1,7 +1,7 @@
-import React from 'react';
+import { Container } from './CalendarTitle.styled';
 
 const CalendarTitle = () => {
-  return <div>CalendarTitle</div>;
+  return <Container>CalendarTitle</Container>;
 };
 
 export default CalendarTitle;
