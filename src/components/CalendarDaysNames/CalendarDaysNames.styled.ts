@@ -9,6 +9,7 @@ export const DaysList = styled.ul`
 export const Day = styled.li`
   flex-basis: calc((100% - 6px) / 7);
   background-color: #101112;
+  border-radius: 10px;
   padding: ${({ theme }) => `${theme.spacing(6)} ${theme.spacing(2)}`};
 `;
 

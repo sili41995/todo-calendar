@@ -3,20 +3,20 @@ import CalendarDaysList from '@/components/CalendarDaysList';
 import CalendarControls from '@/components/CalendarControls';
 import { getMonthsParams } from '@/utils';
 import CalendarDaysNames from '@/components/CalendarDaysNames';
-import { DaysContainer } from './Calendar.styled';
+import { Container, DaysContainer } from './Calendar.styled';
 
 const Calendar = () => {
-  const { daysNames, monthsWeeks } = getMonthsParams();
+  const { currentDate, monthsWeeks } = getMonthsParams();
 
   return (
-    <>
+    <Container>
       <CalendarTitle />
-      <CalendarControls />
+      <CalendarControls currentDate={currentDate} />
       <DaysContainer>
         <CalendarDaysNames monthsWeeks={monthsWeeks} />
         <CalendarDaysList monthsWeeks={monthsWeeks} />
       </DaysContainer>
-    </>
+    </Container>
   );
 };
 

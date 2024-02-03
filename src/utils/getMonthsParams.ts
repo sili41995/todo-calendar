@@ -9,14 +9,15 @@ import {
 import { enAU } from 'date-fns/locale';
 import getWeeksOfMonth from './getMonthsWeeks';
 import { GeneralParams } from '@/constants';
-import getNamesOfDays from './getDaysNames';
-import getNumbersOfDays from './getDaysNumbers';
+// import getNamesOfDays from './getDaysNames';
+// import getNumbersOfDays from './getDaysNumbers';
 import { MonthsWeeks } from '@/types/types';
 
 export interface IMonthParams {
+  currentDate: Date;
   monthsWeeks: MonthsWeeks;
-  daysNames: string[];
-  daysNumbers: string[][];
+  // daysNames: string[];
+  // daysNumbers: string[][];
 }
 
 const getMonthsParams = (): IMonthParams => {
@@ -38,13 +39,14 @@ const getMonthsParams = (): IMonthParams => {
     end: lastDayOfCalendarPage,
   });
   const monthsWeeks = getWeeksOfMonth(monthsDays);
-  const daysNames = getNamesOfDays(monthsWeeks);
-  const daysNumbers = getNumbersOfDays(monthsWeeks);
+  // const daysNames = getNamesOfDays(monthsWeeks);
+  // const daysNumbers = getNumbersOfDays(monthsWeeks);
 
   return {
+    currentDate,
     monthsWeeks,
-    daysNames,
-    daysNumbers,
+    // daysNames,
+    // daysNumbers,
   };
 };
 

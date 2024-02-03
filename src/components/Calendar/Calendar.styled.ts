@@ -1,8 +1,18 @@
 import styled from '@emotion/styled';
 
+export const Container = styled.div`
+  background-color: pink;
+  border-radius: 8px;
+  overflow: hidden;
+  /* box-shadow: 0 0 0 1px #1a1a1a, 0 8px 20px 6px #888888; */
+  box-shadow: 0 8px 20px 6px #888888;
+`;
+
 export const DaysContainer = styled.div`
   display: flex;
   gap: 1px;
   flex-direction: column;
-  background-color: #dadce0;
+  /* background-color: #dadce0; */
+  background-color: greenyellow;
+  padding: 5px;
 `;
