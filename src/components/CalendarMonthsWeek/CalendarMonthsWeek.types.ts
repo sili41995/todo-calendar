@@ -5,5 +5,6 @@ export interface IProps {
 }
 
 export interface IStyledProps {
+  isCurrentDay: boolean;
   isWeekend: boolean;
 }

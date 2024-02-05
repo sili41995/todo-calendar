@@ -1,17 +1,17 @@
 import { FC } from 'react';
 import { IProps } from './CalendarMonthsWeek.types';
-import { format, isWeekend } from 'date-fns';
+import { format, isWeekend, isToday } from 'date-fns';
 import { GeneralParams } from '@/constants';
-import { Day, DaysList, Number } from './CalendarMonthsWeek.styled';
+import { Day, DaysList, Marker, Number } from './CalendarMonthsWeek.styled';
 
 const CalendarMonthsWeek: FC<IProps> = ({ week }) => {
   return (
     <DaysList>
       {week.map((day, index) => (
         <Day key={index}>
-          <Number isWeekend={isWeekend(day)}>
-            {format(day, GeneralParams.dayOfMonthFormat)}
-          </Number>
+          <Marker isCurrentDay={isToday(day)} isWeekend={isWeekend(day)}>
+            <Number>{format(day, GeneralParams.dayOfMonthFormat)}</Number>
+          </Marker>
         </Day>
       ))}
     </DaysList>

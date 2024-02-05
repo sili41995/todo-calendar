@@ -14,9 +14,29 @@ export const Day = styled.li`
   padding: ${({ theme }) => theme.spacing(2)};
 `;
 
-export const Number = styled.p<IStyledProps>`
+export const Marker = styled.div<IStyledProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  margin-left: auto;
+  border-radius: 50%;
+  background-color: ${({ isCurrentDay }) =>
+    isCurrentDay ? '#ED3779' : 'transparent'};
+
+  & p {
+    color: ${({ isWeekend, isCurrentDay }) => {
+      if (isCurrentDay) {
+        return '#ffffff';
+      }
+      return isWeekend ? '#ED3779' : '#ffffff';
+    }};
+  }
+`;
+
+export const Number = styled.p`
   font-family: Manrope;
-  color: ${({ isWeekend }) => (isWeekend ? '#ED3779' : '#ffffff')};
   font-size: 14px;
   font-weight: 500;
   line-height: 1.43;
