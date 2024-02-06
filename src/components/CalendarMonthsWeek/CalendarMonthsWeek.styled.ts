@@ -6,15 +6,30 @@ export const DaysList = styled.ul`
   gap: 1px;
 `;
 
-export const Day = styled.li`
+export const Day = styled.li<IStyledProps>`
   flex-basis: calc((100% - 6px) / 7);
   height: 100px;
-  background-color: #101112;
+  background-color: ${({ isCurrentMonth }) =>
+    isCurrentMonth ? '#101112' : 'blueviolet'};
   border-radius: 10px;
   padding: ${({ theme }) => theme.spacing(2)};
+
+  & > div {
+    background-color: ${({ isCurrentDay }) =>
+      isCurrentDay ? '#ED3779' : 'transparent'};
+
+    & p {
+      color: ${({ isWeekend, isCurrentDay }) => {
+        if (isCurrentDay) {
+          return '#ffffff';
+        }
+        return isWeekend ? '#ED3779' : '#ffffff';
+      }};
+    }
+  }
 `;
 
-export const Marker = styled.div<IStyledProps>`
+export const Marker = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,17 +37,6 @@ export const Marker = styled.div<IStyledProps>`
   height: 28px;
   margin-left: auto;
   border-radius: 50%;
-  background-color: ${({ isCurrentDay }) =>
-    isCurrentDay ? '#ED3779' : 'transparent'};
-
-  & p {
-    color: ${({ isWeekend, isCurrentDay }) => {
-      if (isCurrentDay) {
-        return '#ffffff';
-      }
-      return isWeekend ? '#ED3779' : '#ffffff';
-    }};
-  }
 `;
 
 export const Number = styled.p`

@@ -1,19 +1,26 @@
 import { FC } from 'react';
 import { IProps } from './CalendarMonthsWeek.types';
-import { format, isWeekend, isToday } from 'date-fns';
+import { format, isWeekend, isToday, getMonth } from 'date-fns';
 import { GeneralParams } from '@/constants';
 import { Day, DaysList, Marker, Number } from './CalendarMonthsWeek.styled';
 
-const CalendarMonthsWeek: FC<IProps> = ({ week }) => {
+const CalendarMonthsWeek: FC<IProps> = ({ week, monthOfCurrentPage }) => {
   return (
     <DaysList>
-      {week.map((day, index) => (
-        <Day key={index}>
-          <Marker isCurrentDay={isToday(day)} isWeekend={isWeekend(day)}>
-            <Number>{format(day, GeneralParams.dayOfMonthFormat)}</Number>
-          </Marker>
-        </Day>
-      ))}
+      {week.map((day, index) => {
+        return (
+          <Day
+            key={index}
+            isCurrentMonth={monthOfCurrentPage === getMonth(day)}
+            isCurrentDay={isToday(day)}
+            isWeekend={isWeekend(day)}
+          >
+            <Marker>
+              <Number>{format(day, GeneralParams.dayOfMonthFormat)}</Number>
+            </Marker>
+          </Day>
+        );
+      })}
     </DaysList>
   );
 };
