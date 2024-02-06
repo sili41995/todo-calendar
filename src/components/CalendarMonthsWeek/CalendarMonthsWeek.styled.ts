@@ -9,8 +9,7 @@ export const DaysList = styled.ul`
 export const Day = styled.li<IStyledProps>`
   flex-basis: calc((100% - 6px) / 7);
   height: 100px;
-  background-color: ${({ isCurrentMonth }) =>
-    isCurrentMonth ? '#101112' : 'blueviolet'};
+  background-color: #101112;
   border-radius: 10px;
   padding: ${({ theme }) => theme.spacing(2)};
 
@@ -19,10 +18,16 @@ export const Day = styled.li<IStyledProps>`
       isCurrentDay ? '#ED3779' : 'transparent'};
 
     & p {
-      color: ${({ isWeekend, isCurrentDay }) => {
+      font-weight: ${({ isCurrentMonth }) => (isCurrentMonth ? 700 : 500)};
+      color: ${({ isWeekend, isCurrentDay, isCurrentMonth }) => {
+        if (!isCurrentMonth) {
+          return '#888888';
+        }
+
         if (isCurrentDay) {
           return '#ffffff';
         }
+
         return isWeekend ? '#ED3779' : '#ffffff';
       }};
     }
