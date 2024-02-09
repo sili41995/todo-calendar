@@ -10,7 +10,7 @@ const CalendarDaysNames: FC<IProps> = ({ monthsWeeks }) => {
       {monthsWeeks[0].map((day, index) => (
         <Day key={index}>
           <Name isWeekend={isWeekend(day)}>
-            {format(day, GeneralParams.dayOfWeekFormat)}
+            {format(day, GeneralParams.dayOfWeekTextFormat)}
           </Name>
         </Day>
       ))}

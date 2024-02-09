@@ -4,6 +4,7 @@ import {
   setDefaultOptions,
   eachDayOfInterval,
   addDays,
+  format,
   // format,
 } from 'date-fns';
 import { enAU } from 'date-fns/locale';
@@ -15,13 +16,17 @@ import { MonthsWeeks } from '@/types/types';
 
 export interface IMonthParams {
   monthsWeeks: MonthsWeeks;
-  // daysNames: string[];
-  // daysNumbers: string[][];
+  targetMonthNumber: string;
+  targetMonthName: string;
+  targetYear: string;
 }
 
 const getMonthsParams = (date: Date): IMonthParams => {
   setDefaultOptions({ locale: enAU });
   const firstMonthsDay = startOfMonth(date);
+  const targetMonthNumber = format(date, GeneralParams.monthNumericFormat);
+  const targetMonthName = format(date, GeneralParams.monthTextFormat);
+  const targetYear = format(date, GeneralParams.yearNumericFormat);
   // const lastDayOfMonth = endOfMonth(currentDate);
   const firstDayOfFirstWeek = startOfWeek(firstMonthsDay);
   // const lastDayOfLastWeek = endOfWeek(lastDayOfMonth);
@@ -42,6 +47,9 @@ const getMonthsParams = (date: Date): IMonthParams => {
 
   return {
     monthsWeeks,
+    targetMonthNumber,
+    targetMonthName,
+    targetYear,
     // daysNames,
     // daysNumbers,
   };

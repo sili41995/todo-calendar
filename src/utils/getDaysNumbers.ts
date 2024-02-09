@@ -4,7 +4,12 @@ import { format } from 'date-fns';
 
 const getDaysNumbers = (monthsWeeks: MonthsWeeks): string[][] =>
   monthsWeeks.map((week) =>
-    week.map((day) => format(day, GeneralParams.dayOfMonthFormat))
+    week.map((day) =>
+      format(
+        day,
+        `${GeneralParams.yearNumericFormat}-${GeneralParams.monthNumericFormat}-${GeneralParams.dayOfMonthNumericFormat}`
+      )
+    )
   );
 
 export default getDaysNumbers;

@@ -3,6 +3,6 @@ import { MonthsWeeks } from '@/types/types';
 import { format } from 'date-fns';
 
 const getDaysNames = (monthsWeeks: MonthsWeeks) =>
-  monthsWeeks[0].map((day) => format(day, GeneralParams.dayOfWeekFormat));
+  monthsWeeks[0].map((day) => format(day, GeneralParams.dayOfWeekTextFormat));
 
 export default getDaysNames;

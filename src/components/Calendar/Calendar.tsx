@@ -1,16 +1,28 @@
 import CalendarTitle from '@/components/CalendarTitle';
 import CalendarDaysList from '@/components/CalendarDaysList';
 import CalendarControls from '@/components/CalendarControls';
-import { getMonthsParams, makeBlur } from '@/utils';
+import { getFilteredTodos, getMonthsParams, makeBlur } from '@/utils';
 import CalendarDaysNames from '@/components/CalendarDaysNames';
 import { Container, DaysContainer } from './Calendar.styled';
-import { useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { addMonths } from 'date-fns';
 import { ClickEvent } from '@/types/types';
+import { IProps } from './Calendar.types';
 
-const Calendar = () => {
+const Calendar: FC<IProps> = ({ todos }) => {
   const [date, setDate] = useState(() => new Date());
-  const { monthsWeeks } = getMonthsParams(date);
+  const { monthsWeeks, targetMonthNumber, targetMonthName, targetYear } =
+    getMonthsParams(date);
+
+  const filteredTodos = getFilteredTodos({
+    todos,
+    targetMonthNumber,
+    targetYear,
+  });
+
+  useEffect(() => {
+    console.log(filteredTodos);
+  });
 
   const onIncrementBtnClick = (e: ClickEvent) => {
     setDate((prevState) => addMonths(prevState, 1));
@@ -31,7 +43,8 @@ const Calendar = () => {
     <Container>
       <CalendarTitle />
       <CalendarControls
-        date={date}
+        targetMonth={targetMonthName}
+        targetYear={targetYear}
         onIncrementBtnClick={onIncrementBtnClick}
         onDecrementBtnClick={onDecrementBtnClick}
         onTodayBtnClick={onTodayBtnClick}

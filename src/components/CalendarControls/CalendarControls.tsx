@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { IProps } from './CalendarControls.types';
-import { format } from 'date-fns';
-import { AriaLabels, GeneralParams } from '@/constants';
+import { AriaLabels } from '@/constants';
 import {
   ButtonsList,
   ButtonsListItem,
@@ -13,13 +12,12 @@ import CalendarButton from '@/components/CalendarButton';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 const CalendarControls: FC<IProps> = ({
-  date,
+  targetMonth,
+  targetYear,
   onIncrementBtnClick,
   onDecrementBtnClick,
   onTodayBtnClick,
 }) => {
-  const currentMonth = format(date, GeneralParams.currentMonthFormat);
-  const currentYear = format(date, GeneralParams.currentYearFormat);
   const buttonsOptions = [
     {
       title: <FaAngleLeft />,
@@ -44,7 +42,7 @@ const CalendarControls: FC<IProps> = ({
   return (
     <Container>
       <Date>
-        <Month>{currentMonth}</Month> {currentYear}
+        <Month>{targetMonth}</Month> {targetYear}
       </Date>
       <ButtonsList>
         {buttonsOptions.map(({ ariaLabel, onClick, title, width }) => (

@@ -16,7 +16,9 @@ const CalendarMonthsWeek: FC<IProps> = ({ week, monthOfCurrentPage }) => {
             isWeekend={isWeekend(day)}
           >
             <Marker>
-              <Number>{format(day, GeneralParams.dayOfMonthFormat)}</Number>
+              <Number>
+                {format(day, GeneralParams.dayOfMonthNumericFormat)}
+              </Number>
             </Marker>
           </Day>
         );
