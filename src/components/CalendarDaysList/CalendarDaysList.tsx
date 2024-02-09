@@ -4,7 +4,7 @@ import CalendarMonthsWeek from '@/components/CalendarMonthsWeek';
 import { Week, WeeksList } from './CalendarDaysList.styled';
 import { getMonth } from 'date-fns';
 
-const CalendarDaysList: FC<IProps> = ({ monthsWeeks }) => {
+const CalendarDaysList: FC<IProps> = ({ monthsWeeks, todos }) => {
   const monthOfCurrentPage = getMonth(monthsWeeks[2][0]);
   return (
     <WeeksList>
@@ -12,6 +12,7 @@ const CalendarDaysList: FC<IProps> = ({ monthsWeeks }) => {
         <Week key={index}>
           <CalendarMonthsWeek
             week={week}
+            todos={todos}
             monthOfCurrentPage={monthOfCurrentPage}
           />
         </Week>

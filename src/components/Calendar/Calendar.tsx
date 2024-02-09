@@ -4,7 +4,7 @@ import CalendarControls from '@/components/CalendarControls';
 import { getFilteredTodos, getMonthsParams, makeBlur } from '@/utils';
 import CalendarDaysNames from '@/components/CalendarDaysNames';
 import { Container, DaysContainer } from './Calendar.styled';
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { addMonths } from 'date-fns';
 import { ClickEvent } from '@/types/types';
 import { IProps } from './Calendar.types';
@@ -18,10 +18,6 @@ const Calendar: FC<IProps> = ({ todos }) => {
     todos,
     targetMonthNumber,
     targetYear,
-  });
-
-  useEffect(() => {
-    console.log(filteredTodos);
   });
 
   const onIncrementBtnClick = (e: ClickEvent) => {
@@ -51,7 +47,7 @@ const Calendar: FC<IProps> = ({ todos }) => {
       />
       <DaysContainer>
         <CalendarDaysNames monthsWeeks={monthsWeeks} />
-        <CalendarDaysList monthsWeeks={monthsWeeks} />
+        <CalendarDaysList monthsWeeks={monthsWeeks} todos={filteredTodos} />
       </DaysContainer>
     </Container>
   );
