@@ -6,6 +6,7 @@ const enum GeneralParams {
   dayOfWeekTextFormat = 'iii',
   calendarRows = 6,
   calendarColumns = 7,
+  maxEventsCount = 3,
 }
 
 export default GeneralParams;

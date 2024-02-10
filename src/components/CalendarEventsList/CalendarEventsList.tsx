@@ -1,15 +1,28 @@
 import { FC } from 'react';
 import { IProps } from './CalendarEventsList.types';
-import { Title } from './CalendarEventsList.styled';
+import { EventBtn, Title } from './CalendarEventsList.styled';
+import { GeneralParams } from '@/constants';
 
 const CalendarEventsList: FC<IProps> = ({ todos }) => {
+  const isMoreMaxQuantity = todos.length > GeneralParams.maxEventsCount;
+  const events = isMoreMaxQuantity
+    ? todos.filter((_, index) => index < GeneralParams.maxEventsCount - 1)
+    : todos;
+
   return (
     <ul>
-      {todos.map(({ task, id }) => (
+      {events.map(({ task, id }) => (
         <li key={id}>
-          <Title>{task}</Title>
+          <EventBtn>
+            <Title>{task}</Title>
+          </EventBtn>
         </li>
       ))}
+      {isMoreMaxQuantity && (
+        <EventBtn>
+          <Title>Show more</Title>
+        </EventBtn>
+      )}
     </ul>
   );
 };
