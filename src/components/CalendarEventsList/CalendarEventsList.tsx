@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { IProps } from './CalendarEventsList.types';
-import { EventBtn, Title } from './CalendarEventsList.styled';
+import { List, ListItem, EventBtn, Title } from './CalendarEventsList.styled';
 import { GeneralParams } from '@/constants';
 
 const CalendarEventsList: FC<IProps> = ({ todos }) => {
@@ -10,20 +10,22 @@ const CalendarEventsList: FC<IProps> = ({ todos }) => {
     : todos;
 
   return (
-    <ul>
+    <List>
       {events.map(({ task, id }) => (
-        <li key={id}>
+        <ListItem key={id}>
           <EventBtn>
             <Title>{task}</Title>
           </EventBtn>
-        </li>
+        </ListItem>
       ))}
       {isMoreMaxQuantity && (
-        <EventBtn>
-          <Title>Show more</Title>
-        </EventBtn>
+        <ListItem>
+          <EventBtn>
+            <Title>Show more</Title>
+          </EventBtn>
+        </ListItem>
       )}
-    </ul>
+    </List>
   );
 };
 

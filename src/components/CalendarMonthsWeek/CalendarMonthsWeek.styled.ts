@@ -8,7 +8,6 @@ export const DaysList = styled.ul`
 
 export const Day = styled.li<IStyledProps>`
   flex-basis: calc((100% - 6px) / 7);
-  height: 100px;
   background-color: #101112;
   border-radius: 10px;
   padding: ${({ theme }) => theme.spacing(2)};
