@@ -1,13 +1,12 @@
 import { FC } from 'react';
 import { IProps } from './CalendarEventsList.types';
 import { List, ListItem, EventBtn, Title } from './CalendarEventsList.styled';
+import { getEvents } from '@/utils';
 import { GeneralParams } from '@/constants';
 
 const CalendarEventsList: FC<IProps> = ({ todos }) => {
   const isMoreMaxQuantity = todos.length > GeneralParams.maxEventsCount;
-  const events = isMoreMaxQuantity
-    ? todos.filter((_, index) => index < GeneralParams.maxEventsCount - 1)
-    : todos;
+  const events = isMoreMaxQuantity ? getEvents(todos) : todos;
 
   return (
     <List>
