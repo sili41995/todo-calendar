@@ -13,6 +13,11 @@ const CalendarMonthsWeek: FC<IProps> = ({
   return (
     <DaysList>
       {week.map((day, index) => {
+        const filteredTodos = todos.filter(
+          ({ deadline }) => getDayOfYear(deadline) === getDayOfYear(day)
+        );
+        const showEventsList = Boolean(filteredTodos.length);
+
         return (
           <Day
             key={index}
@@ -25,11 +30,7 @@ const CalendarMonthsWeek: FC<IProps> = ({
                 {format(day, GeneralParams.dayOfMonthNumericFormat)}
               </Number>
             </Marker>
-            <CalendarEventsList
-              todos={todos.filter(
-                ({ deadline }) => getDayOfYear(deadline) === getDayOfYear(day)
-              )}
-            />
+            {showEventsList && <CalendarEventsList todos={filteredTodos} />}
           </Day>
         );
       })}

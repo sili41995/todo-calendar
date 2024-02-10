@@ -8,7 +8,7 @@ const App = () => {
   useEffect(() => {
     const getTodos = async () => {
       const result = await fetch(
-        'https://65b0f4a5d16d31d11bdda9d4.mockapi.io/todos'
+        'https://65b0f4a5d16d31d11bdda9d4.mockapi.io/todos?sortBy=deadline'
       ).then((data) => data.json());
 
       setTodos(result);

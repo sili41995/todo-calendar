@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { IProps } from './CalendarEventsList.types';
-import { List, ListItem, EventBtn, Title } from './CalendarEventsList.styled';
+import { List, ListItem, ShowMoreBtn } from './CalendarEventsList.styled';
 import { getEvents } from '@/utils';
 import { GeneralParams } from '@/constants';
+import CalendarEvent from '@/components/CalendarEvent';
 
 const CalendarEventsList: FC<IProps> = ({ todos }) => {
   const isMoreMaxQuantity = todos.length > GeneralParams.maxEventsCount;
@@ -10,18 +11,12 @@ const CalendarEventsList: FC<IProps> = ({ todos }) => {
 
   return (
     <List>
-      {events.map(({ task, id }) => (
-        <ListItem key={id}>
-          <EventBtn>
-            <Title>{task}</Title>
-          </EventBtn>
-        </ListItem>
+      {events.map((event) => (
+        <CalendarEvent key={event.id} event={event} />
       ))}
       {isMoreMaxQuantity && (
         <ListItem>
-          <EventBtn>
-            <Title>Show more</Title>
-          </EventBtn>
+          <ShowMoreBtn>Show more</ShowMoreBtn>
         </ListItem>
       )}
     </List>

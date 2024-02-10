@@ -16,8 +16,12 @@ const getFilteredTodos = ({
   todos.filter(({ deadline }) => {
     const deadlineMonth = format(deadline, GeneralParams.monthNumericFormat);
     const deadlineYear = format(deadline, GeneralParams.yearNumericFormat);
+    const expectedYear = deadlineYear === targetYear;
+    const expectedMonth =
+      Number(targetMonthNumber) - 1 <= Number(deadlineMonth) &&
+      Number(deadlineMonth) <= Number(targetMonthNumber) + 1;
 
-    return deadlineYear === targetYear && deadlineMonth === targetMonthNumber;
+    return expectedYear && expectedMonth;
   });
 
 export default getFilteredTodos;
