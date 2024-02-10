@@ -6,7 +6,6 @@ export const Container = styled.div`
   gap: 4px;
   background-color: pink;
   border-radius: 8px;
-  overflow: hidden;
   box-shadow: 0 8px 20px 8px #888888;
 `;
 

@@ -8,12 +8,10 @@ export const DaysList = styled.ul`
 
 export const Day = styled.li<IStyledProps>`
   flex-basis: calc((100% - 6px) / 7);
-  min-height: 60px;
   background-color: #101112;
   border-radius: 10px;
-  padding: ${({ theme }) => theme.spacing(2)};
 
-  & > div {
+  & > div:first-of-type {
     background-color: ${({ isCurrentDay }) =>
       isCurrentDay ? '#ED3779' : 'transparent'};
 
@@ -40,6 +38,8 @@ export const Marker = styled.div`
   align-items: center;
   width: 28px;
   height: 28px;
+  margin-top: ${({ theme }) => theme.spacing()};
+  margin-right: ${({ theme }) => theme.spacing()};
   margin-left: auto;
   border-radius: 50%;
 `;

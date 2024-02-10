@@ -20,7 +20,7 @@ const App = () => {
   return (
     <div
       style={{
-        width: 1200,
+        width: 1280,
         marginLeft: 'auto',
         marginRight: 'auto',
         padding: 20,
