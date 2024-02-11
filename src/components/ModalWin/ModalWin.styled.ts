@@ -11,13 +11,13 @@ export const Backdrop = styled.div`
   align-items: center;
   background-color: rgba(18, 20, 23, 0.5);
   overflow-y: scroll;
-  @media screen and (max-height: 752px) {
+  /* @media screen and (max-height: 752px) {
     align-items: flex-start;
-  }
+  } */
 `;
 
 export const Container = styled.div`
-  width: 541px;
+  width: 540px;
   position: relative;
   border-radius: 24px;
   background-color: #ffffff;
@@ -32,7 +32,7 @@ export const CloseBtn = styled.button`
   border: 0;
   background-color: transparent;
   &:is(:hover, :focus) svg {
-    color: #3470ff;
+    color: ${({ theme }) => theme.colors.accentColor};
   }
   & svg {
     display: block;

@@ -3,7 +3,7 @@ declare module '@emotion/react' {
 }
 
 interface ITheme {
-  // colors: {};
+  colors: { accentColor: string };
   // fontFamily: {};
   // fontWeight: {};
   // fontSize: {};
@@ -16,7 +16,9 @@ interface ITheme {
 }
 
 const theme: ITheme = {
-  // colors: {},
+  colors: {
+    accentColor: '#3470ff',
+  },
   // fontFamily: {},
   // fontWeight: {},
   // fontSize: {},

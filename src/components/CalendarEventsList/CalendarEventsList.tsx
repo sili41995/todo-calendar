@@ -10,10 +10,10 @@ import { getEvents } from '@/utils';
 import { GeneralParams } from '@/constants';
 import CalendarEvent from '@/components/CalendarEvent';
 
-const CalendarEventsList: FC<IProps> = ({ todos }) => {
+const CalendarEventsList: FC<IProps> = ({ events }) => {
   const [showFullList, setShowFullList] = useState<boolean>(false);
-  const isMoreMaxQuantity = todos.length > GeneralParams.maxEventsCount;
-  const events = isMoreMaxQuantity ? getEvents(todos) : todos;
+  const isMoreMaxQuantity = events.length > GeneralParams.maxEventsCount;
+  const filteredEvents = isMoreMaxQuantity ? getEvents(events) : events;
 
   const onShowMoreBtnClick = () => {
     setShowFullList((prevState) => !prevState);
@@ -22,7 +22,7 @@ const CalendarEventsList: FC<IProps> = ({ todos }) => {
   return (
     <Container>
       <List showFullList={showFullList}>
-        {(showFullList ? todos : events).map((event) => (
+        {(showFullList ? events : filteredEvents).map((event) => (
           <CalendarEvent key={event.id} event={event} />
         ))}
         {isMoreMaxQuantity && (

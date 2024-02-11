@@ -1,6 +1,6 @@
-import { MonthsWeeks, Todos } from '@/types/types';
+import { MonthsWeeks, Events } from '@/types/types';
 
 export interface IProps {
   monthsWeeks: MonthsWeeks;
-  todos: Todos;
+  events: Events;
 }

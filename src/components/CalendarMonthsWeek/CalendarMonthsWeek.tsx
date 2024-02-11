@@ -8,15 +8,15 @@ import CalendarEventsList from '@/components/CalendarEventsList';
 const CalendarMonthsWeek: FC<IProps> = ({
   week,
   monthOfCurrentPage,
-  todos,
+  events,
 }) => {
   return (
     <DaysList>
       {week.map((day, index) => {
-        const filteredTodos = todos.filter(
+        const filteredEvents = events.filter(
           ({ deadline }) => getDayOfYear(deadline) === getDayOfYear(day)
         );
-        const showEventsList = Boolean(filteredTodos.length);
+        const showEventsList = Boolean(filteredEvents.length);
 
         return (
           <Day
@@ -30,7 +30,7 @@ const CalendarMonthsWeek: FC<IProps> = ({
                 {format(day, GeneralParams.dayOfMonthNumericFormat)}
               </Number>
             </Marker>
-            {showEventsList && <CalendarEventsList todos={filteredTodos} />}
+            {showEventsList && <CalendarEventsList events={filteredEvents} />}
           </Day>
         );
       })}

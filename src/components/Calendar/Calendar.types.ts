@@ -1,5 +1,5 @@
-import { Todos } from '@/types/types';
+import { Events } from '@/types/types';
 
 export interface IProps {
-  todos: Todos;
+  events: Events;
 }

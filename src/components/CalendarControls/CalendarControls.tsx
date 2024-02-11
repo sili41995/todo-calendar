@@ -10,6 +10,8 @@ import {
 } from './CalendarControls.styled';
 import CalendarButton from '@/components/CalendarButton';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import { ClickEvent } from '@/types/types';
+import { makeBlur } from '@/utils';
 
 const CalendarControls: FC<IProps> = ({
   targetMonth,
@@ -39,11 +41,22 @@ const CalendarControls: FC<IProps> = ({
     },
   ];
 
+  const onAddEventClick = (e: ClickEvent) => {
+    console.log('add event');
+    makeBlur(e.currentTarget);
+  };
+
   return (
     <Container>
       <Date>
         <Month>{targetMonth}</Month> {targetYear}
       </Date>
+      <CalendarButton
+        ariaLabel={AriaLabels.addEvent}
+        onClick={onAddEventClick}
+        title={'Add Event'}
+        width={150}
+      />
       <ButtonsList>
         {buttonsOptions.map(({ ariaLabel, onClick, title, width }) => (
           <ButtonsListItem key={ariaLabel}>

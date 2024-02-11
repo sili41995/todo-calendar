@@ -1,19 +1,19 @@
 import { GeneralParams } from '@/constants';
-import { Todos } from '@/types/types';
+import { Events } from '@/types/types';
 import { format } from 'date-fns';
 
-export interface IGetFilteredTodosParams {
-  todos: Todos;
+export interface IGetFilteredEventsParams {
+  events: Events;
   targetYear: string;
   targetMonthNumber: string;
 }
 
-const getFilteredTodos = ({
-  todos,
+const getFilteredEvents = ({
+  events,
   targetYear,
   targetMonthNumber,
-}: IGetFilteredTodosParams) =>
-  todos.filter(({ deadline }) => {
+}: IGetFilteredEventsParams) =>
+  events.filter(({ deadline }) => {
     const deadlineMonth = format(deadline, GeneralParams.monthNumericFormat);
     const deadlineYear = format(deadline, GeneralParams.yearNumericFormat);
     const expectedYear = deadlineYear === targetYear;
@@ -24,4 +24,4 @@ const getFilteredTodos = ({
     return expectedYear && expectedMonth;
   });
 
-export default getFilteredTodos;
+export default getFilteredEvents;

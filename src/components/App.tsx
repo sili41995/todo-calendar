@@ -1,20 +1,20 @@
 import Calendar from '@/components/Calendar';
-import { Todos } from '@/types/types';
+import { Events } from '@/types/types';
 import { useEffect, useState } from 'react';
 
 const App = () => {
-  const [todos, setTodos] = useState<Todos | null>(null);
+  const [events, setEvents] = useState<Events | null>(null);
 
   useEffect(() => {
-    const getTodos = async () => {
+    const getEvents = async () => {
       const result = await fetch(
         'https://65b0f4a5d16d31d11bdda9d4.mockapi.io/todos?sortBy=deadline'
       ).then((data) => data.json());
 
-      setTodos(result);
+      setEvents(result);
     };
 
-    getTodos();
+    getEvents();
   }, []);
 
   return (
@@ -26,7 +26,7 @@ const App = () => {
         padding: 20,
       }}
     >
-      {todos && <Calendar todos={todos} />}
+      {events && <Calendar events={events} />}
     </div>
   );
 };

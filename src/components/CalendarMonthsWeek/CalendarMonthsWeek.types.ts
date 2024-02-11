@@ -1,9 +1,9 @@
-import { Todos, Week } from '@/types/types';
+import { Events, Week } from '@/types/types';
 
 export interface IProps {
   week: Week;
   monthOfCurrentPage: number;
-  todos: Todos;
+  events: Events;
 }
 
 export interface IStyledProps {

@@ -1,5 +1,5 @@
-import { ITodo } from '@/types/types';
+import { IEvent } from '@/types/types';
 
 export interface IProps {
-  event: ITodo;
+  event: IEvent;
 }

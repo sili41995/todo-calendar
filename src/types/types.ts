@@ -6,11 +6,11 @@ export type MonthsWeeks = Week[];
 
 export type ClickEvent = MouseEvent<HTMLButtonElement>;
 
-export interface ITodo {
+export interface IEvent {
   deadline: string;
   task: string;
   completed: true;
-  id: '1';
+  id: string;
 }
 
-export type Todos = ITodo[];
+export type Events = IEvent[];

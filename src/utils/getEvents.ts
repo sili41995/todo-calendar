@@ -1,7 +1,7 @@
 import { GeneralParams } from '@/constants';
-import { Todos } from '@/types/types';
+import { Events } from '@/types/types';
 
-const getEvents = (todos: Todos): Todos =>
-  todos.filter((_, index) => index < GeneralParams.maxEventsCount - 1);
+const getEvents = (events: Events): Events =>
+  events.filter((_, index) => index < GeneralParams.maxEventsCount - 1);
 
 export default getEvents;
