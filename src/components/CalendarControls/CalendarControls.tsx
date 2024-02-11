@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { IProps } from './CalendarControls.types';
 import { AriaLabels } from '@/constants';
 import {
+  ButtonsContainer,
   ButtonsList,
   ButtonsListItem,
   Container,
@@ -51,24 +52,26 @@ const CalendarControls: FC<IProps> = ({
       <Date>
         <Month>{targetMonth}</Month> {targetYear}
       </Date>
-      <CalendarButton
-        ariaLabel={AriaLabels.addEvent}
-        onClick={onAddEventClick}
-        title={'Add Event'}
-        width={150}
-      />
-      <ButtonsList>
-        {buttonsOptions.map(({ ariaLabel, onClick, title, width }) => (
-          <ButtonsListItem key={ariaLabel}>
-            <CalendarButton
-              ariaLabel={ariaLabel}
-              onClick={onClick}
-              title={title}
-              width={width}
-            />
-          </ButtonsListItem>
-        ))}
-      </ButtonsList>
+      <ButtonsContainer>
+        <CalendarButton
+          ariaLabel={AriaLabels.addEvent}
+          onClick={onAddEventClick}
+          title={'Add Event'}
+          width={150}
+        />
+        <ButtonsList>
+          {buttonsOptions.map(({ ariaLabel, onClick, title, width }) => (
+            <ButtonsListItem key={ariaLabel}>
+              <CalendarButton
+                ariaLabel={ariaLabel}
+                onClick={onClick}
+                title={title}
+                width={width}
+              />
+            </ButtonsListItem>
+          ))}
+        </ButtonsList>
+      </ButtonsContainer>
     </Container>
   );
 };

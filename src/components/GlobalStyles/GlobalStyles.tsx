@@ -1,17 +1,11 @@
 import { FC } from 'react';
 import { Global, css } from '@emotion/react';
 import 'modern-normalize';
-import { manropeBold, manropeMedium, manropeSemiBold } from '@/fonts';
+import { manropeMedium, manropeSemiBold, manropeRegular } from '@/fonts';
 
 const GlobalStyles: FC = () => (
   <Global
     styles={css`
-      @font-face {
-        font-family: Manrope;
-        src: local('Manrope'), url(${manropeBold}) format('truetype');
-        font-weight: 700;
-      }
-
       @font-face {
         font-family: Manrope;
         src: local('Manrope'), url(${manropeSemiBold}) format('truetype');
@@ -22,6 +16,12 @@ const GlobalStyles: FC = () => (
         font-family: Manrope;
         src: local('Manrope'), url(${manropeMedium}) format('truetype');
         font-weight: 500;
+      }
+
+      @font-face {
+        font-family: Manrope;
+        src: local('Manrope'), url(${manropeRegular}) format('truetype');
+        font-weight: 400;
       }
 
       body {

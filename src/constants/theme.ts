@@ -4,9 +4,10 @@ declare module '@emotion/react' {
 
 interface ITheme {
   colors: {
+    primaryColor: string;
     accentColor: string;
     weekendBgColor: string;
-    weekdayBgColor: string;
+    primaryCalendarColor: string;
     currentDayMarkerColor: string;
     whiteColor: string;
     greyColor: string;
@@ -24,10 +25,11 @@ interface ITheme {
 
 const theme: ITheme = {
   colors: {
-    accentColor: '#3470ff',
+    primaryColor: '#3470ff',
+    accentColor: '#0b44cd',
     weekendBgColor: '#272829',
-    weekdayBgColor: '#1E1F21',
-    currentDayMarkerColor: '#990099',
+    primaryCalendarColor: '#1E1F21',
+    currentDayMarkerColor: '#00FF00',
     whiteColor: '#FFFFFF',
     greyColor: '#555759',
   },

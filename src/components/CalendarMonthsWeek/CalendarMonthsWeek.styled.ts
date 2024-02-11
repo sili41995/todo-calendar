@@ -4,7 +4,7 @@ import {
   IMarkerStyledProps,
   INumberStyledProps,
 } from './CalendarMonthsWeek.types';
-import { GeneralParams } from '@/constants';
+import { getFlexBasisValue } from '@/utils';
 
 export const DaysList = styled.ul`
   display: flex;
@@ -12,13 +12,14 @@ export const DaysList = styled.ul`
 `;
 
 export const Day = styled.li<ICellStyledProps>`
-  flex-basis: ${({ theme }) =>
-    `calc((100% - ${(GeneralParams.calendarColumns - 1) * theme.cellGap}px) / ${
-      GeneralParams.calendarColumns
-    })`};
+  flex-basis: ${({ theme }) => getFlexBasisValue(theme.cellGap)};
   background-color: ${({ isWeekend, theme }) =>
-    isWeekend ? theme.colors.weekendBgColor : theme.colors.weekdayBgColor};
+    isWeekend
+      ? theme.colors.weekendBgColor
+      : theme.colors.primaryCalendarColor};
   border-radius: 8px;
+  padding: ${({ theme }) => theme.spacing()};
+  min-height: 76px;
 `;
 
 export const Marker = styled.div<IMarkerStyledProps>`
@@ -27,18 +28,21 @@ export const Marker = styled.div<IMarkerStyledProps>`
   align-items: center;
   width: 28px;
   height: 28px;
-  margin: ${({ theme }) => `${theme.spacing()} ${theme.spacing()} 0 auto`};
+  margin-left: auto;
   border-radius: 50%;
   background-color: ${({ isCurrentDay, theme }) =>
     isCurrentDay ? theme.colors.currentDayMarkerColor : 'transparent'};
 `;
 
 export const Number = styled.p<INumberStyledProps>`
-  color: ${({ theme, isCurrentMonth }) =>
-    isCurrentMonth ? theme.colors.whiteColor : theme.colors.greyColor};
+  color: ${({ theme, isCurrentMonth, isCurrentDay }) => {
+    if (isCurrentDay) return theme.colors.primaryCalendarColor;
+
+    return isCurrentMonth ? theme.colors.whiteColor : theme.colors.greyColor;
+  }};
   font-family: Manrope;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.43;
   text-align: end;
 `;

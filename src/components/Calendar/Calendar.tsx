@@ -2,7 +2,7 @@ import CalendarDaysList from '@/components/CalendarDaysList';
 import CalendarControls from '@/components/CalendarControls';
 import { getFilteredEvents, getMonthsParams, makeBlur } from '@/utils';
 import CalendarDaysNames from '@/components/CalendarDaysNames';
-import { Container, DaysContainer } from './Calendar.styled';
+import { Container, ControlsContainer, DaysContainer } from './Calendar.styled';
 import { FC, useState } from 'react';
 import { addMonths } from 'date-fns';
 import { ClickEvent } from '@/types/types';
@@ -36,13 +36,15 @@ const Calendar: FC<IProps> = ({ events }) => {
 
   return (
     <Container>
-      <CalendarControls
-        targetMonth={targetMonthName}
-        targetYear={targetYear}
-        onIncrementBtnClick={onIncrementBtnClick}
-        onDecrementBtnClick={onDecrementBtnClick}
-        onTodayBtnClick={onTodayBtnClick}
-      />
+      <ControlsContainer>
+        <CalendarControls
+          targetMonth={targetMonthName}
+          targetYear={targetYear}
+          onIncrementBtnClick={onIncrementBtnClick}
+          onDecrementBtnClick={onDecrementBtnClick}
+          onTodayBtnClick={onTodayBtnClick}
+        />
+      </ControlsContainer>
       <DaysContainer>
         <CalendarDaysNames monthsWeeks={monthsWeeks} />
         <CalendarDaysList monthsWeeks={monthsWeeks} events={filteredEvents} />

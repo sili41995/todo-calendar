@@ -16,4 +16,5 @@ export interface IMarkerStyledProps {
 
 export interface INumberStyledProps {
   isCurrentMonth: boolean;
+  isCurrentDay: boolean;
 }

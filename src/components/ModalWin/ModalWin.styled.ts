@@ -31,9 +31,11 @@ export const CloseBtn = styled.button`
   padding: 0;
   border: 0;
   background-color: transparent;
+
   &:is(:hover, :focus) svg {
     color: ${({ theme }) => theme.colors.accentColor};
   }
+
   & svg {
     display: block;
     color: #121417;

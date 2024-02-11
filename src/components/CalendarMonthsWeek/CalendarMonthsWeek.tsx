@@ -17,11 +17,15 @@ const CalendarMonthsWeek: FC<IProps> = ({
           ({ deadline }) => getDayOfYear(deadline) === getDayOfYear(day)
         );
         const showEventsList = Boolean(filteredEvents.length);
+        const isCurrentDay = isToday(day);
 
         return (
           <Day key={index} isWeekend={isWeekend(day)}>
-            <Marker isCurrentDay={isToday(day)}>
-              <Number isCurrentMonth={monthOfCurrentPage === getMonth(day)}>
+            <Marker isCurrentDay={isCurrentDay}>
+              <Number
+                isCurrentDay={isCurrentDay}
+                isCurrentMonth={monthOfCurrentPage === getMonth(day)}
+              >
                 {format(day, GeneralParams.dayOfMonthNumericFormat)}
               </Number>
             </Marker>

@@ -4,3 +4,4 @@ export { default as getDaysNumbers } from './getDaysNumbers';
 export { default as makeBlur } from './makeBlur';
 export { default as getFilteredEvents } from './getFilteredEvents';
 export { default as getEvents } from './getEvents';
+export { default as getFlexBasisValue } from './getFlexBasisValue';

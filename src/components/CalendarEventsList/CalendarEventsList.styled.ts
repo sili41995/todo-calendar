@@ -1,28 +1,26 @@
 import styled from '@emotion/styled';
 import { IStyledProps } from './CalendarEventsList.types';
 
-export const Container = styled.div`
-  /* position: relative; */
-  /* background-color: inherit; */
-`;
-
 export const List = styled.ul<IStyledProps>`
-  /* position: ${({ showFullList }) =>
-    showFullList ? 'absolute' : 'static'}; */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* gap: 4px; */
-  /* background-color: ${({ showFullList }) =>
-    showFullList ? '#ffffff' : 'inherit'}; */
-  /* border-radius: 8px; */
-  /* padding: ${({ theme }) => theme.spacing()}; */
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing()};
 `;
 
 export const ListItem = styled.li``;
 
 export const ShowMoreBtn = styled.button`
-  /* background-color: greenyellow; */
-  /* width: 100%; */
-  /* border-color: transparent; */
-  /* border-radius: 8px; */
+  background-color: ${({ theme }) => theme.colors.primaryColor};
+  width: 100%;
+  border-color: transparent;
+  border-radius: 8px;
+  color: ${({ theme }) => theme.colors.whiteColor};
+  font-family: Manrope;
+  font-size: 16px;
+  font-weight: 400;
+  transition: background-color ${({ theme }) => theme.transitionDurationAndFunc};
+
+  &:is(:hover, :focus) {
+    background-color: ${({ theme }) => theme.colors.accentColor};
+  }
 `;
