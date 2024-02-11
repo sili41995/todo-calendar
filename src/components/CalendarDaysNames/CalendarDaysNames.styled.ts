@@ -13,15 +13,15 @@ export const Day = styled.li<IStyledProps>`
     isWeekend
       ? theme.colors.weekendBgColor
       : theme.colors.primaryCalendarColor};
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.borderRadius.primaryBorderRadius}px;
   padding: ${({ theme }) => theme.spacing(4)};
 `;
 
 export const Name = styled.p`
   font-family: Manrope;
   color: ${({ theme }) => theme.colors.whiteColor};
-  font-size: 18px;
-  font-weight: 600;
+  font-size: ${({ theme }) => theme.fontSize.secondaryFontSize}px;
+  font-weight: ${({ theme }) => theme.fontWeight.primaryFontWeight};
   line-height: 1.43;
   text-align: center;
 `;

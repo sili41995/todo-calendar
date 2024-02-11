@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
+  border-radius: ${({theme})=>theme.borderRadius.primaryBorderRadius}px;
   box-shadow: 0 8px 20px 8px #888888;
   overflow: hidden;
 `;

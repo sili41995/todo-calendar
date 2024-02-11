@@ -9,12 +9,12 @@ export const StyledButton = styled.button<IStyledProps>`
   height: 100%;
   padding: ${({ theme }) => theme.spacing()};
   border-color: transparent;
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.borderRadius.primaryBorderRadius}px;
   background-color: ${({ theme }) => theme.colors.primaryColor};
   color: ${({ theme }) => theme.colors.whiteColor};
   font-family: Manrope;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: ${({ theme }) => theme.fontSize.primaryFontSize}px;
+  font-weight: ${({ theme }) => theme.fontWeight.primaryFontWeight};
   line-height: 1.43;
   transition: background-color ${({ theme }) => theme.transitionDurationAndFunc};
 

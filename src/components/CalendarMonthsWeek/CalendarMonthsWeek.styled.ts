@@ -17,7 +17,7 @@ export const Day = styled.li<ICellStyledProps>`
     isWeekend
       ? theme.colors.weekendBgColor
       : theme.colors.primaryCalendarColor};
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.borderRadius.primaryBorderRadius}px;
   padding: ${({ theme }) => theme.spacing()};
   min-height: 76px;
 `;
@@ -41,8 +41,8 @@ export const Number = styled.p<INumberStyledProps>`
     return isCurrentMonth ? theme.colors.whiteColor : theme.colors.greyColor;
   }};
   font-family: Manrope;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: ${({ theme }) => theme.fontSize.primaryFontSize}px;
+  font-weight: ${({ theme }) => theme.fontWeight.primaryFontWeight};
   line-height: 1.43;
   text-align: end;
 `;

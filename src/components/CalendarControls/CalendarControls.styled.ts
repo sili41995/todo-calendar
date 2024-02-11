@@ -5,14 +5,14 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   background-color: ${({ theme }) => theme.colors.primaryCalendarColor};
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.borderRadius.primaryBorderRadius}px;
   padding: ${({ theme }) => theme.spacing(2)};
 `;
 
 export const Date = styled.p`
   font-family: Manrope;
   font-size: 32px;
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.fontWeight.otherFontWeight};
   line-height: 1.33;
   color: ${({ theme }) => theme.colors.whiteColor};
 `;

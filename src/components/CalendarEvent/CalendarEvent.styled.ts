@@ -6,7 +6,7 @@ export const EventBtn = styled.button`
   background-color: #8a2be2;
   width: 100%;
   border-color: transparent;
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.borderRadius.primaryBorderRadius}px;
   transition: background-color ${({ theme }) => theme.transitionDurationAndFunc};
 
   &:is(:hover, :focus) {
@@ -17,8 +17,8 @@ export const EventBtn = styled.button`
 export const Title = styled.span`
   color: ${({ theme }) => theme.colors.whiteColor};
   font-family: Manrope;
-  font-size: 16px;
-  font-weight: 400;
+  font-size: ${({ theme }) => theme.fontSize.primaryFontSize}px;
+  font-weight: ${({ theme }) => theme.fontWeight.secondaryFontWeight};
   word-wrap: break-word;
   overflow: hidden;
   text-overflow: ellipsis;
