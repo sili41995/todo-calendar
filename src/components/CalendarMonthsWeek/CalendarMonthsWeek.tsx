@@ -19,14 +19,9 @@ const CalendarMonthsWeek: FC<IProps> = ({
         const showEventsList = Boolean(filteredEvents.length);
 
         return (
-          <Day
-            key={index}
-            isCurrentMonth={monthOfCurrentPage === getMonth(day)}
-            isCurrentDay={isToday(day)}
-            isWeekend={isWeekend(day)}
-          >
-            <Marker>
-              <Number>
+          <Day key={index} isWeekend={isWeekend(day)}>
+            <Marker isCurrentDay={isToday(day)}>
+              <Number isCurrentMonth={monthOfCurrentPage === getMonth(day)}>
                 {format(day, GeneralParams.dayOfMonthNumericFormat)}
               </Number>
             </Marker>

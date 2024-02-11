@@ -6,8 +6,14 @@ export interface IProps {
   events: Events;
 }
 
-export interface IStyledProps {
-  isCurrentDay: boolean;
+export interface ICellStyledProps {
   isWeekend: boolean;
+}
+
+export interface IMarkerStyledProps {
+  isCurrentDay: boolean;
+}
+
+export interface INumberStyledProps {
   isCurrentMonth: boolean;
 }
