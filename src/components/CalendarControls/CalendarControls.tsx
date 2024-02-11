@@ -1,50 +1,33 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { IProps } from './CalendarControls.types';
 import { AriaLabels } from '@/constants';
 import {
   ButtonsContainer,
-  ButtonsList,
-  ButtonsListItem,
   Container,
   Date,
   Month,
 } from './CalendarControls.styled';
 import CalendarButton from '@/components/CalendarButton';
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { ClickEvent } from '@/types/types';
 import { makeBlur } from '@/utils';
+import CalendarButtonsList from '@/components/CalendarButtonsList';
+import ModalWin from '../ModalWin';
+import AddEventForm from '@/components/AddEventForm';
 
 const CalendarControls: FC<IProps> = ({
   targetMonth,
   targetYear,
-  onIncrementBtnClick,
-  onDecrementBtnClick,
-  onTodayBtnClick,
+  ...otherProps
 }) => {
-  const buttonsOptions = [
-    {
-      title: <FaAngleLeft />,
-      ariaLabel: AriaLabels.prevMonth,
-      onClick: onDecrementBtnClick,
-      width: 36,
-    },
-    {
-      title: 'Today',
-      ariaLabel: AriaLabels.currentMonth,
-      onClick: onTodayBtnClick,
-      width: 120,
-    },
-    {
-      title: <FaAngleRight />,
-      ariaLabel: AriaLabels.nextMonth,
-      onClick: onIncrementBtnClick,
-      width: 36,
-    },
-  ];
+  const [showAddEventForm, setShowAddEventForm] = useState<boolean>(false);
 
-  const onAddEventClick = (e: ClickEvent) => {
-    console.log('add event');
+  const onAddEventBtnClick = (e: ClickEvent) => {
+    setShowAddEventForm(true);
     makeBlur(e.currentTarget);
+  };
+
+  const setModalWinState = () => {
+    setShowAddEventForm((prevState) => !prevState);
   };
 
   return (
@@ -55,23 +38,18 @@ const CalendarControls: FC<IProps> = ({
       <ButtonsContainer>
         <CalendarButton
           ariaLabel={AriaLabels.addEvent}
-          onClick={onAddEventClick}
+          onClick={onAddEventBtnClick}
           title={'Add Event'}
           width={150}
         />
-        <ButtonsList>
-          {buttonsOptions.map(({ ariaLabel, onClick, title, width }) => (
-            <ButtonsListItem key={ariaLabel}>
-              <CalendarButton
-                ariaLabel={ariaLabel}
-                onClick={onClick}
-                title={title}
-                width={width}
-              />
-            </ButtonsListItem>
-          ))}
-        </ButtonsList>
+        <CalendarButtonsList {...otherProps} />
       </ButtonsContainer>
+      {showAddEventForm && (
+        <ModalWin
+          setModalWinState={setModalWinState}
+          children={<AddEventForm />}
+        />
+      )}
     </Container>
   );
 };

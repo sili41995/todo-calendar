@@ -24,10 +24,3 @@ export const ButtonsContainer = styled.div`
   justify-content: space-between;
   gap: ${({ theme }) => theme.spacing(20)};
 `;
-
-export const ButtonsList = styled.ul`
-  display: flex;
-  gap: ${({ theme }) => theme.spacing()};
-`;
-
-export const ButtonsListItem = styled.li``;
