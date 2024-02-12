@@ -25,7 +25,10 @@ interface ITheme {
   padding: {
     containerPadding: number;
   };
-  borderRadius: { primaryBorderRadius: number };
+  borderRadius: { primaryBorderRadius: number; secondaryBorderRadius: number };
+  shadows: {
+    primaryShadow: string;
+  };
   cellGap: number;
   transitionDurationAndFunc: string;
   spacing: (value?: number) => string;
@@ -54,7 +57,13 @@ const theme: ITheme = {
   padding: {
     containerPadding: 16,
   },
-  borderRadius: { primaryBorderRadius: 8 },
+  borderRadius: {
+    primaryBorderRadius: 8,
+    secondaryBorderRadius: 4,
+  },
+  shadows: {
+    primaryShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+  },
   cellGap: 1,
   transitionDurationAndFunc: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
   spacing: (value = 1) => `${value * 4}px`,

@@ -1,13 +1,20 @@
 import { FC } from 'react';
 import { IProps } from './Input.types';
 import { InputTypes } from '@/constants';
-import { Label, StyledInput } from './Input.styled';
+import {
+  InputContainer,
+  AltElem,
+  Label,
+  Title,
+  StyledInput,
+} from './Input.styled';
 
 const Input: FC<IProps> = ({
   settings,
   type,
   altElem,
   checked,
+  label,
   ...otherProps
 }) => {
   const input = (
@@ -16,14 +23,24 @@ const Input: FC<IProps> = ({
 
   if (type === InputTypes.checkbox) {
     return (
-      <Label checked={checked}>
-        {altElem}
-        {input}
-      </Label>
+      <InputContainer>
+        <Title>{label}</Title>
+        <AltElem checked={checked}>
+          {altElem}
+          {input}
+        </AltElem>
+      </InputContainer>
     );
   }
 
-  return input;
+  return (
+    <>
+      <Label>
+        <Title>{label}</Title>
+        {input}
+      </Label>
+    </>
+  );
 };
 
 export default Input;

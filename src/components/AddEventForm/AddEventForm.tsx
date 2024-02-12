@@ -1,5 +1,56 @@
-const AddEventForm = () => {
-  return <div>AddEventForm</div>;
+import { NewEvent } from '@/types/types';
+import { Form, Title } from './AddEventForm.styled';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import Input from '@/components/Input';
+import { IconSizes, InputTypes } from '@/constants';
+import { FaCheck } from 'react-icons/fa';
+import { FC, useState } from 'react';
+
+const AddEventForm: FC = () => {
+  const [checked, setChecked] = useState<boolean>(false);
+  const {
+    register,
+    // formState: { errors, isSubmitting },
+    handleSubmit,
+    reset,
+  } = useForm<NewEvent>();
+
+  const onCheckboxChange = () => {
+    setChecked((prevState) => !prevState);
+  };
+
+  const handleFormSubmit: SubmitHandler<NewEvent> = (data) => {
+    console.log(data);
+    setChecked(false);
+    reset();
+  };
+  return (
+    <>
+      <Title>Add contact</Title>
+      <Form onSubmit={handleSubmit(handleFormSubmit)}>
+        <Input
+          settings={{ ...register('task', { required: true }) }}
+          type={InputTypes.text}
+          placeholder='Task'
+          label='Task'
+        />
+        <Input
+          settings={{ ...register('deadline', { required: true }) }}
+          type={InputTypes.dateTimeLocal}
+          label='Deadline'
+        />
+        <Input
+          settings={{ ...register('completed') }}
+          type={InputTypes.checkbox}
+          altElem={<FaCheck size={IconSizes.secondarySize} />}
+          label='Completed'
+          checked={checked}
+          onChange={onCheckboxChange}
+        />
+        <button type='submit'>Submit</button>
+      </Form>
+    </>
+  );
 };
 
 // const AddContactForm: FC = () => {
@@ -61,8 +112,7 @@ const AddEventForm = () => {
 
 //   return (
 //     <ModalForm>
-//       <Title>Add contact</Title>
-//       <Form onSubmit={handleSubmit(handleFormSubmit)}>
+
 //         <Input
 //           settings={{ ...register('avatar') }}
 //           accept='image/png, image/jpeg, image/jpg'

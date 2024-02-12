@@ -2,9 +2,8 @@ import styled from '@emotion/styled';
 import { IStyledProps } from './Input.types';
 
 export const StyledInput = styled.input<IStyledProps>`
-  /* width: 100%;
-  max-width: ;
-  height: ;
+  width: 100%;
+  /*height: ;
   background-color: transparent;
   border: 1px solid color????;
   border-radius: ??????;
@@ -22,33 +21,45 @@ export const StyledInput = styled.input<IStyledProps>`
   } */
 `;
 
-export const Label = styled.label<IStyledProps>`
-  /* display: flex;
+export const Label = styled.label``;
+
+export const Title = styled.span``;
+
+export const InputContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const AltElem = styled.label<IStyledProps>`
+  display: flex;
   align-items: center;
   justify-content: center;
+  padding: ${({ theme }) => theme.spacing()};
+  border: 1px solid;
+  border-color: ${({ checked, theme }) =>
+    checked ? 'transparent' : theme.colors.greyColor};
+  background-color: ${({ checked, theme }) =>
+    checked ? theme.colors.primaryColor : 'transparent'};
+  cursor: pointer;
+  transition: box-shadow ${({ theme }) => theme.transitionDurationAndFunc},
+    background-color ${({ theme }) => theme.transitionDurationAndFunc},
+    border-color ${({ theme }) => theme.transitionDurationAndFunc};
+  border-radius: ${({ theme }) => theme.borderRadius.secondaryBorderRadius}px;
+
   & input {
     position: fixed;
     transform: scale(0);
   }
+
   &:has([type='checkbox']) svg {
-    width: ?????;
-    height: 100%;
-    padding: ${({ theme }) => theme.spacing(2)};
-    border: 1px solid;
-    border-color: ${({ checked }) => (checked ? 'transparent' : '??????')};
-    border-radius: ????????;
-    background-color: ${({ checked }) =>
-    checked ? '??????????' : 'transparent'};
     color: ${({ theme, checked }) =>
-    checked ? theme.colors.whiteColor : 'transparent'};
-    cursor: pointer;
-    transition: box-shadow ${({ theme }) => theme.transitionDurationAndFunc},
-      background-color ${({ theme }) => theme.transitionDurationAndFunc},
-      color ${({ theme }) => theme.transitionDurationAndFunc},
-      border-color ${({ theme }) => theme.transitionDurationAndFunc};
-    &:hover,
-    &:focus {
-      box-shadow: ???????;
-    }
-  } */
+      checked ? theme.colors.whiteColor : 'transparent'};
+    transition: color ${({ theme }) => theme.transitionDurationAndFunc};
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: ${({ theme }) => theme.shadows.primaryShadow};
+  }
 `;
