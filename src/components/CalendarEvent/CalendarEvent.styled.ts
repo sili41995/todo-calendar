@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { IStylesProps } from './CalendarEvent.types';
 
 export const ListItem = styled.li``;
 
@@ -14,8 +15,9 @@ export const EventBtn = styled.button`
   }
 `;
 
-export const Title = styled.span`
+export const Title = styled.span<IStylesProps>`
   color: ${({ theme }) => theme.colors.whiteColor};
+  text-decoration: ${({ completed }) => (completed ? ' line-through' : 'none')};
   font-family: Manrope;
   font-size: ${({ theme }) => theme.fontSize.primaryFontSize}px;
   font-weight: ${({ theme }) => theme.fontWeight.secondaryFontWeight};

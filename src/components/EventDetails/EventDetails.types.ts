@@ -4,6 +4,6 @@ export interface IProps {
   event: IEvent;
 }
 
-export interface IStylesProps {
+export interface IStyledProps {
   completed: boolean;
 }
