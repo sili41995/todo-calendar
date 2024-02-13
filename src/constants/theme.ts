@@ -8,9 +8,10 @@ interface ITheme {
     accentColor: string;
     weekendBgColor: string;
     primaryCalendarColor: string;
-    currentDayMarkerColor: string;
+    greenColor: string;
     whiteColor: string;
     greyColor: string;
+    primaryFontColor: string;
   };
   // fontFamily: {};
   fontWeight: {
@@ -37,10 +38,11 @@ interface ITheme {
 const theme: ITheme = {
   colors: {
     primaryColor: '#3470ff',
+    primaryFontColor: '#000000',
     accentColor: '#0b44cd',
     weekendBgColor: '#272829',
     primaryCalendarColor: '#1E1F21',
-    currentDayMarkerColor: '#00FF00',
+    greenColor: '#00FF00',
     whiteColor: '#FFFFFF',
     greyColor: '#555759',
   },

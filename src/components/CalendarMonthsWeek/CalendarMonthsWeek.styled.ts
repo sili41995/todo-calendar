@@ -31,7 +31,7 @@ export const Marker = styled.div<IMarkerStyledProps>`
   margin-left: auto;
   border-radius: 50%;
   background-color: ${({ isCurrentDay, theme }) =>
-    isCurrentDay ? theme.colors.currentDayMarkerColor : 'transparent'};
+    isCurrentDay ? theme.colors.greenColor : 'transparent'};
 `;
 
 export const Number = styled.p<INumberStyledProps>`
