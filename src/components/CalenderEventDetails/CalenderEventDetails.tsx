@@ -1,11 +1,12 @@
 import { FC } from 'react';
 import { IProps } from './CalenderEventDetails.types';
 import { Deadline, Status, Text } from './CalenderEventDetails.styled';
-import { isPast } from 'date-fns';
+import { format, isPast } from 'date-fns';
+import { GeneralParams } from '@/constants';
 
 const CalenderEventDetails: FC<IProps> = ({ event }) => {
   const date = new Date(event.deadline);
-  const deadline = date.toLocaleString();
+  const deadline = format(date, GeneralParams.fullDateFormat);
   const isPastDate = isPast(date);
 
   return (
