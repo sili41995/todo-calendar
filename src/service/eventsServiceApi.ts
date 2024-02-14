@@ -1,11 +1,24 @@
-import { Events } from '@/types/types';
+import { Events, IEvent, NewEvent } from '@/types/types';
 
 class EventsServiceApi {
-  private BASE_URL =
-    'https://65b0f4a5d16d31d11bdda9d4.mockapi.io/todos?sortBy=deadline';
+  private BASE_URL = 'https://65b0f4a5d16d31d11bdda9d4.mockapi.io/todos';
 
   fetchEvents(): Promise<Events> {
     return fetch(`${this.BASE_URL}`).then((response) => response.json());
+  }
+
+  addEvent(data: NewEvent): Promise<IEvent> {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    };
+
+    return fetch(`${this.BASE_URL}`, options).then((response) =>
+      response.json()
+    );
   }
 }
 

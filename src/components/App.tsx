@@ -1,10 +1,11 @@
 import Calendar from '@/components/Calendar';
+import QueryKey from '@/tanStackQuery/keys';
 import { getEvents } from '@/tanStackQuery/operations';
 import { useQuery } from '@tanstack/react-query';
 
 const App = () => {
   const { data: events } = useQuery({
-    queryKey: ['events'],
+    queryKey: [QueryKey.events],
     queryFn: getEvents,
   });
 

@@ -5,9 +5,19 @@ import Input from '@/components/Input';
 import { IconSizes, InputTypes } from '@/constants';
 import { FaCheck } from 'react-icons/fa';
 import { FC, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import queryClient from '@/tanStackQuery/client';
+import QueryKey from '@/tanStackQuery/keys';
+import { addEvent } from '@/tanStackQuery/operations';
 
 const AddEventForm: FC = () => {
   const [checked, setChecked] = useState<boolean>(false);
+  const { mutate: addNewEvent } = useMutation({
+    mutationFn: addEvent,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QueryKey.events] });
+    },
+  });
   const {
     register,
     // formState: { errors, isSubmitting },
@@ -20,10 +30,11 @@ const AddEventForm: FC = () => {
   };
 
   const handleFormSubmit: SubmitHandler<NewEvent> = (data) => {
-    console.log(data);
+    addNewEvent(data);
     setChecked(false);
     reset();
   };
+
   return (
     <>
       <Title>Add contact</Title>
