@@ -5,3 +5,5 @@ export { default as makeBlur } from './makeBlur';
 export { default as getFilteredEvents } from './getFilteredEvents';
 export { default as getEvents } from './getEvents';
 export { default as getFlexBasisValue } from './getFlexBasisValue';
+export { default as setBtnBGColor } from './setBtnBGColor';
+export { default as setBtnIconColor } from './setBtnIconColor';
