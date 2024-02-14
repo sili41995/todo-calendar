@@ -16,9 +16,27 @@ class EventsServiceApi {
       },
     };
 
-    return fetch(`${this.BASE_URL}`, options).then((response) =>
-      response.json()
-    );
+    return fetch(`${this.BASE_URL}`, options).then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to add event');
+      }
+
+      return response.json();
+    });
+  }
+
+  deleteEvent(id: string): Promise<IEvent> {
+    const options = {
+      method: 'DELETE',
+    };
+
+    return fetch(`${this.BASE_URL}/${id}`, options).then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to delete event');
+      }
+
+      return response.json();
+    });
   }
 }
 

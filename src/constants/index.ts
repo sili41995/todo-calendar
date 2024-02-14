@@ -5,3 +5,4 @@ export { default as IconSizes } from './iconSizes';
 export { default as InputTypes } from './inputTypes';
 export { default as BtnTypes } from './btnTypes';
 export { default as IconBtnTypes } from './iconBtnTypes';
+export { default as Messages } from './messages';

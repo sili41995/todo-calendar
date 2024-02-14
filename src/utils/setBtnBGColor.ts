@@ -6,6 +6,9 @@ const setBtnBGColor = (iconBtnType: IconBtnTypes): string => {
     case IconBtnTypes.edit:
       return theme.colors.blueBtnColor;
 
+    case IconBtnTypes.delete:
+      return theme.colors.redBtnColor;
+
     default:
       return theme.colors.lightgreyColor;
   }

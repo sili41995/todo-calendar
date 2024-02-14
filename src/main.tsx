@@ -7,6 +7,7 @@ import GlobalStyles from '@/components/GlobalStyles';
 import { QueryClientProvider } from '@tanstack/react-query';
 import queryClient from '@/tanStackQuery/client';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import Toast from '@/components/Toast';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root') as HTMLElement).render(
       <ThemeProvider theme={theme}>
         <App />
         <GlobalStyles />
+        <Toast />
         <ReactQueryDevtools initialIsOpen={false} />
       </ThemeProvider>
     </QueryClientProvider>

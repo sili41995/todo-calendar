@@ -14,6 +14,8 @@ interface ITheme {
     lightgreyColor: string;
     primaryFontColor: string;
     blueBtnColor: string;
+    redBtnColor: string;
+    redIconColor: string;
   };
   // fontFamily: {};
   fontWeight: {
@@ -49,6 +51,8 @@ const theme: ITheme = {
     greyColor: '#555759',
     lightgreyColor: '#d3d3d3',
     blueBtnColor: '#7fd1ff',
+    redBtnColor: '#ff9192',
+    redIconColor: '#d3232f',
   },
   // fontFamily: {},
   fontWeight: {

@@ -21,7 +21,12 @@ const CalendarEvent: FC<IProps> = ({ event }) => {
       {showModalWin && (
         <ModalWin
           setModalWinState={setModalWinState}
-          children={<CalenderEventDetails event={event} />}
+          children={
+            <CalenderEventDetails
+              event={event}
+              setModalWinState={setModalWinState}
+            />
+          }
         />
       )}
     </>

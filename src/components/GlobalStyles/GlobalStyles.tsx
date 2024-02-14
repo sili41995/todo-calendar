@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Global, css } from '@emotion/react';
 import 'modern-normalize';
 import { manropeMedium, manropeSemiBold, manropeRegular } from '@/fonts';
+import 'react-toastify/dist/ReactToastify.css';
 
 const GlobalStyles: FC = () => (
   <Global
