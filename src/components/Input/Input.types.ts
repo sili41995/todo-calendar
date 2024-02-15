@@ -13,7 +13,7 @@ export interface IProps {
   // accept?: string;
   altElem?: ReactElement;
   // value?: string;
-  // defaultValue?: string;
+  defaultValue?: string;
   checked?: boolean;
   onChange?: (e: InputChangeEvent) => void;
 }

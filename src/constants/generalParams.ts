@@ -1,5 +1,5 @@
 const enum GeneralParams {
-  fullDateFormat = 'yyyy-MM-dd kk:mm:ss',
+  fullDateFormat = 'yyyy-MM-dd kk:mm',
   yearNumericFormat = 'yyyy',
   monthNumericFormat = 'MM',
   monthTextFormat = 'MMMM',

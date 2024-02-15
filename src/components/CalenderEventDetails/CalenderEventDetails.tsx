@@ -67,7 +67,11 @@ const CalenderEventDetails: FC<IProps> = ({ event, setModalWinState }) => {
           />
         </ListItem>
       </ButtonsList>
-      {editEvent ? <EditEventForm /> : <EventDetails event={event} />}
+      {editEvent ? (
+        <EditEventForm event={event} />
+      ) : (
+        <EventDetails event={event} />
+      )}
     </Container>
   );
 };

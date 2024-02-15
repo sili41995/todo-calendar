@@ -1,5 +1,5 @@
 import eventsServiceApi from '@/service/eventsServiceApi';
-import { Events, IEvent, NewEvent } from '@/types/types';
+import { Events, IEvent, IUpdateEvent, NewEvent } from '@/types/types';
 
 export const getEvents = async (): Promise<Events | undefined> => {
   try {
@@ -15,3 +15,6 @@ export const addEvent = async (data: NewEvent): Promise<IEvent> =>
 
 export const deleteEvent = async (id: string): Promise<IEvent> =>
   await eventsServiceApi.deleteEvent(id);
+
+export const updateEvent = async (data: IUpdateEvent): Promise<IEvent> =>
+  await eventsServiceApi.updateEvent(data);
