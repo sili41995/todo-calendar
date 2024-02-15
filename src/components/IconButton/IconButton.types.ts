@@ -7,7 +7,7 @@ export interface IProps {
   ariaLabel: AriaLabels;
   icon: ReactNode;
   iconBtnType: IconBtnTypes;
-  onClick: (e: ClickEvent) => void;
+  onClick?: (e: ClickEvent) => void;
 }
 
 export interface IStyledProps {

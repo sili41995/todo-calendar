@@ -3,27 +3,39 @@ import { IStyledProps } from './Input.types';
 
 export const StyledInput = styled.input<IStyledProps>`
   width: 100%;
-  /*height: ;
+  height: 40px;
   background-color: transparent;
-  border: 1px solid color????;
-  border-radius: ??????;
-  padding: ????????;
-  font-family: Inter;
-  color: ??????;
-  font-weight: ${({ theme }) => theme.fontWeight.primaryFontWeight};
-  font-size: ???????;
+  border: 2px solid;
+  border-color: ${({ theme }) => theme.colors.lightgreyColor};
+  border-radius: ${({ theme }) => theme.borderRadius.primaryBorderRadius}px;
+  padding-left: ${({ theme }) => theme.spacing(10)};
+  padding-right: ${({ theme }) => theme.spacing()};
+  font-family: Manrope;
+  color: ${({ theme }) => theme.colors.primaryFontColor};
+  font-weight: ${({ theme }) => theme.fontWeight.otherFontWeight};
+  font-size: ${({ theme }) => theme.fontSize.primaryFontSize}px;
   letter-spacing: 0.04em;
   transition: border-color ${({ theme }) => theme.transitionDurationAndFunc};
 
-  &:focus {
+  &:is(:hover, :focus) {
     outline: none;
-    border-color: ???????;
-  } */
+    border-color: ${({ theme }) => theme.colors.primaryColor};
+  }
 `;
 
-export const Label = styled.label``;
+export const Label = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing()};
+`;
 
-export const Title = styled.span``;
+export const Title = styled.span`
+  font-family: Manrope;
+  color: ${({ theme }) => theme.colors.primaryFontColor};
+  font-weight: ${({ theme }) => theme.fontWeight.otherFontWeight};
+  font-size: ${({ theme }) => theme.fontSize.primaryFontSize}px;
+  letter-spacing: 0.04em;
+`;
 
 export const InputContainer = styled.div`
   display: flex;
@@ -35,17 +47,17 @@ export const AltElem = styled.label<IStyledProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: ${({ theme }) => theme.spacing()};
-  border: 1px solid;
+  padding: ${({ theme }) => theme.spacing(1.75)};
+  border: 2px solid;
   border-color: ${({ checked, theme }) =>
-    checked ? 'transparent' : theme.colors.greyColor};
+    checked ? 'transparent' : theme.colors.lightgreyColor};
+  border-radius: ${({ theme }) => theme.borderRadius.primaryBorderRadius}px;
   background-color: ${({ checked, theme }) =>
     checked ? theme.colors.primaryColor : 'transparent'};
   cursor: pointer;
   transition: box-shadow ${({ theme }) => theme.transitionDurationAndFunc},
     background-color ${({ theme }) => theme.transitionDurationAndFunc},
     border-color ${({ theme }) => theme.transitionDurationAndFunc};
-  border-radius: ${({ theme }) => theme.borderRadius.secondaryBorderRadius}px;
 
   & input {
     position: fixed;

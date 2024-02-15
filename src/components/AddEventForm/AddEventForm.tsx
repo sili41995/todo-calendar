@@ -1,15 +1,23 @@
-import { NewEvent } from '@/types/types';
-import { Form, Title } from './AddEventForm.styled';
+import { ClickEvent, NewEvent } from '@/types/types';
+import { ButtonsList, Form, ListItem, Title } from './AddEventForm.styled';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Input from '@/components/Input';
-import { IconSizes, InputTypes, Messages } from '@/constants';
-import { FaCheck } from 'react-icons/fa';
+import {
+  AriaLabels,
+  BtnTypes,
+  IconBtnTypes,
+  IconSizes,
+  InputTypes,
+  Messages,
+} from '@/constants';
+import { FaCheck, FaTimes } from 'react-icons/fa';
 import { FC, useState } from 'react';
 import queryClient from '@/tanStackQuery/client';
 import QueryKey from '@/tanStackQuery/keys';
 import { addEvent } from '@/tanStackQuery/operations';
-import { toasts } from '@/utils';
+import { makeBlur, toasts } from '@/utils';
 import { useMutation } from '@tanstack/react-query';
+import IconButton from '@/components/IconButton';
 
 const AddEventForm: FC = () => {
   const [checked, setChecked] = useState<boolean>(false);
@@ -44,6 +52,16 @@ const AddEventForm: FC = () => {
     addNewEvent(data);
   };
 
+  const onResetBtnClick = (e: ClickEvent) => {
+    makeBlur(e.currentTarget);
+    setChecked(false);
+    reset();
+  };
+
+  const onAcceptBtnClick = (e: ClickEvent) => {
+    makeBlur(e.currentTarget);
+  };
+
   return (
     <>
       <Title>Add contact</Title>
@@ -67,7 +85,25 @@ const AddEventForm: FC = () => {
           checked={checked}
           onChange={onCheckboxChange}
         />
-        <button type='submit'>Submit</button>
+        <ButtonsList>
+          <ListItem>
+            <IconButton
+              iconBtnType={IconBtnTypes.accept}
+              type={BtnTypes.submit}
+              icon={<FaCheck size={IconSizes.secondarySize} />}
+              ariaLabel={AriaLabels.accept}
+              onClick={onAcceptBtnClick}
+            />
+          </ListItem>
+          <ListItem>
+            <IconButton
+              iconBtnType={IconBtnTypes.reset}
+              icon={<FaTimes size={IconSizes.secondarySize} />}
+              ariaLabel={AriaLabels.reset}
+              onClick={onResetBtnClick}
+            />
+          </ListItem>
+        </ButtonsList>
       </Form>
     </>
   );

@@ -6,6 +6,8 @@ const enum AriaLabels {
   addEvent = 'Add event',
   edit = 'set edit event status',
   delete = 'delete event',
+  accept = 'accept',
+  reset = 'reset form',
 }
 
 export default AriaLabels;
