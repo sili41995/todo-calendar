@@ -7,12 +7,7 @@ export interface IProps {
   type: InputTypes;
   placeholder?: string;
   label: string;
-  // icon?: ReactElement;
-  // autoFocus?: boolean;
-  // btnIcon?: ReactElement | boolean;
-  // accept?: string;
   altElem?: ReactElement;
-  // value?: string;
   defaultValue?: string;
   checked?: boolean;
   onChange?: (e: InputChangeEvent) => void;

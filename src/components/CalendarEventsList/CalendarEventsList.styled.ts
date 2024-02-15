@@ -15,7 +15,7 @@ export const ShowMoreBtn = styled.button`
   border-color: transparent;
   border-radius: ${({ theme }) => theme.borderRadius.primaryBorderRadius}px;
   color: ${({ theme }) => theme.colors.whiteColor};
-  font-family: Manrope;
+  font-family: ${({ theme }) => theme.fontFamily.primaryFontFamily};
   font-size: ${({ theme }) => theme.fontSize.primaryFontSize}px;
   font-weight: ${({ theme }) => theme.fontWeight.secondaryFontWeight};
   transition: background-color ${({ theme }) => theme.transitionDurationAndFunc};

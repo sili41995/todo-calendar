@@ -18,7 +18,7 @@ export const Day = styled.li<IStyledProps>`
 `;
 
 export const Name = styled.p`
-  font-family: Manrope;
+  font-family: ${({ theme }) => theme.fontFamily.primaryFontFamily};
   color: ${({ theme }) => theme.colors.whiteColor};
   font-size: ${({ theme }) => theme.fontSize.secondaryFontSize}px;
   font-weight: ${({ theme }) => theme.fontWeight.primaryFontWeight};

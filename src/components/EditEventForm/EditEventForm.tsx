@@ -17,7 +17,6 @@ const EditEventForm: FC<IProps> = ({ event }) => {
   const [checked, setChecked] = useState<boolean>(() => completed);
   const {
     register,
-    // formState: { errors, isSubmitting },
     handleSubmit,
   } = useForm<NewEvent>();
   const { mutate: editEvent } = useMutation({

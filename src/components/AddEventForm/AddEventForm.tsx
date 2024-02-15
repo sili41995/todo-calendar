@@ -1,23 +1,16 @@
 import { ClickEvent, NewEvent } from '@/types/types';
-import { ButtonsList, Form, ListItem, Title } from './AddEventForm.styled';
+import { Form, Title } from './AddEventForm.styled';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Input from '@/components/Input';
-import {
-  AriaLabels,
-  BtnTypes,
-  IconBtnTypes,
-  IconSizes,
-  InputTypes,
-  Messages,
-} from '@/constants';
-import { FaCheck, FaTimes } from 'react-icons/fa';
+import { IconSizes, InputTypes, Messages } from '@/constants';
+import { FaCheck } from 'react-icons/fa';
 import { FC, useState } from 'react';
 import queryClient from '@/tanStackQuery/client';
 import QueryKey from '@/tanStackQuery/keys';
 import { addEvent } from '@/tanStackQuery/operations';
 import { makeBlur, toasts } from '@/utils';
 import { useMutation } from '@tanstack/react-query';
-import IconButton from '@/components/IconButton';
+import FormControls from '@/components/FormControls';
 
 const AddEventForm: FC = () => {
   const [checked, setChecked] = useState<boolean>(false);
@@ -26,12 +19,7 @@ const AddEventForm: FC = () => {
     onSuccess: onSuccessHTTPRequest,
     onError: onFailedHTTPRequest,
   });
-  const {
-    register,
-    // formState: { errors, isSubmitting },
-    handleSubmit,
-    reset,
-  } = useForm<NewEvent>();
+  const { register, handleSubmit, reset } = useForm<NewEvent>();
 
   function onFailedHTTPRequest(error: Error): void {
     toasts.errorToast(error.message);
@@ -85,25 +73,10 @@ const AddEventForm: FC = () => {
           checked={checked}
           onChange={onCheckboxChange}
         />
-        <ButtonsList>
-          <ListItem>
-            <IconButton
-              iconBtnType={IconBtnTypes.accept}
-              type={BtnTypes.submit}
-              icon={<FaCheck size={IconSizes.secondarySize} />}
-              ariaLabel={AriaLabels.accept}
-              onClick={onAcceptBtnClick}
-            />
-          </ListItem>
-          <ListItem>
-            <IconButton
-              iconBtnType={IconBtnTypes.reset}
-              icon={<FaTimes size={IconSizes.secondarySize} />}
-              ariaLabel={AriaLabels.reset}
-              onClick={onResetBtnClick}
-            />
-          </ListItem>
-        </ButtonsList>
+        <FormControls
+          onAcceptBtnClick={onAcceptBtnClick}
+          onResetBtnClick={onResetBtnClick}
+        />
       </Form>
     </>
   );

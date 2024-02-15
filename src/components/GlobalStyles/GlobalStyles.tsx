@@ -3,24 +3,25 @@ import { Global, css } from '@emotion/react';
 import 'modern-normalize';
 import { manropeMedium, manropeSemiBold, manropeRegular } from '@/fonts';
 import 'react-toastify/dist/ReactToastify.css';
+import { theme } from '@/constants';
 
 const GlobalStyles: FC = () => (
   <Global
     styles={css`
       @font-face {
-        font-family: Manrope;
+        font-family: ${theme.fontFamily.primaryFontFamily};
         src: local('Manrope'), url(${manropeSemiBold}) format('truetype');
         font-weight: 600;
       }
 
       @font-face {
-        font-family: Manrope;
+        font-family: ${theme.fontFamily.primaryFontFamily};
         src: local('Manrope'), url(${manropeMedium}) format('truetype');
         font-weight: 500;
       }
 
       @font-face {
-        font-family: Manrope;
+        font-family: ${theme.fontFamily.primaryFontFamily};
         src: local('Manrope'), url(${manropeRegular}) format('truetype');
         font-weight: 400;
       }

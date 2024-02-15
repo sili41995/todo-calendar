@@ -1,5 +1,5 @@
 import { IconBtnTypes } from '@/constants';
-import theme from '@/constants/theme';
+import { theme } from '@/constants';
 
 const setBtnBGColor = (iconBtnType: IconBtnTypes): string => {
   switch (iconBtnType) {

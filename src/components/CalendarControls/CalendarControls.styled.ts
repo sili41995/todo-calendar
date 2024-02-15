@@ -10,7 +10,7 @@ export const Container = styled.div`
 `;
 
 export const Date = styled.p`
-  font-family: Manrope;
+  font-family: ${({ theme }) => theme.fontFamily.primaryFontFamily};
   font-size: 32px;
   font-weight: ${({ theme }) => theme.fontWeight.otherFontWeight};
   line-height: 1.33;

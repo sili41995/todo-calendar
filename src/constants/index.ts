@@ -6,3 +6,4 @@ export { default as InputTypes } from './inputTypes';
 export { default as BtnTypes } from './btnTypes';
 export { default as IconBtnTypes } from './iconBtnTypes';
 export { default as Messages } from './messages';
+export { default as theme } from './theme';

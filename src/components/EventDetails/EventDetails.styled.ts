@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { IStyledDeadlineProps, IStyledStatusProps } from './EventDetails.types';
 
 export const Text = styled.p`
-  font-family: Manrope;
+  font-family: ${({ theme }) => theme.fontFamily.primaryFontFamily};
   color: ${({ theme }) => theme.colors.primaryFontColor};
   font-size: 18px;
   font-weight: ${({ theme }) => theme.fontWeight.otherFontWeight};

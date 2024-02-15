@@ -19,7 +19,7 @@ interface ITheme {
     greenBtnColor: string;
     greenIconColor: string;
   };
-  // fontFamily: {};
+  fontFamily: { primaryFontFamily: string };
   fontWeight: {
     primaryFontWeight: number;
     secondaryFontWeight: number;
@@ -58,7 +58,7 @@ const theme: ITheme = {
     greenBtnColor: '#89f2a6',
     greenIconColor: '#00c938',
   },
-  // fontFamily: {},
+  fontFamily: { primaryFontFamily: 'Manrope' },
   fontWeight: {
     primaryFontWeight: 600,
     secondaryFontWeight: 400,

@@ -10,7 +10,7 @@ export const StyledInput = styled.input<IStyledProps>`
   border-radius: ${({ theme }) => theme.borderRadius.primaryBorderRadius}px;
   padding-left: ${({ theme }) => theme.spacing(10)};
   padding-right: ${({ theme }) => theme.spacing()};
-  font-family: Manrope;
+  font-family: ${({ theme }) => theme.fontFamily.primaryFontFamily};
   color: ${({ theme }) => theme.colors.primaryFontColor};
   font-weight: ${({ theme }) => theme.fontWeight.otherFontWeight};
   font-size: ${({ theme }) => theme.fontSize.primaryFontSize}px;
@@ -30,7 +30,7 @@ export const Label = styled.label`
 `;
 
 export const Title = styled.span`
-  font-family: Manrope;
+  font-family: ${({ theme }) => theme.fontFamily.primaryFontFamily};
   color: ${({ theme }) => theme.colors.primaryFontColor};
   font-weight: ${({ theme }) => theme.fontWeight.otherFontWeight};
   font-size: ${({ theme }) => theme.fontSize.primaryFontSize}px;

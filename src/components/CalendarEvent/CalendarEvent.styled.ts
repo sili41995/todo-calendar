@@ -18,7 +18,7 @@ export const EventBtn = styled.button`
 export const Title = styled.span<IStylesProps>`
   color: ${({ theme }) => theme.colors.whiteColor};
   text-decoration: ${({ completed }) => (completed ? ' line-through' : 'none')};
-  font-family: Manrope;
+  font-family: ${({ theme }) => theme.fontFamily.primaryFontFamily};
   font-size: ${({ theme }) => theme.fontSize.primaryFontSize}px;
   font-weight: ${({ theme }) => theme.fontWeight.secondaryFontWeight};
   word-wrap: break-word;

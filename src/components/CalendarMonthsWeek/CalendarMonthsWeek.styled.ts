@@ -40,7 +40,7 @@ export const Number = styled.p<INumberStyledProps>`
 
     return isCurrentMonth ? theme.colors.whiteColor : theme.colors.greyColor;
   }};
-  font-family: Manrope;
+  font-family: ${({ theme }) => theme.fontFamily.primaryFontFamily};
   font-size: ${({ theme }) => theme.fontSize.primaryFontSize}px;
   font-weight: ${({ theme }) => theme.fontWeight.primaryFontWeight};
   line-height: 1.43;

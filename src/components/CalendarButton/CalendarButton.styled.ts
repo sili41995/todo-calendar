@@ -12,7 +12,7 @@ export const StyledButton = styled.button<IStyledProps>`
   border-radius: ${({ theme }) => theme.borderRadius.primaryBorderRadius}px;
   background-color: ${({ theme }) => theme.colors.primaryColor};
   color: ${({ theme }) => theme.colors.whiteColor};
-  font-family: Manrope;
+  font-family: ${({ theme }) => theme.fontFamily.primaryFontFamily};
   font-size: ${({ theme }) => theme.fontSize.primaryFontSize}px;
   font-weight: ${({ theme }) => theme.fontWeight.primaryFontWeight};
   line-height: 1.43;
