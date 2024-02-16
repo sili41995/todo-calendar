@@ -1,24 +1,22 @@
 import Input from '@/components/Input';
 import { Form, Title } from './EditEventForm.styled';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { NewEvent } from '@/types/types';
+import { ClickEvent, NewEvent } from '@/types/types';
 import { IconSizes, InputTypes, Messages } from '@/constants';
 import { FaCheck } from 'react-icons/fa';
 import { FC, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { toasts } from '@/utils';
+import { makeBlur, toasts } from '@/utils';
 import queryClient from '@/tanStackQuery/client';
 import QueryKey from '@/tanStackQuery/keys';
 import { updateEvent } from '@/tanStackQuery/operations';
 import { IProps } from './EditEventForm.types';
+import FormControls from '@/components/FormControls';
 
 const EditEventForm: FC<IProps> = ({ event }) => {
   const { id, completed, deadline, task } = event;
   const [checked, setChecked] = useState<boolean>(() => completed);
-  const {
-    register,
-    handleSubmit,
-  } = useForm<NewEvent>();
+  const { register, handleSubmit, reset } = useForm<NewEvent>();
   const { mutate: editEvent } = useMutation({
     mutationFn: updateEvent,
     onSuccess: onSuccessHTTPRequest,
@@ -42,9 +40,19 @@ const EditEventForm: FC<IProps> = ({ event }) => {
     setChecked((prevState) => !prevState);
   };
 
+  const onAcceptBtnClick = (e: ClickEvent) => {
+    makeBlur(e.currentTarget);
+  };
+
+  const onResetBtnClick = (e: ClickEvent) => {
+    makeBlur(e.currentTarget);
+    setChecked(completed);
+    reset();
+  };
+
   return (
     <>
-      <Title>Edit contact</Title>
+      <Title>Edit event</Title>
       <Form onSubmit={handleSubmit(handleFormSubmit)}>
         <Input
           settings={{ ...register('task', { required: true }) }}
@@ -67,7 +75,10 @@ const EditEventForm: FC<IProps> = ({ event }) => {
           checked={checked}
           onChange={onCheckboxChange}
         />
-        <button type='submit'>Submit</button>
+        <FormControls
+          onAcceptBtnClick={onAcceptBtnClick}
+          onResetBtnClick={onResetBtnClick}
+        />
       </Form>
     </>
   );
