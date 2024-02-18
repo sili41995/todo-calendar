@@ -2,12 +2,25 @@ import Calendar from '@/components/Calendar';
 import QueryKey from '@/tanStackQuery/keys';
 import { getEvents } from '@/tanStackQuery/operations';
 import { useQuery } from '@tanstack/react-query';
+import { FC, useEffect } from 'react';
+import Loader from './Loader';
+import { toasts } from '@/utils';
 
-const App = () => {
-  const { data: events } = useQuery({
+const App: FC = () => {
+  const {
+    data: events = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
     queryKey: [QueryKey.events],
     queryFn: getEvents,
   });
+
+  useEffect(() => {
+    console.log(error);
+    isError && toasts.errorToast(error.message);
+  }, [error, isError]);
 
   return (
     <div
@@ -18,7 +31,7 @@ const App = () => {
         padding: 20,
       }}
     >
-      {events && <Calendar events={events} />}
+      {isLoading ? <Loader /> : <Calendar events={events} />}
     </div>
   );
 };

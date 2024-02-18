@@ -1,14 +1,8 @@
 import eventsServiceApi from '@/service/eventsServiceApi';
 import { Events, IEvent, IUpdateEvent, NewEvent } from '@/types/types';
 
-export const getEvents = async (): Promise<Events | undefined> => {
-  try {
-    const result = await eventsServiceApi.fetchEvents();
-    return result;
-  } catch (error) {
-    console.log(error);
-  }
-};
+export const getEvents = async (): Promise<Events | undefined> =>
+  await eventsServiceApi.fetchEvents();
 
 export const addEvent = async (data: NewEvent): Promise<IEvent> =>
   await eventsServiceApi.addEvent(data);
