@@ -5,7 +5,7 @@ class EventsServiceApi {
   private BASE_URL = 'https://65b0f4a5d16d31d11bdda9d4.mockapi.io/todos';
 
   fetchEvents(): Promise<Events> {
-    return fetch(`${this.BASE_URL}1`).then((response) => {
+    return fetch(`${this.BASE_URL}`).then((response) => {
       if (!response.ok) {
         throw new Error(Messages.fetchEventErr);
       }
