@@ -18,7 +18,6 @@ const App: FC = () => {
   });
 
   useEffect(() => {
-    console.log(error);
     isError && toasts.errorToast(error.message);
   }, [error, isError]);
 
