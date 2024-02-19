@@ -23,3 +23,23 @@ export interface IUpdateEvent {
   event: NewEvent;
   id: string;
 }
+
+export interface IDeadlineParams {
+  taskDeadline: string;
+  isPastDate: boolean;
+}
+
+export interface IGetDayParamsProps {
+  day: Date;
+  events: Events;
+  monthOfCurrentPage: number;
+}
+
+export interface IDayParams {
+  isWeekendDay: boolean;
+  isCurrentDay: boolean;
+  isCurrentMonth: boolean;
+  dayNumber: string;
+  showEventsList: boolean;
+  filteredEvents: Events;
+}

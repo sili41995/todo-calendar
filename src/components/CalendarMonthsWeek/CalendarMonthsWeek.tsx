@@ -1,9 +1,8 @@
 import { FC } from 'react';
-import { format, isWeekend, isToday, getMonth, getDayOfYear } from 'date-fns';
-import { GeneralParams } from '@/constants';
 import CalendarEventsList from '@/components/CalendarEventsList';
 import { IProps } from './CalendarMonthsWeek.types';
 import { Day, DaysList, Marker, Number } from './CalendarMonthsWeek.styled';
+import { getDayParams } from '@/utils';
 
 const CalendarMonthsWeek: FC<IProps> = ({
   week,
@@ -13,14 +12,18 @@ const CalendarMonthsWeek: FC<IProps> = ({
   return (
     <DaysList>
       {week.map((day, index) => {
-        const filteredEvents = events.filter(
-          ({ deadline }) => getDayOfYear(deadline) === getDayOfYear(day)
-        );
-        const showEventsList = Boolean(filteredEvents.length);
-        const isCurrentDay = isToday(day);
-        const isWeekendDay = isWeekend(day);
-        const isCurrentMonth = monthOfCurrentPage === getMonth(day);
-        const dayNumber = format(day, GeneralParams.dayOfMonthNumericFormat);
+        const {
+          isWeekendDay,
+          isCurrentDay,
+          isCurrentMonth,
+          dayNumber,
+          showEventsList,
+          filteredEvents,
+        } = getDayParams({
+          day,
+          events,
+          monthOfCurrentPage,
+        });
 
         return (
           <Day key={index} isWeekend={isWeekendDay}>

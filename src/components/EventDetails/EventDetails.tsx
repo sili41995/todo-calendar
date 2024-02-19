@@ -1,14 +1,11 @@
 import { FC } from 'react';
-import { format, isPast } from 'date-fns';
-import { GeneralParams } from '@/constants';
 import { IProps } from './EventDetails.types';
 import { Deadline, Status, Text } from './EventDetails.styled';
+import { getDeadlineParams } from '@/utils';
 
 const EventDetails: FC<IProps> = ({ event }) => {
   const { deadline, completed, task } = event;
-  const date = new Date(deadline);
-  const taskDeadline = format(date, GeneralParams.fullDateFormat);
-  const isPastDate = isPast(date);
+  const { taskDeadline, isPastDate } = getDeadlineParams(deadline);
 
   return (
     <>
