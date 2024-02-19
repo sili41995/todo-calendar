@@ -1,8 +1,8 @@
 import { FC } from 'react';
+import { FaCheck, FaTimes } from 'react-icons/fa';
 import { ButtonsList, ListItem } from './FormControls.styled';
 import IconButton from '@/components/IconButton';
 import { AriaLabels, BtnTypes, IconBtnTypes, IconSizes } from '@/constants';
-import { FaCheck, FaTimes } from 'react-icons/fa';
 import { IProps } from './FormControls.types';
 
 const FormControls: FC<IProps> = ({ onAcceptBtnClick, onResetBtnClick }) => (

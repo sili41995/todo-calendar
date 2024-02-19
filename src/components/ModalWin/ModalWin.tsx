@@ -1,9 +1,9 @@
 import { FC, MouseEvent, useEffect } from 'react';
-import { IProps } from './ModalWin.types';
-import { Backdrop, CloseBtn, Container } from './ModalWin.styled';
 import { createPortal } from 'react-dom';
 import { CgClose } from 'react-icons/cg';
 import { AriaLabels, IconSizes } from '@/constants';
+import { IProps } from './ModalWin.types';
+import { Backdrop, CloseBtn, Container } from './ModalWin.styled';
 
 const ModalWin: FC<IProps> = ({ setModalWinState, children }) => {
   const modalRoot = document.querySelector('#modal-root');

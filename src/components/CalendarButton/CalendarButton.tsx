@@ -1,7 +1,7 @@
-import { ButtonTypes } from '@/constants';
 import { FC } from 'react';
-import { StyledButton } from './CalendarButton.styled';
+import { ButtonTypes } from '@/constants';
 import { IProps } from './CalendarButton.types';
+import { StyledButton } from './CalendarButton.styled';
 
 const CalendarButton: FC<IProps> = ({
   type = ButtonTypes.button,

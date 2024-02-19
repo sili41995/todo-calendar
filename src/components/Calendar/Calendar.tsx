@@ -1,12 +1,12 @@
-import CalendarDaysList from '@/components/CalendarDaysList';
-import CalendarControls from '@/components/CalendarControls';
-import { getFilteredEvents, getMonthsParams, makeBlur } from '@/utils';
-import CalendarDaysNames from '@/components/CalendarDaysNames';
-import { Container, ControlsContainer, DaysContainer } from './Calendar.styled';
 import { FC, useState } from 'react';
 import { addMonths } from 'date-fns';
+import CalendarDaysList from '@/components/CalendarDaysList';
+import CalendarControls from '@/components/CalendarControls';
+import CalendarDaysNames from '@/components/CalendarDaysNames';
+import { getFilteredEvents, getMonthsParams, makeBlur } from '@/utils';
 import { ClickEvent } from '@/types/types';
 import { IProps } from './Calendar.types';
+import { Container, ControlsContainer, DaysContainer } from './Calendar.styled';
 
 const Calendar: FC<IProps> = ({ events }) => {
   const [date, setDate] = useState(() => new Date());

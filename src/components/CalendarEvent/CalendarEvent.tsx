@@ -1,11 +1,12 @@
 import { FC, useState } from 'react';
 import ModalWin from '@/components/ModalWin';
+import CalenderEventDetails from '@/components/CalenderEventDetails';
 import { IProps } from './CalendarEvent.types';
 import { EventBtn, ListItem, Title } from './CalendarEvent.styled';
-import CalenderEventDetails from '@/components/CalenderEventDetails';
 
 const CalendarEvent: FC<IProps> = ({ event }) => {
   const [showModalWin, setShowModalWin] = useState<boolean>(false);
+  const { completed, task } = event;
 
   const setModalWinState = () => {
     setShowModalWin((prevState) => !prevState);
@@ -15,7 +16,7 @@ const CalendarEvent: FC<IProps> = ({ event }) => {
     <>
       <ListItem>
         <EventBtn onClick={setModalWinState}>
-          <Title completed={event.completed}>{event.task}</Title>
+          <Title completed={completed}>{task}</Title>
         </EventBtn>
       </ListItem>
       {showModalWin && (

@@ -1,6 +1,6 @@
+import { FC } from 'react';
 import { BtnTypes } from '@/constants';
 import { IProps } from './IconButton.types';
-import { FC } from 'react';
 import { Button } from './IconButton.styled';
 
 const IconButton: FC<IProps> = ({

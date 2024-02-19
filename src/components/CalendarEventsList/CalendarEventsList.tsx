@@ -1,15 +1,17 @@
 import { FC, useState } from 'react';
-import { IProps } from './CalendarEventsList.types';
-import { List, ListItem, ShowMoreBtn } from './CalendarEventsList.styled';
 import { getEvents, makeBlur } from '@/utils';
 import { GeneralParams } from '@/constants';
 import CalendarEvent from '@/components/CalendarEvent';
 import { ClickEvent } from '@/types/types';
+import { IProps } from './CalendarEventsList.types';
+import { List, ListItem, ShowMoreBtn } from './CalendarEventsList.styled';
 
 const CalendarEventsList: FC<IProps> = ({ events }) => {
   const [showFullList, setShowFullList] = useState<boolean>(false);
   const isMoreMaxQuantity = events.length > GeneralParams.maxEventsCount;
   const filteredEvents = isMoreMaxQuantity ? getEvents(events) : events;
+  const listOfEvents = showFullList ? events : filteredEvents;
+  const showMoreBtnTitle = showFullList ? 'Hide' : 'Show more';
 
   const onShowMoreBtnClick = (e: ClickEvent) => {
     makeBlur(e.currentTarget);
@@ -18,13 +20,13 @@ const CalendarEventsList: FC<IProps> = ({ events }) => {
 
   return (
     <List showFullList={showFullList}>
-      {(showFullList ? events : filteredEvents).map((event) => (
+      {listOfEvents.map((event) => (
         <CalendarEvent key={event.id} event={event} />
       ))}
       {isMoreMaxQuantity && (
         <ListItem>
           <ShowMoreBtn onClick={onShowMoreBtnClick}>
-            {showFullList ? 'Hide' : 'Show more'}
+            {showMoreBtnTitle}
           </ShowMoreBtn>
         </ListItem>
       )}

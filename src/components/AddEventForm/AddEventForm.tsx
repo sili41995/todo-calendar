@@ -1,21 +1,19 @@
-import { ClickEvent, NewEvent } from '@/types/types';
-import { Form, Title } from './AddEventForm.styled';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import Input from '@/components/Input';
-import { IconSizes, InputTypes, Messages } from '@/constants';
-import { FaCheck } from 'react-icons/fa';
 import { FC, useState } from 'react';
-import queryClient from '@/tanStackQuery/client';
-import QueryKey from '@/tanStackQuery/keys';
-import { addEvent } from '@/tanStackQuery/operations';
-import { makeBlur, toasts } from '@/utils';
 import { useMutation } from '@tanstack/react-query';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { FaCheck } from 'react-icons/fa';
+import { QueryKeys, operations, queryClient } from '@/tanStackQuery';
+import { makeBlur, toasts } from '@/utils';
+import { IconSizes, InputTypes, Messages } from '@/constants';
+import { ClickEvent, NewEvent } from '@/types/types';
+import Input from '@/components/Input';
 import FormControls from '@/components/FormControls';
+import { Form, Title } from './AddEventForm.styled';
 
 const AddEventForm: FC = () => {
   const [checked, setChecked] = useState<boolean>(false);
   const { mutate: addNewEvent } = useMutation({
-    mutationFn: addEvent,
+    mutationFn: operations.addEvent,
     onSuccess: onSuccessHTTPRequest,
     onError: onFailedHTTPRequest,
   });
@@ -29,7 +27,7 @@ const AddEventForm: FC = () => {
     setChecked(false);
     reset();
     toasts.successToast(Messages.addEvent);
-    queryClient.invalidateQueries({ queryKey: [QueryKey.events] });
+    queryClient.invalidateQueries({ queryKey: [QueryKeys.events] });
   }
 
   const onCheckboxChange = () => {

@@ -1,9 +1,9 @@
-import CalendarButton from '@/components/CalendarButton';
-import { ButtonsListItem, List } from './CalendarButtonsList.styled';
+import { FC } from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import CalendarButton from '@/components/CalendarButton';
 import { AriaLabels } from '@/constants';
 import { IProps } from './CalendarButtonsList.types';
-import { FC } from 'react';
+import { ButtonsListItem, List } from './CalendarButtonsList.styled';
 
 const CalendarButtonsList: FC<IProps> = ({
   onDecrementBtnClick,

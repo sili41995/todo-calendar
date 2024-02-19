@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { IProps } from './CalendarMonthsWeek.types';
 import { format, isWeekend, isToday, getMonth, getDayOfYear } from 'date-fns';
 import { GeneralParams } from '@/constants';
-import { Day, DaysList, Marker, Number } from './CalendarMonthsWeek.styled';
 import CalendarEventsList from '@/components/CalendarEventsList';
+import { IProps } from './CalendarMonthsWeek.types';
+import { Day, DaysList, Marker, Number } from './CalendarMonthsWeek.styled';
 
 const CalendarMonthsWeek: FC<IProps> = ({
   week,
@@ -18,15 +18,18 @@ const CalendarMonthsWeek: FC<IProps> = ({
         );
         const showEventsList = Boolean(filteredEvents.length);
         const isCurrentDay = isToday(day);
+        const isWeekendDay = isWeekend(day);
+        const isCurrentMonth = monthOfCurrentPage === getMonth(day);
+        const dayNumber = format(day, GeneralParams.dayOfMonthNumericFormat);
 
         return (
-          <Day key={index} isWeekend={isWeekend(day)}>
+          <Day key={index} isWeekend={isWeekendDay}>
             <Marker isCurrentDay={isCurrentDay}>
               <Number
                 isCurrentDay={isCurrentDay}
-                isCurrentMonth={monthOfCurrentPage === getMonth(day)}
+                isCurrentMonth={isCurrentMonth}
               >
-                {format(day, GeneralParams.dayOfMonthNumericFormat)}
+                {dayNumber}
               </Number>
             </Marker>
             {showEventsList && <CalendarEventsList events={filteredEvents} />}

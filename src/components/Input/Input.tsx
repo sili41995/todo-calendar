@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { IProps } from './Input.types';
 import { InputTypes } from '@/constants';
+import { IProps } from './Input.types';
 import {
   InputContainer,
   AltElem,

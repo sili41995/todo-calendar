@@ -1,24 +1,22 @@
-import Input from '@/components/Input';
-import { Form, Title } from './EditEventForm.styled';
+import { FC, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { FaCheck } from 'react-icons/fa';
+import { useMutation } from '@tanstack/react-query';
+import { QueryKeys, operations, queryClient } from '@/tanStackQuery';
+import Input from '@/components/Input';
+import FormControls from '@/components/FormControls';
 import { ClickEvent, NewEvent } from '@/types/types';
 import { IconSizes, InputTypes, Messages } from '@/constants';
-import { FaCheck } from 'react-icons/fa';
-import { FC, useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
 import { makeBlur, toasts } from '@/utils';
-import queryClient from '@/tanStackQuery/client';
-import QueryKey from '@/tanStackQuery/keys';
-import { updateEvent } from '@/tanStackQuery/operations';
 import { IProps } from './EditEventForm.types';
-import FormControls from '@/components/FormControls';
+import { Form, Title } from './EditEventForm.styled';
 
 const EditEventForm: FC<IProps> = ({ event }) => {
   const { id, completed, deadline, task } = event;
   const [checked, setChecked] = useState<boolean>(() => completed);
   const { register, handleSubmit, reset } = useForm<NewEvent>();
   const { mutate: editEvent } = useMutation({
-    mutationFn: updateEvent,
+    mutationFn: operations.updateEvent,
     onSuccess: onSuccessHTTPRequest,
     onError: onFailedHTTPRequest,
   });
@@ -29,7 +27,7 @@ const EditEventForm: FC<IProps> = ({ event }) => {
 
   function onSuccessHTTPRequest() {
     toasts.successToast(Messages.updateEvent);
-    queryClient.invalidateQueries({ queryKey: [QueryKey.events] });
+    queryClient.invalidateQueries({ queryKey: [QueryKeys.events] });
   }
 
   const handleFormSubmit: SubmitHandler<NewEvent> = (data) => {

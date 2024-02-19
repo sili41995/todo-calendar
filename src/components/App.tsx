@@ -1,10 +1,9 @@
-import Calendar from '@/components/Calendar';
-import QueryKey from '@/tanStackQuery/keys';
-import { getEvents } from '@/tanStackQuery/operations';
-import { useQuery } from '@tanstack/react-query';
 import { FC, useEffect } from 'react';
-import Loader from './Loader';
+import { useQuery } from '@tanstack/react-query';
+import Calendar from '@/components/Calendar';
+import Loader from '@/components/Loader';
 import { toasts } from '@/utils';
+import { QueryKeys, operations } from '@/tanStackQuery';
 
 const App: FC = () => {
   const {
@@ -13,8 +12,8 @@ const App: FC = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: [QueryKey.events],
-    queryFn: getEvents,
+    queryKey: [QueryKeys.events],
+    queryFn: operations.getEvents,
   });
 
   useEffect(() => {

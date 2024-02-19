@@ -1,11 +1,12 @@
 import { FC } from 'react';
-import { IProps } from './CalendarDaysList.types';
-import CalendarMonthsWeek from '@/components/CalendarMonthsWeek';
-import { Week, WeeksList } from './CalendarDaysList.styled';
 import { getMonth } from 'date-fns';
+import CalendarMonthsWeek from '@/components/CalendarMonthsWeek';
+import { IProps } from './CalendarDaysList.types';
+import { Week, WeeksList } from './CalendarDaysList.styled';
 
 const CalendarDaysList: FC<IProps> = ({ monthsWeeks, events }) => {
   const monthOfCurrentPage = getMonth(monthsWeeks[2][0]);
+
   return (
     <WeeksList>
       {monthsWeeks.map((week, index) => (
