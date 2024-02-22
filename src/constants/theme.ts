@@ -5,6 +5,7 @@ declare module '@emotion/react' {
 interface ITheme {
   colors: {
     primaryColor: string;
+    otherColor: string;
     accentColor: string;
     weekendBgColor: string;
     primaryCalendarColor: string;
@@ -33,6 +34,7 @@ interface ITheme {
     containerPadding: number;
   };
   borderRadius: { primaryBorderRadius: number; secondaryBorderRadius: number };
+  containerWidth: { desktop: number };
   shadows: {
     primaryShadow: string;
   };
@@ -44,7 +46,8 @@ interface ITheme {
 const theme: ITheme = {
   colors: {
     primaryColor: '#3470ff',
-    primaryFontColor: '#000000',
+    otherColor: '#38b6ff',
+    primaryFontColor: '#141414',
     accentColor: '#0b44cd',
     weekendBgColor: '#272829',
     primaryCalendarColor: '#1E1F21',
@@ -75,6 +78,7 @@ const theme: ITheme = {
     primaryBorderRadius: 8,
     secondaryBorderRadius: 4,
   },
+  containerWidth: { desktop: 1200 },
   shadows: {
     primaryShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
   },

@@ -8,16 +8,19 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import queryClient from '@/tanStackQuery/client';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Toast from '@/components/Toast';
+import { BrowserRouter } from 'react-router-dom';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
+    <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <App />
-        <GlobalStyles />
-        <Toast />
-        <ReactQueryDevtools initialIsOpen={false} />
+        <QueryClientProvider client={queryClient}>
+          <App />
+          <GlobalStyles />
+          <Toast />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
       </ThemeProvider>
-    </QueryClientProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );

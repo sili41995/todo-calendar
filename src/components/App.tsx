@@ -1,36 +1,24 @@
-import { FC, useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import Calendar from '@/components/Calendar';
-import Loader from '@/components/Loader';
-import { toasts } from '@/utils';
-import { QueryKeys, operations } from '@/tanStackQuery';
+import { FC, lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import PagePaths from '@/constants/pagePaths';
+import SharedLayout from './SharedLayout';
+
+const EventsPage = lazy(() => import('@/pages/EventsPage'));
+const EventPlanningPage = lazy(() => import('@/pages/EventPlanningPage'));
+const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
 const App: FC = () => {
-  const {
-    data: events = [],
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: [QueryKeys.events],
-    queryFn: operations.getEvents,
-  });
-
-  useEffect(() => {
-    isError && toasts.errorToast(error.message);
-  }, [error, isError]);
-
   return (
-    <div
-      style={{
-        width: 1280,
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        padding: 20,
-      }}
-    >
-      {isLoading ? <Loader /> : <Calendar events={events} />}
-    </div>
+    <Routes>
+      <Route path={PagePaths.homePath} element={<SharedLayout />}>
+        <Route index element={<EventsPage />} />
+        <Route
+          path={PagePaths.eventPlanningPath}
+          element={<EventPlanningPage />}
+        />
+        <Route path='*' element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   );
 };
 
