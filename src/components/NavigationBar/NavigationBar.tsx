@@ -8,7 +8,7 @@ const NavigationBar: FC<IProps> = ({ navLinks }) => {
     <NavContainer>
       <List>
         {navLinks.map(({ path, title }) => (
-          <ListItem>
+          <ListItem key={path}>
             <NavLink to={path}>{title}</NavLink>
           </ListItem>
         ))}

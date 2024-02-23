@@ -12,6 +12,7 @@ const App: FC = () => {
     <Routes>
       <Route path={PagePaths.homePath} element={<SharedLayout />}>
         <Route index element={<EventsPage />} />
+        <Route path={PagePaths.eventsPath} element={<EventsPage />} />
         <Route
           path={PagePaths.eventPlanningPath}
           element={<EventPlanningPage />}
