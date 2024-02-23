@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
+import { AiOutlineEdit } from 'react-icons/ai';
 import { useMutation } from '@tanstack/react-query';
 import { QueryKeys, operations, queryClient } from '@/tanStackQuery';
 import { ClickEvent } from '@/types/types';
@@ -14,6 +14,7 @@ import {
   Container,
   ListItem,
 } from './CalenderEventDetails.styled';
+import DelEventBtn from '@/components/DelEventBtn';
 
 const CalenderEventDetails: FC<IProps> = ({ event, setModalWinState }) => {
   const [editEvent, setEditEvent] = useState<boolean>(false);
@@ -48,12 +49,7 @@ const CalenderEventDetails: FC<IProps> = ({ event, setModalWinState }) => {
       <ButtonsList>
         {!editEvent && (
           <ListItem>
-            <IconButton
-              iconBtnType={IconBtnTypes.delete}
-              onClick={onDeleteBtnClick}
-              ariaLabel={AriaLabels.delete}
-              icon={<AiOutlineDelete size={IconSizes.secondarySize} />}
-            />
+            <DelEventBtn onClick={onDeleteBtnClick} />
           </ListItem>
         )}
         <ListItem>

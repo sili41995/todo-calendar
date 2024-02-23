@@ -4,6 +4,7 @@ import PagePaths from '@/constants/pagePaths';
 import SharedLayout from './SharedLayout';
 
 const EventsPage = lazy(() => import('@/pages/EventsPage'));
+const EventDetailsPage = lazy(() => import('@/pages/EventDetailsPage'));
 const EventPlanningPage = lazy(() => import('@/pages/EventPlanningPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
@@ -12,7 +13,12 @@ const App: FC = () => {
     <Routes>
       <Route path={PagePaths.homePath} element={<SharedLayout />}>
         <Route index element={<EventsPage />} />
-        <Route path={PagePaths.eventsPath} element={<EventsPage />} />
+        <Route path={PagePaths.eventsPath} element={<EventsPage />}>
+          <Route
+            path={`:${PagePaths.dynamicParam}`}
+            element={<EventDetailsPage />}
+          ></Route>
+        </Route>
         <Route
           path={PagePaths.eventPlanningPath}
           element={<EventPlanningPage />}

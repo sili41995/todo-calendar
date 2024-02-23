@@ -3,7 +3,8 @@ import Loader from '@/components/Loader';
 import { QueryKeys, operations } from '@/tanStackQuery';
 import { getSortedEvents, toasts } from '@/utils';
 import { useQuery } from '@tanstack/react-query';
-import { FC, useEffect } from 'react';
+import { FC, Suspense, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 
 const EventsPage: FC = () => {
   const {
@@ -25,6 +26,9 @@ const EventsPage: FC = () => {
     <>
       {isLoading && <Loader />}
       {sortedEvents && <EventsList events={sortedEvents} />}
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
