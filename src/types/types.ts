@@ -1,3 +1,4 @@
+import PagePaths from '@/constants/pagePaths';
 import { ChangeEvent, MouseEvent } from 'react';
 
 export type Week = Date[];
@@ -43,3 +44,10 @@ export interface IDayParams {
   showEventsList: boolean;
   filteredEvents: Events;
 }
+
+export interface INavLink {
+  title: string;
+  path: PagePaths;
+}
+
+export type NavLinks = Readonly<INavLink[]>;
