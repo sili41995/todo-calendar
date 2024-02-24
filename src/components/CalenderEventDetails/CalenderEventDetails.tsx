@@ -1,10 +1,8 @@
 import { FC, useState } from 'react';
 import { AiOutlineEdit } from 'react-icons/ai';
-import { useMutation } from '@tanstack/react-query';
-import { QueryKeys, operations, queryClient } from '@/tanStackQuery';
 import { ClickEvent } from '@/types/types';
-import { makeBlur, toasts } from '@/utils';
-import { AriaLabels, IconBtnTypes, IconSizes, Messages } from '@/constants';
+import { makeBlur } from '@/utils';
+import { AriaLabels, IconBtnTypes, IconSizes } from '@/constants';
 import EventDetails from '@/components/EventDetails';
 import EditEventForm from '@/components/EditEventForm';
 import IconButton from '@/components/IconButton';
@@ -15,25 +13,11 @@ import {
   ListItem,
 } from './CalenderEventDetails.styled';
 import DelEventBtn from '@/components/DelEventBtn';
+import { useDeleteEvent } from '@/hooks';
 
 const CalenderEventDetails: FC<IProps> = ({ event, setModalWinState }) => {
   const [editEvent, setEditEvent] = useState<boolean>(false);
-  const { mutate: removeEvent } = useMutation({
-    mutationFn: operations.deleteEvent,
-    onSuccess: onSuccessHTTPRequest,
-    onError: onFailedHTTPRequest,
-  });
-
-  function onSuccessHTTPRequest() {
-    toasts.successToast(Messages.deleteEvent);
-    queryClient.invalidateQueries({ queryKey: [QueryKeys.events] });
-    setModalWinState();
-  }
-
-  function onFailedHTTPRequest(error: Error): void {
-    toasts.errorToast(error.message);
-  }
-
+  const deleteEvent = useDeleteEvent(setModalWinState);
   const toggleEditEventStatus = (e: ClickEvent) => {
     makeBlur(e.currentTarget);
     setEditEvent((prevState) => !prevState);
@@ -41,7 +25,7 @@ const CalenderEventDetails: FC<IProps> = ({ event, setModalWinState }) => {
 
   const onDeleteBtnClick = (e: ClickEvent) => {
     makeBlur(e.currentTarget);
-    removeEvent(event.id);
+    deleteEvent(event.id);
   };
 
   return (

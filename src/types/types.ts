@@ -51,3 +51,12 @@ export interface INavLink {
 }
 
 export type NavLinks = Readonly<INavLink[]>;
+
+export interface IGetIsTargetPageProps {
+  pathname: string;
+  targetPage: string;
+}
+
+export type Func = () => void;
+
+export type DeleteFunc = (id: string) => void;

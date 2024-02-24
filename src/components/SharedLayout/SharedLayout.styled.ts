@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { IStyledProps } from './SharedLayout.types';
 
 export const Header = styled.header`
   display: inline-block;
@@ -8,7 +9,9 @@ export const Header = styled.header`
   background-color: ${({ theme }) => theme.colors.otherColor};
 `;
 
-export const Container = styled.div`
+export const Container = styled.div<IStyledProps>`
+  display: ${({ isEventsPage }) => (isEventsPage ? 'flex' : 'block')};
+  gap: ${({ theme }) => theme.spacing(5)};
   width: ${({ theme }) =>
     theme.containerWidth.desktop + theme.padding.containerPadding * 2}px;
   padding-left: ${({ theme }) => `${theme.padding.containerPadding}px`};

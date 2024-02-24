@@ -1,6 +1,7 @@
+import { Func } from '@/types/types';
 import { ReactNode } from 'react';
 
 export interface IProps {
-  setModalWinState: () => void;
+  setModalWinState: Func;
   children: ReactNode;
 }
