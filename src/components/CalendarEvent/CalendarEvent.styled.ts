@@ -21,10 +21,5 @@ export const Title = styled.span<IStylesProps>`
   font-family: ${({ theme }) => theme.fontFamily.primaryFontFamily};
   font-size: ${({ theme }) => theme.fontSize.primaryFontSize}px;
   font-weight: ${({ theme }) => theme.fontWeight.secondaryFontWeight};
-  word-wrap: break-word;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
+  ${({ theme }) => theme.trimText}
 `;

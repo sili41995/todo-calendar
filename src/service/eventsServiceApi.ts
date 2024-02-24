@@ -7,7 +7,17 @@ class EventsServiceApi {
   fetchEvents(): Promise<Events> {
     return fetch(`${this.BASE_URL}`).then((response) => {
       if (!response.ok) {
-        throw new Error(Messages.fetchEventErr);
+        throw new Error(Messages.fetchEventsErr);
+      }
+
+      return response.json();
+    });
+  }
+
+  fetchEventById(id: string): Promise<IEvent> {
+    return fetch(`${this.BASE_URL}/${id}`).then((response) => {
+      if (!response.ok) {
+        throw new Error(Messages.fetchEventByIdErr);
       }
 
       return response.json();

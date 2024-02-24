@@ -60,3 +60,7 @@ export interface IGetIsTargetPageProps {
 export type Func = () => void;
 
 export type DeleteFunc = (id: string) => void;
+
+export interface IGetEventByIdProps {
+  queryKey: string[];
+}

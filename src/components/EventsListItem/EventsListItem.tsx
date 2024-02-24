@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { IProps } from './EventsListItem.types';
 import { Link } from 'react-router-dom';
 import PagePaths from '@/constants/pagePaths';
-import { ListItem } from './EventsListItem.styled';
+import { ListItem, Task } from './EventsListItem.styled';
 import DelEventBtn from '@/components/DelEventBtn';
 import { useDeleteEvent } from '@/hooks';
 
@@ -11,13 +11,15 @@ const EventsListItem: FC<IProps> = ({ event }) => {
   const deleteEvent = useDeleteEvent();
 
   return (
-    <ListItem completed={completed}>
+    <ListItem>
       <DelEventBtn
         onClick={() => {
           deleteEvent(id);
         }}
       />
-      <Link to={`${PagePaths.eventsPath}/${id}`}>{task}</Link>
+      <Link to={`${PagePaths.eventsPath}/${id}`}>
+        <Task completed={completed}>{task}</Task>
+      </Link>
     </ListItem>
   );
 };

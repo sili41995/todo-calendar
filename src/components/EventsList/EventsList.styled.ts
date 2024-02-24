@@ -4,6 +4,6 @@ export const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(5)};
-  flex-grow: 1;
-  /* width: 900px; */
+  width: 900px;
+  flex-shrink: 0;
 `;

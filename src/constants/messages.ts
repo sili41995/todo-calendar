@@ -1,5 +1,6 @@
 const enum Messages {
-  fetchEventErr = 'Failed to fetch event',
+  fetchEventsErr = 'Failed to fetch events',
+  fetchEventByIdErr = 'Failed to fetch event',
   addEvent = 'Event added successfully',
   deleteEvent = 'Event deleted successfully',
   updateEvent = 'Event updated successfully',
