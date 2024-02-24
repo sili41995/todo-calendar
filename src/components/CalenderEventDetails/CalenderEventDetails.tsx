@@ -33,7 +33,10 @@ const CalenderEventDetails: FC<IProps> = ({ event, setModalWinState }) => {
       <ButtonsList>
         {!editEvent && (
           <ListItem>
-            <DelEventBtn onClick={onDeleteBtnClick} />
+            <DelEventBtn
+              onClick={onDeleteBtnClick}
+              iconBtnType={IconBtnTypes.delete}
+            />
           </ListItem>
         )}
         <ListItem>

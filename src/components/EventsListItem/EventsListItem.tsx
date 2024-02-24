@@ -5,6 +5,7 @@ import PagePaths from '@/constants/pagePaths';
 import { ListItem, Task } from './EventsListItem.styled';
 import DelEventBtn from '@/components/DelEventBtn';
 import { useDeleteEvent } from '@/hooks';
+import { IconBtnTypes } from '@/constants';
 
 const EventsListItem: FC<IProps> = ({ event }) => {
   const { task, id, completed } = event;
@@ -13,6 +14,7 @@ const EventsListItem: FC<IProps> = ({ event }) => {
   return (
     <ListItem>
       <DelEventBtn
+        iconBtnType={IconBtnTypes.deleteTransparent}
         onClick={() => {
           deleteEvent(id);
         }}

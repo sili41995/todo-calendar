@@ -9,6 +9,9 @@ const setBtnBGColor = (iconBtnType: IconBtnTypes): string => {
     case IconBtnTypes.delete:
       return theme.colors.redBtnColor;
 
+    case IconBtnTypes.deleteTransparent:
+      return 'transparent';
+
     case IconBtnTypes.accept:
       return theme.colors.greenBtnColor;
 

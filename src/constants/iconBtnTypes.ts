@@ -1,9 +1,10 @@
 const enum IconBtnTypes {
-  edit,
-  accept,
-  cancel,
-  delete,
-  reset,
+  edit = 'edit',
+  accept = 'accept',
+  cancel = 'cancel',
+  delete = 'delete',
+  reset = 'reset',
+  deleteTransparent = 'deleteTransparent',
 }
 
 export default IconBtnTypes;

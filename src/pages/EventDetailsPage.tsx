@@ -12,7 +12,7 @@ const EventDetailsPage = () => {
     // isError,
     // error,
   } = useQuery({
-    queryKey: [QueryKeys.targetEvent, id],
+    queryKey: [QueryKeys.events, id],
     queryFn: operations.getEventById,
   });
 

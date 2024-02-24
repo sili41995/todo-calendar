@@ -27,7 +27,9 @@ const EditEventForm: FC<IProps> = ({ event }) => {
 
   function onSuccessHTTPRequest() {
     toasts.successToast(Messages.updateEvent);
-    queryClient.invalidateQueries({ queryKey: [QueryKeys.events] });
+    queryClient.invalidateQueries({
+      queryKey: [QueryKeys.events],
+    });
   }
 
   const handleFormSubmit: SubmitHandler<NewEvent> = (data) => {
