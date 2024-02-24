@@ -1,7 +1,6 @@
 import CalenderEventDetails from '@/components/CalenderEventDetails';
 import DefaultMessage from '@/components/DefaultMessage';
 import Loader from '@/components/Loader';
-import { Messages } from '@/constants';
 import PagePaths from '@/constants/pagePaths';
 import { QueryKeys, operations } from '@/tanStackQuery';
 import { useQuery } from '@tanstack/react-query';
