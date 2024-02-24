@@ -7,6 +7,7 @@ const enum Messages {
   addEventErr = 'Failed to add event',
   deleteEventErr = 'Failed to delete event',
   updateEventErr = 'Failed to update event',
+  eventAbsent = 'event is absent',
 }
 
 export default Messages;

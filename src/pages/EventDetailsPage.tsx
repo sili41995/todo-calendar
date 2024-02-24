@@ -1,4 +1,7 @@
 import CalenderEventDetails from '@/components/CalenderEventDetails';
+import DefaultMessage from '@/components/DefaultMessage';
+import Loader from '@/components/Loader';
+import { Messages } from '@/constants';
 import PagePaths from '@/constants/pagePaths';
 import { QueryKeys, operations } from '@/tanStackQuery';
 import { useQuery } from '@tanstack/react-query';
@@ -8,18 +11,20 @@ const EventDetailsPage = () => {
   const id = useParams()[PagePaths.dynamicParam] ?? '';
   const {
     data: event,
-    // isLoading,
-    // isError,
-    // error,
+    isLoading,
+    isError,
+    error,
   } = useQuery({
     queryKey: [QueryKeys.events, id],
     queryFn: operations.getEventById,
   });
 
-  return event ? (
-    <CalenderEventDetails event={event} />
-  ) : (
-    <p>event is absent</p>
+  return (
+    <>
+      {isLoading && <Loader />}
+      {event && <CalenderEventDetails event={event} />}
+      {isError && <DefaultMessage message={error.message} />}
+    </>
   );
 };
 
