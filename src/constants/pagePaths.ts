@@ -3,8 +3,8 @@ enum PagePaths {
   eventsPath = '/events',
   eventPlanningPath = '/event-planning',
   aboutPath = 'about',
-  signUpPath = 'signup',
-  signInPath = 'signin',
+  signUpPath = '/signup',
+  signInPath = '/signin',
   dynamicParam = 'id',
 }
 

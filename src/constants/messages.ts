@@ -18,6 +18,7 @@ const enum Messages {
   emailRegExpErr = 'Email must be letters, digits, dot and @',
   greetings = 'Welcome to Calendar',
   successfulSignUp = 'User has been successfully registered',
+  successfulSignIn = 'Hello, my friend!',
 }
 
 export default Messages;

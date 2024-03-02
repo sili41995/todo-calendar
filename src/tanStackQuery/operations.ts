@@ -1,5 +1,7 @@
 import eventsServiceApi from '@/service/eventsServiceApi';
 import {
+  ICredentials,
+  ISignInRes,
   // Events,
   // IEvent,
   // IGetEventByIdProps,
@@ -9,7 +11,10 @@ import {
 } from '@/types/types';
 
 const signUp = async (data: FormData): Promise<NewUser> =>
-  await eventsServiceApi.signUpUser(data);
+  await eventsServiceApi.signUp(data);
+
+const signIn = async (data: ICredentials): Promise<ISignInRes> =>
+  await eventsServiceApi.signIn(data);
 
 // const getEvents = async (): Promise<Events> =>
 //   await eventsServiceApi.fetchEvents();
@@ -30,6 +35,7 @@ const signUp = async (data: FormData): Promise<NewUser> =>
 
 const operations = {
   signUp,
+  signIn,
   // getEvents,
   // getEventById,
   // addEvent,

@@ -11,6 +11,7 @@ export interface IProps {
   defaultValue?: string;
   checked?: boolean;
   accept?: string;
+  autoFocus?: boolean;
   onChange?: (e: InputChangeEvent) => void;
 }
 

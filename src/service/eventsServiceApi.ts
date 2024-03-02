@@ -1,5 +1,5 @@
 // import { Messages } from '@/constants';
-import { NewUser } from '@/types/types';
+import { ICredentials, ISignInRes, NewUser } from '@/types/types';
 
 class EventsServiceApi {
   private BASE_URL = 'https://events-rest-api.onrender.com';
@@ -13,16 +13,32 @@ class EventsServiceApi {
     this.TOKEN = newToken;
   }
 
-  signUpUser(data: FormData): Promise<NewUser> {
+  signUp(data: FormData): Promise<NewUser> {
     const options = {
       method: 'POST',
       body: data,
-      // headers: {
-      //   'Content-Type': 'application/json; charset=UTF-8',
-      // },
     };
 
     return fetch(`${this.BASE_URL}/api/auth/signup`, options)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message) {
+          throw Error(data.message);
+        }
+        return data;
+      });
+  }
+
+  signIn(data: ICredentials): Promise<ISignInRes> {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    };
+
+    return fetch(`${this.BASE_URL}/api/auth/signin`, options)
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {

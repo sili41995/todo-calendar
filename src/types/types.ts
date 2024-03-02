@@ -87,3 +87,7 @@ export interface IRegExp {
 }
 
 export type NewUser = Omit<ISignUpCredentials, 'password' | 'passwordRepeat'>;
+
+export interface ISignInRes {
+  token: string;
+}

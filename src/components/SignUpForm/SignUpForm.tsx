@@ -31,12 +31,11 @@ const SignUpForm = () => {
     handleSubmit,
   } = useForm<ISignUpCredentials>();
   const navigate = useNavigate();
-  const signInPageLink = `/${PagePaths.signInPath}`;
   const userAvatarRef = useRef<HTMLImageElement>(null);
 
   function onSuccessHTTPRequest(): void {
     toasts.successToast(Messages.successfulSignUp);
-    navigate(signInPageLink);
+    navigate(PagePaths.signInPath);
   }
 
   function onFailedHTTPRequest(error: Error): void {
@@ -106,6 +105,7 @@ const SignUpForm = () => {
           }}
           type={InputTypes.text}
           placeholder='Name'
+          autoFocus
           // icon={<FaEnvelope size={IconSizes.secondaryIconSize} />}
           // inputWrap
         />
@@ -147,7 +147,7 @@ const SignUpForm = () => {
         />
         <AuthFormMessage
           action='Sign in'
-          pageLink={signInPageLink}
+          pageLink={PagePaths.signInPath}
           message='if you have an account'
         />
         <AuthFormBtn

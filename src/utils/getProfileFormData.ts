@@ -3,7 +3,7 @@ import { ISignUpCredentials } from '@/types/types';
 const getProfileFormData = (profile: ISignUpCredentials): FormData => {
   const formData = new FormData();
 
-  if (profile.avatar?.length) {
+  if (profile.avatar.length) {
     formData.append('avatar', profile.avatar[0]);
   }
 
