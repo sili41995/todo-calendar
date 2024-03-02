@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from '@/components/App';
-import theme from '@/constants/theme';
+import { theme } from '@/constants';
 import { ThemeProvider } from '@emotion/react';
 import GlobalStyles from '@/components/GlobalStyles';
 import { QueryClientProvider } from '@tanstack/react-query';

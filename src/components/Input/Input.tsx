@@ -7,6 +7,7 @@ import {
   Label,
   Title,
   StyledInput,
+  ImgAltElem,
 } from './Input.styled';
 
 const Input: FC<IProps> = ({
@@ -33,13 +34,22 @@ const Input: FC<IProps> = ({
     );
   }
 
-  return (
-    <>
-      <Label>
-        <Title>{label}</Title>
+  if (type === InputTypes.file) {
+    return (
+      <ImgAltElem>
+        {altElem}
         {input}
-      </Label>
-    </>
+      </ImgAltElem>
+    );
+  }
+
+  return label ? (
+    <Label>
+      <Title>{label}</Title>
+      {input}
+    </Label>
+  ) : (
+    input
   );
 };
 

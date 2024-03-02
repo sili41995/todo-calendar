@@ -19,6 +19,7 @@ interface ITheme {
     redIconColor: string;
     greenBtnColor: string;
     greenIconColor: string;
+    authFormBGColor: string;
   };
   fontFamily: { primaryFontFamily: string };
   fontWeight: {
@@ -27,6 +28,7 @@ interface ITheme {
     otherFontWeight: number;
   };
   fontSize: {
+    titleFontSize: number;
     primaryFontSize: number;
     secondaryFontSize: number;
   };
@@ -61,6 +63,7 @@ const theme: ITheme = {
     redIconColor: '#d3232f',
     greenBtnColor: '#89f2a6',
     greenIconColor: '#00c938',
+    authFormBGColor: '#fcfcfc',
   },
   fontFamily: { primaryFontFamily: 'Manrope' },
   fontWeight: {
@@ -69,6 +72,7 @@ const theme: ITheme = {
     otherFontWeight: 500,
   },
   fontSize: {
+    titleFontSize: 36,
     primaryFontSize: 16,
     secondaryFontSize: 20,
   },

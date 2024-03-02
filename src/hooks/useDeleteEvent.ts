@@ -1,5 +1,4 @@
-import { Messages } from '@/constants';
-import PagePaths from '@/constants/pagePaths';
+import { Messages, PagePaths } from '@/constants';
 import { QueryKeys, operations, queryClient } from '@/tanStackQuery';
 import { DeleteFunc, Func } from '@/types/types';
 import { toasts } from '@/utils';

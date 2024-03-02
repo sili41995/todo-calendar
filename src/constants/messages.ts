@@ -1,3 +1,5 @@
+import ProfileSettings from './profileSettings';
+
 const enum Messages {
   fetchEventsErr = 'Failed to fetch events',
   fetchEventByIdErr = 'Failed to fetch event',
@@ -8,6 +10,14 @@ const enum Messages {
   deleteEventErr = 'Failed to delete event',
   updateEventErr = 'Failed to update event',
   eventAbsent = 'event is absent',
+  nameReqErr = 'Name is required',
+  passwordReqErr = 'Password is required',
+  passwordMinLengthErr = `Password minimum length is ${ProfileSettings.passMinLength} characters`,
+  passwordRepeatErr = 'You must repeat the password',
+  emailReqErr = 'Email is required',
+  emailRegExpErr = 'Email must be letters, digits, dot and @',
+  greetings = 'Welcome to Calendar',
+  successfulSignUp = 'User has been successfully registered',
 }
 
 export default Messages;

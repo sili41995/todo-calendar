@@ -4,6 +4,7 @@ enum InputTypes {
   email = 'email',
   checkbox = 'checkbox',
   dateTimeLocal = 'datetime-local',
+  file = 'file',
 }
 
 export default InputTypes;

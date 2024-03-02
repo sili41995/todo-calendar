@@ -1,5 +1,5 @@
-import PagePaths from '@/constants/pagePaths';
-import { ChangeEvent, MouseEvent } from 'react';
+import { PagePaths } from '@/constants';
+import { ChangeEvent, MouseEvent, RefObject } from 'react';
 
 export type Week = Date[];
 
@@ -64,3 +64,26 @@ export type DeleteFunc = (id: string) => void;
 export interface IGetEventByIdProps {
   queryKey: string[];
 }
+
+export interface IOnChangeAvatar {
+  e: ChangeEvent<HTMLInputElement>;
+  ref: RefObject<HTMLImageElement>;
+}
+
+export interface ICredentials {
+  email: string;
+  password: string;
+}
+
+export interface ISignUpCredentials extends ICredentials {
+  [key: string]: string | FileList | undefined;
+  name: string;
+  passwordRepeat: string;
+  avatar: FileList;
+}
+
+export interface IRegExp {
+  emailRegExp: RegExp;
+}
+
+export type NewUser = Omit<ISignUpCredentials, 'password' | 'passwordRepeat'>;

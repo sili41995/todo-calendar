@@ -25,7 +25,7 @@ const EditEventForm: FC<IProps> = ({ event }) => {
     toasts.errorToast(error.message);
   }
 
-  function onSuccessHTTPRequest() {
+  function onSuccessHTTPRequest(): void {
     toasts.successToast(Messages.updateEvent);
     queryClient.invalidateQueries({
       queryKey: [QueryKeys.events],

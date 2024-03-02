@@ -3,8 +3,7 @@ import { Container, Header, Main, Section } from './SharedLayout.styled';
 import Loader from '@/components/Loader';
 import { Outlet, useLocation } from 'react-router-dom';
 import NavigationBar from '@/components/NavigationBar';
-import navLinks from '@/constants/navLinks';
-import PagePaths from '@/constants/pagePaths';
+import { navLinks, PagePaths } from '@/constants';
 import { getIsTargetPage } from '@/utils';
 
 const SharedLayout: FC = () => {

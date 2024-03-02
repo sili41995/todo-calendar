@@ -1,12 +1,13 @@
 import CalenderEventDetails from '@/components/CalenderEventDetails';
 import DefaultMessage from '@/components/DefaultMessage';
 import Loader from '@/components/Loader';
-import PagePaths from '@/constants/pagePaths';
+import { PagePaths } from '@/constants';
 import { QueryKeys, operations } from '@/tanStackQuery';
 import { useQuery } from '@tanstack/react-query';
+import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 
-const EventDetailsPage = () => {
+const EventDetailsPage: FC = () => {
   const id = useParams()[PagePaths.dynamicParam] ?? '';
   const {
     data: event,

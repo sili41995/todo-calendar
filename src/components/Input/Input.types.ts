@@ -6,10 +6,11 @@ export interface IProps {
   settings?: object;
   type: InputTypes;
   placeholder?: string;
-  label: string;
+  label?: string;
   altElem?: ReactElement;
   defaultValue?: string;
   checked?: boolean;
+  accept?: string;
   onChange?: (e: InputChangeEvent) => void;
 }
 

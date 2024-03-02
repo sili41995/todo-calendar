@@ -3,7 +3,7 @@ import { IStyledProps } from './Input.types';
 
 export const StyledInput = styled.input<IStyledProps>`
   width: 100%;
-  height: 40px;
+  height: 60px;
   background-color: transparent;
   border: 2px solid;
   border-color: ${({ theme }) => theme.colors.lightgreyColor};
@@ -13,7 +13,7 @@ export const StyledInput = styled.input<IStyledProps>`
   font-family: ${({ theme }) => theme.fontFamily.primaryFontFamily};
   color: ${({ theme }) => theme.colors.primaryFontColor};
   font-weight: ${({ theme }) => theme.fontWeight.otherFontWeight};
-  font-size: ${({ theme }) => theme.fontSize.primaryFontSize}px;
+  font-size: ${({ theme }) => theme.fontSize.secondaryFontSize}px;
   letter-spacing: 0.04em;
   transition: border-color ${({ theme }) => theme.transitionDurationAndFunc};
 
@@ -73,5 +73,17 @@ export const AltElem = styled.label<IStyledProps>`
   &:hover,
   &:focus {
     box-shadow: ${({ theme }) => theme.shadows.primaryShadow};
+  }
+`;
+
+export const ImgAltElem = styled.label`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+
+  & input {
+    position: fixed;
+    transform: scale(0);
   }
 `;
