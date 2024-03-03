@@ -4,12 +4,12 @@ import { toasts } from '@/utils';
 import AuthFormMessage from '@/components/AuthFormMessage';
 import Input from '@/components/Input';
 import AuthFormBtn from '@/components/AuthFormBtn';
-import { ICredentials } from '@/types/types';
+import { ICredentials, ISignInRes } from '@/types/types';
 import { Messages, InputTypes, PagePaths, ProfileSettings } from '@/constants';
 import defaultAvatar from '@/images/default-signin-avatar.png';
 import { Form, Message, Title, Image } from './SignInForm.styled';
 import { useMutation } from '@tanstack/react-query';
-import { operations } from '@/tanStackQuery';
+import { QueryKeys, operations, queryClient } from '@/tanStackQuery';
 
 const SignInForm = () => {
   const {
@@ -23,10 +23,9 @@ const SignInForm = () => {
     onError: onFailedHTTPRequest,
   });
 
-  function onSuccessHTTPRequest(data): void {
-    console.log(data);
+  function onSuccessHTTPRequest(data: ISignInRes): void {
+    queryClient.setQueryData([QueryKeys.auth], data);
     toasts.successToast(Messages.successfulSignIn);
-    return data;
   }
 
   function onFailedHTTPRequest(error: Error): void {
