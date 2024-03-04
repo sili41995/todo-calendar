@@ -1,9 +1,9 @@
 // import { Messages } from '@/constants';
-import { ICredentials, ISignInRes, NewUser } from '@/types/types';
+import { ICredentials, IToken, NewUser, User } from '@/types/types';
 
 class EventsServiceApi {
   private BASE_URL = 'https://events-rest-api.onrender.com';
-  private TOKEN = null;
+  private TOKEN: string | null = null;
 
   get token() {
     return this.TOKEN;
@@ -29,7 +29,7 @@ class EventsServiceApi {
       });
   }
 
-  signIn(data: ICredentials): Promise<ISignInRes> {
+  signIn(data: ICredentials): Promise<IToken> {
     const options = {
       method: 'POST',
       body: JSON.stringify(data),
@@ -47,6 +47,26 @@ class EventsServiceApi {
         return data;
       });
   }
+
+  refreshUser(): Promise<User> {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${this.TOKEN}`,
+      },
+    };
+
+    return fetch(`${this.BASE_URL}/api/auth/current`, options)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message) {
+          throw Error(data.message);
+        }
+        return data;
+      });
+  }
+
   // private BASE_URL = 'https://65b0f4a5d16d31d11bdda9d4.mockapi.io/todos';
   // fetchEvents(): Promise<Events> {
   //   return fetch(`${this.BASE_URL}`).then((response) => {

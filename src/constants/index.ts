@@ -9,5 +9,6 @@ export { default as Messages } from './messages';
 export { default as theme } from './theme';
 export { default as PagePaths } from './pagePaths';
 export { default as navLinks } from './navLinks';
+export { default as authNavLinks } from './authNavLinks';
 export { default as ProfileSettings } from './profileSettings';
 export { default as regExp } from './regExp';

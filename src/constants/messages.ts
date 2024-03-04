@@ -9,7 +9,7 @@ const enum Messages {
   addEventErr = 'Failed to add event',
   deleteEventErr = 'Failed to delete event',
   updateEventErr = 'Failed to update event',
-  eventAbsent = 'event is absent',
+  eventAbsent = 'Event is absent',
   nameReqErr = 'Name is required',
   passwordReqErr = 'Password is required',
   passwordMinLengthErr = `Password minimum length is ${ProfileSettings.passMinLength} characters`,
@@ -19,6 +19,7 @@ const enum Messages {
   greetings = 'Welcome to Calendar',
   successfulSignUp = 'User has been successfully registered',
   successfulSignIn = 'Hello, my friend!',
+  authErr = 'Please, authenticate in the app',
 }
 
 export default Messages;

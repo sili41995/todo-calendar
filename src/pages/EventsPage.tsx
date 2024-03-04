@@ -7,25 +7,25 @@ import { FC, Suspense, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
 const EventsPage: FC = () => {
-  const {
-    data: events,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: [QueryKeys.events],
-    queryFn: operations.getEvents,
-  });
-  const sortedEvents = getSortedEvents(events);
+  // const {
+  //   data: events,
+  //   isLoading,
+  //   isError,
+  //   error,
+  // } = useQuery({
+  //   queryKey: [QueryKeys.events],
+  //   queryFn: operations.getEvents,
+  // });
+  // const sortedEvents = getSortedEvents(events);
 
-  useEffect(() => {
-    isError && toasts.errorToast(error.message);
-  }, [error, isError]);
+  // useEffect(() => {
+  //   isError && toasts.errorToast(error.message);
+  // }, [error, isError]);
 
   return (
     <>
-      {isLoading && <Loader />}
-      {sortedEvents && <EventsList events={sortedEvents} />}
+      {/* {isLoading && <Loader />}
+      {sortedEvents && <EventsList events={sortedEvents} />} */}
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>

@@ -61,8 +61,8 @@ export type Func = () => void;
 
 export type DeleteFunc = (id: string) => void;
 
-export interface IGetEventByIdProps {
-  queryKey: string[];
+export interface IQueryKey {
+  queryKey: [string, string];
 }
 
 export interface IOnChangeAvatar {
@@ -79,8 +79,10 @@ export interface ISignUpCredentials extends ICredentials {
   [key: string]: string | FileList | undefined;
   name: string;
   passwordRepeat: string;
-  avatar: FileList;
+  avatar: FileList | string;
 }
+
+export type User = Pick<ISignUpCredentials, 'name' | 'email' | 'avatar'>;
 
 export interface IRegExp {
   emailRegExp: RegExp;
@@ -88,6 +90,11 @@ export interface IRegExp {
 
 export type NewUser = Omit<ISignUpCredentials, 'password' | 'passwordRepeat'>;
 
-export interface ISignInRes {
+export interface IToken {
   token: string;
+}
+
+export interface IAuthData {
+  isLoggedIn: boolean;
+  user: User;
 }

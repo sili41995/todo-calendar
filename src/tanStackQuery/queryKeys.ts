@@ -1,6 +1,8 @@
 const enum QueryKeys {
   events = 'events',
-  auth = 'auth',
+  token = 'token',
+  user = 'user',
+  isLoggedIn = 'isLoggedIn',
 }
 
 export default QueryKeys;

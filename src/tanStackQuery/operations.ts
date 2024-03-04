@@ -1,20 +1,39 @@
 import eventsServiceApi from '@/service/eventsServiceApi';
 import {
   ICredentials,
-  ISignInRes,
+  IToken,
   // Events,
   // IEvent,
   // IGetEventByIdProps,
   // IUpdateEvent,
   // NewEvent,
   NewUser,
+  User,
 } from '@/types/types';
+import { QueryKeys, queryClient } from '.';
 
 const signUp = async (data: FormData): Promise<NewUser> =>
   await eventsServiceApi.signUp(data);
 
-const signIn = async (data: ICredentials): Promise<ISignInRes> =>
+const signIn = async (data: ICredentials): Promise<IToken> =>
   await eventsServiceApi.signIn(data);
+
+const refreshUser = async (token: string | undefined): Promise<User | null> => {
+  if (!token) {
+    return null;
+  }
+
+  eventsServiceApi.token = token;
+
+  try {
+    const { name, email, avatar } = await eventsServiceApi.refreshUser();
+    queryClient.setQueryData([QueryKeys.isLoggedIn], true);
+    return { name, email, avatar };
+  } catch (error) {
+    queryClient.setQueryData([QueryKeys.isLoggedIn], false);
+    return null;
+  }
+};
 
 // const getEvents = async (): Promise<Events> =>
 //   await eventsServiceApi.fetchEvents();
@@ -36,6 +55,7 @@ const signIn = async (data: ICredentials): Promise<ISignInRes> =>
 const operations = {
   signUp,
   signIn,
+  refreshUser,
   // getEvents,
   // getEventById,
   // addEvent,

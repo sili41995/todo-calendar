@@ -1,18 +1,13 @@
-import { NavLink } from 'react-router-dom';
-import { NavContainer, List, ListItem } from './NavigationBar.styled';
-import { IProps } from './NavigationBar.types';
+import { NavContainer } from './NavigationBar.styled';
 import { FC } from 'react';
+import NavLinks from '@/components/NavLinks';
+import { authNavLinks, navLinks } from '@/constants';
 
-const NavigationBar: FC<IProps> = ({ navLinks }) => {
+const NavigationBar: FC = () => {
   return (
     <NavContainer>
-      <List>
-        {navLinks.map(({ path, title }) => (
-          <ListItem key={path}>
-            <NavLink to={path}>{title}</NavLink>
-          </ListItem>
-        ))}
-      </List>
+      <NavLinks navLinks={navLinks} />
+      <NavLinks navLinks={authNavLinks} />
     </NavContainer>
   );
 };

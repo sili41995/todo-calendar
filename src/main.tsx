@@ -4,22 +4,25 @@ import App from '@/components/App';
 import { theme } from '@/constants';
 import { ThemeProvider } from '@emotion/react';
 import GlobalStyles from '@/components/GlobalStyles';
-import { QueryClientProvider } from '@tanstack/react-query';
-import queryClient from '@/tanStackQuery/client';
+import queryClient, { persister } from '@/tanStackQuery/client';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Toast from '@/components/Toast';
 import { BrowserRouter } from 'react-router-dom';
+import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <QueryClientProvider client={queryClient}>
+        <PersistQueryClientProvider
+          client={queryClient}
+          persistOptions={{ persister }}
+        >
           <App />
           <GlobalStyles />
           <Toast />
           <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
+        </PersistQueryClientProvider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>

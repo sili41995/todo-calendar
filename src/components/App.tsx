@@ -1,7 +1,13 @@
-import { FC, lazy } from 'react';
+import { FC, lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { PagePaths } from '@/constants';
 import SharedLayout from './SharedLayout';
+import { QueryKeys, operations } from '@/tanStackQuery';
+import { useQuery } from '@tanstack/react-query';
+import { User } from '@/types/types';
+import Loader from '@/components/Loader';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 const SignUpPage = lazy(() => import('@/pages/SignUpPage'));
 const SignInPage = lazy(() => import('@/pages/SignInPage'));
@@ -11,13 +17,42 @@ const EventPlanningPage = lazy(() => import('@/pages/EventPlanningPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
 const App: FC = () => {
-  return (
+  const { data: token } = useQuery<string>({
+    queryKey: [QueryKeys.token],
+  });
+  const { isLoading } = useQuery<User | null>({
+    queryKey: [QueryKeys.user, token],
+    queryFn: () => operations.refreshUser(token),
+  });
+  const { data } = useQuery({
+    queryKey: [QueryKeys.isLoggedIn],
+  });
+
+  useEffect(() => {
+    console.log(data);
+  });
+
+  return isLoading ? (
+    <Loader />
+  ) : (
     <Routes>
       <Route path={PagePaths.homePath} element={<SharedLayout />}>
-        <Route index element={<EventsPage />} />
-        <Route path={PagePaths.signUpPath} element={<SignUpPage />} />
-        <Route path={PagePaths.signInPath} element={<SignInPage />} />
-        <Route path={PagePaths.eventsPath} element={<EventsPage />}>
+        <Route
+          index
+          element={<PublicRoute restricted element={<SignInPage />} />}
+        />
+        <Route
+          path={PagePaths.signUpPath}
+          element={<PublicRoute restricted element={<SignUpPage />} />}
+        />
+        <Route
+          path={PagePaths.signInPath}
+          element={<PublicRoute restricted element={<SignInPage />} />}
+        />
+        <Route
+          path={PagePaths.eventsPath}
+          element={<PrivateRoute element={<EventsPage />} />}
+        >
           <Route
             path={`:${PagePaths.dynamicParam}`}
             element={<EventDetailsPage />}
