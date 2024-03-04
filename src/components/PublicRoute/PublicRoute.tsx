@@ -9,6 +9,7 @@ import { QueryKeys } from '@/tanStackQuery';
 export const PublicRoute: FC<IProps> = ({ element, restricted = false }) => {
   const { data: isLoggedIn } = useQuery<boolean>({
     queryKey: [QueryKeys.isLoggedIn],
+    refetchOnWindowFocus: false,
   });
   const location = useLocation();
   const shouldRedirect = isLoggedIn && restricted;

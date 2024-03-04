@@ -24,13 +24,6 @@ const App: FC = () => {
     queryKey: [QueryKeys.user, token],
     queryFn: () => operations.refreshUser(token),
   });
-  const { data } = useQuery({
-    queryKey: [QueryKeys.isLoggedIn],
-  });
-
-  useEffect(() => {
-    console.log(data);
-  });
 
   return isLoading ? (
     <Loader />
