@@ -27,7 +27,6 @@ const refreshUser = async (token: string | undefined): Promise<User | null> => {
     queryClient.setQueryData([QueryKeys.isLoggedIn], true);
     return { name, email, avatar };
   } catch (error) {
-    queryClient.setQueryData([QueryKeys.isLoggedIn], false);
     return null;
   }
 };
