@@ -11,7 +11,7 @@ export interface IEvent {
   deadline: string;
   task: string;
   completed: boolean;
-  id: string;
+  _id: string;
 }
 
 export type NewEvent = Omit<IEvent, 'id'>;
@@ -97,4 +97,13 @@ export interface IToken {
 export interface IAuthData {
   isLoggedIn: boolean;
   user: User;
+}
+
+export interface IEventsInfo {
+  events: Events;
+  count: number;
+}
+
+export interface IFetchEventByIdProps {
+  id: string;
 }

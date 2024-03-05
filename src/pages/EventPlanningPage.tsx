@@ -6,21 +6,17 @@ import { useQuery } from '@tanstack/react-query';
 import { FC, useEffect } from 'react';
 
 const EventPlanningPage: FC = () => {
-  const {
-    data: events = [],
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.events],
     queryFn: operations.getEvents,
   });
+  const calendarEvents = data?.events || [];
 
   useEffect(() => {
     isError && toasts.errorToast(error.message);
   }, [error, isError]);
 
-  return isLoading ? <Loader /> : <Calendar events={events} />;
+  return isLoading ? <Loader /> : <Calendar events={calendarEvents} />;
 };
 
 export default EventPlanningPage;

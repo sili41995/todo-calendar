@@ -20,6 +20,8 @@ const enum Messages {
   successfulSignUp = 'User has been successfully registered',
   successfulSignIn = 'Hello, my friend!',
   authErr = 'Please, authenticate in the app',
+  emptyEventsList = 'Events list is empty',
+  emptyFilteredList = 'No ads match the filtering criteria',
 }
 
 export default Messages;

@@ -7,7 +7,7 @@ import DelEventBtn from '@/components/DelEventBtn';
 import { useDeleteEvent } from '@/hooks';
 
 const EventsListItem: FC<IProps> = ({ event }) => {
-  const { task, id, completed } = event;
+  const { task, _id, completed } = event;
   const deleteEvent = useDeleteEvent();
 
   return (
@@ -15,10 +15,10 @@ const EventsListItem: FC<IProps> = ({ event }) => {
       <DelEventBtn
         iconBtnType={IconBtnTypes.deleteTransparent}
         onClick={() => {
-          deleteEvent(id);
+          deleteEvent(_id);
         }}
       />
-      <Link to={`${PagePaths.eventsPath}/${id}`}>
+      <Link to={`${PagePaths.eventsPath}/${_id}`}>
         <Task completed={completed}>{task}</Task>
       </Link>
     </ListItem>

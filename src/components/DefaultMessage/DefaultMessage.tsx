@@ -1,6 +1,9 @@
 import { IProps } from './DefaultMessage.types';
 import { Message } from './DefaultMessage.styled';
+import { FC } from 'react';
 
-const EmptyListMessage = ({ message }: IProps) => <Message>{message}</Message>;
+const DefaultMessage: FC<IProps> = ({ message }) => (
+  <Message>{message}</Message>
+);
 
-export default EmptyListMessage;
+export default DefaultMessage;

@@ -6,7 +6,7 @@ import { List } from './EventsList.styled';
 const EventsList: FC<IProps> = ({ events }) => (
   <List>
     {events.map((event) => (
-      <EventsListItem key={event.id} event={event} />
+      <EventsListItem key={event._id} event={event} />
     ))}
   </List>
 );

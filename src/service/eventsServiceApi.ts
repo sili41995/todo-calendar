@@ -1,5 +1,12 @@
-// import { Messages } from '@/constants';
-import { ICredentials, IToken, NewUser, User } from '@/types/types';
+import {
+  ICredentials,
+  IEvent,
+  IEventsInfo,
+  IFetchEventByIdProps,
+  IToken,
+  NewUser,
+  User,
+} from '@/types/types';
 
 class EventsServiceApi {
   private BASE_URL = 'https://events-rest-api.onrender.com';
@@ -58,6 +65,45 @@ class EventsServiceApi {
     };
 
     return fetch(`${this.BASE_URL}/api/auth/current`, options)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message) {
+          throw Error(data.message);
+        }
+        return data;
+      });
+  }
+
+  fetchEvents(): Promise<IEventsInfo> {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${this.TOKEN}`,
+      },
+    };
+
+    return fetch(`${this.BASE_URL}/api/events`, options)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message) {
+          throw Error(data.message);
+        }
+
+        return data;
+      });
+  }
+
+  fetchEventById({ id }: IFetchEventByIdProps): Promise<IEvent> {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${this.TOKEN}`,
+      },
+    };
+  
+    return fetch(`${this.BASE_URL}/api/events/${id}`, options)
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {

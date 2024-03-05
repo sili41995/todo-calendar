@@ -3,7 +3,7 @@ import { IProps } from './PrivateRoute.types';
 import { PagePaths } from '@/constants';
 import { useQuery } from '@tanstack/react-query';
 import { QueryKeys } from '@/tanStackQuery';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 
 const PrivateRoute: FC<IProps> = ({ element }) => {
   const { isLoading } = useQuery({
@@ -11,16 +11,10 @@ const PrivateRoute: FC<IProps> = ({ element }) => {
   });
   const { data: isLoggedIn } = useQuery<boolean>({
     queryKey: [QueryKeys.isLoggedIn],
-    refetchOnWindowFocus: false,
+    gcTime: Infinity,
   });
   const location = useLocation();
   const shouldRedirect = !isLoggedIn && !isLoading;
-
-  useEffect(() => {
-    console.log('isLoggedIn', isLoggedIn);
-    console.log('isLoading', isLoading);
-    console.log('shouldRedirect', shouldRedirect);
-  });
 
   return shouldRedirect ? (
     <Navigate to={PagePaths.homePath} state={{ from: location }} />

@@ -1,12 +1,10 @@
 import eventsServiceApi from '@/service/eventsServiceApi';
 import {
   ICredentials,
+  IEvent,
+  IEventsInfo,
+  IFetchEventByIdProps,
   IToken,
-  // Events,
-  // IEvent,
-  // IGetEventByIdProps,
-  // IUpdateEvent,
-  // NewEvent,
   NewUser,
   User,
 } from '@/types/types';
@@ -19,9 +17,8 @@ const signIn = async (data: ICredentials): Promise<IToken> =>
   await eventsServiceApi.signIn(data);
 
 const refreshUser = async (token: string | undefined): Promise<User | null> => {
-  if (!token) {
-    return null;
-  }
+  queryClient.setQueryData([QueryKeys.isLoggedIn], false);
+  if (!token) return null;
 
   eventsServiceApi.token = token;
 
@@ -35,13 +32,17 @@ const refreshUser = async (token: string | undefined): Promise<User | null> => {
   }
 };
 
-// const getEvents = async (): Promise<Events> =>
-//   await eventsServiceApi.fetchEvents();
+const getEvents = async (): Promise<IEventsInfo> =>
+  await eventsServiceApi.fetchEvents();
 
-// const getEventById = async ({
-//   queryKey,
-// }: IGetEventByIdProps): Promise<IEvent> =>
-//   await eventsServiceApi.fetchEventById(queryKey[1]);
+const getEventById = async (
+  data: IFetchEventByIdProps
+): Promise<IEvent | null> => {
+  if (!data.id) return null;
+
+  const result = await eventsServiceApi.fetchEventById(data);
+  return result;
+};
 
 // const addEvent = async (data: NewEvent): Promise<IEvent> =>
 //   await eventsServiceApi.addEvent(data);
@@ -56,8 +57,8 @@ const operations = {
   signUp,
   signIn,
   refreshUser,
-  // getEvents,
-  // getEventById,
+  getEvents,
+  getEventById,
   // addEvent,
   // deleteEvent,
   // updateEvent,

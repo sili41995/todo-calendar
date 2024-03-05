@@ -1,4 +1,4 @@
-import { FC, lazy, useEffect } from 'react';
+import { FC, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { PagePaths } from '@/constants';
 import SharedLayout from './SharedLayout';
