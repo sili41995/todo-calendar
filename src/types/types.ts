@@ -1,5 +1,6 @@
 import { PagePaths } from '@/constants';
 import { ChangeEvent, MouseEvent, RefObject } from 'react';
+import { SetURLSearchParams } from 'react-router-dom';
 
 export type Week = Date[];
 
@@ -106,4 +107,28 @@ export interface IFetchEventByIdProps {
 export interface IUpdateEventProps {
   id: string;
   data: NewEvent;
+}
+
+export interface IUpdateSearchParamsProps {
+  key: string;
+  value: string;
+}
+
+export interface IUseSetSearchParams {
+  updateSearchParams: ({ key, value }: IUpdateSearchParamsProps) => void;
+  searchParams: URLSearchParams;
+  setSearchParams: SetURLSearchParams;
+}
+
+export interface IGetMonthsParamsProps {
+  month: string;
+  year: string;
+}
+
+export interface IMonthParams {
+  monthsWeeks: MonthsWeeks;
+  targetMonthNumber: string;
+  targetMonthName: string;
+  targetYear: string;
+  targetDate: Date;
 }

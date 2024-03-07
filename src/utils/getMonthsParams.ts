@@ -9,21 +9,23 @@ import {
 import { enAU } from 'date-fns/locale';
 import getWeeksOfMonth from './getMonthsWeeks';
 import { GeneralParams } from '@/constants';
-import { MonthsWeeks } from '@/types/types';
+import { IGetMonthsParamsProps, IMonthParams } from '@/types/types';
 
-export interface IMonthParams {
-  monthsWeeks: MonthsWeeks;
-  targetMonthNumber: string;
-  targetMonthName: string;
-  targetYear: string;
-}
-
-const getMonthsParams = (date: Date): IMonthParams => {
+const getMonthsParams = ({
+  month,
+  year,
+}: IGetMonthsParamsProps): IMonthParams => {
   setDefaultOptions({ locale: enAU });
-  const firstMonthsDay = startOfMonth(date);
-  const targetMonthNumber = format(date, GeneralParams.monthNumericFormat);
-  const targetMonthName = format(date, GeneralParams.monthTextFormat);
-  const targetYear = format(date, GeneralParams.yearNumericFormat);
+  const newDate = new Date(`${year}-${month}`);
+  const isInvalidDate = newDate.toDateString() === 'Invalid Date';
+  const targetDate = isInvalidDate ? new Date() : newDate;
+  const firstMonthsDay = startOfMonth(targetDate);
+  const targetMonthNumber = format(
+    targetDate,
+    GeneralParams.monthNumericFormat
+  );
+  const targetMonthName = format(targetDate, GeneralParams.monthTextFormat);
+  const targetYear = format(targetDate, GeneralParams.yearNumericFormat);
   const firstDayOfFirstWeek = startOfWeek(firstMonthsDay);
   const amountOfDays =
     GeneralParams.calendarColumns * GeneralParams.calendarRows;
@@ -35,6 +37,7 @@ const getMonthsParams = (date: Date): IMonthParams => {
   const monthsWeeks = getWeeksOfMonth(monthsDays);
 
   return {
+    targetDate,
     monthsWeeks,
     targetMonthNumber,
     targetMonthName,

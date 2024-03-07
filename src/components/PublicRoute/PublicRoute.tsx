@@ -13,7 +13,7 @@ export const PublicRoute: FC<IProps> = ({ element, restricted = false }) => {
   });
   const location = useLocation();
   const shouldRedirect = isLoggedIn && restricted;
-  const goBackPath = location.state?.from ?? PagePaths.eventsPath;
+  const goBackPath = location.state?.from ?? PagePaths.eventPlanningPath;
   const isShowWarnToast = location.state && !isLoggedIn;
 
   useEffect(() => {

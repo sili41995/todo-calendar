@@ -1,38 +1,18 @@
-import { FC, useState } from 'react';
-import { addMonths } from 'date-fns';
+import { FC } from 'react';
 import CalendarDaysList from '@/components/CalendarDaysList';
 import CalendarControls from '@/components/CalendarControls';
 import CalendarDaysNames from '@/components/CalendarDaysNames';
-import { getFilteredEvents, getMonthsParams, makeBlur } from '@/utils';
-import { ClickEvent } from '@/types/types';
 import { IProps } from './Calendar.types';
 import { Container, ControlsContainer, DaysContainer } from './Calendar.styled';
 
-const Calendar: FC<IProps> = ({ events }) => {
-  const [date, setDate] = useState(() => new Date());
-  const { monthsWeeks, targetMonthNumber, targetMonthName, targetYear } =
-    getMonthsParams(date);
-
-  const filteredEvents = getFilteredEvents({
-    events,
-    targetMonthNumber,
-    targetYear,
-  });
-
-  const onIncrementBtnClick = (e: ClickEvent) => {
-    setDate((prevState) => addMonths(prevState, 1));
-    makeBlur(e.currentTarget);
-  };
-
-  const onDecrementBtnClick = (e: ClickEvent) => {
-    setDate((prevState) => addMonths(prevState, -1));
-    makeBlur(e.currentTarget);
-  };
-
-  const onTodayBtnClick = (e: ClickEvent) => {
-    setDate(new Date());
-    makeBlur(e.currentTarget);
-  };
+const Calendar: FC<IProps> = ({
+  events,
+  onDecrementBtnClick,
+  onIncrementBtnClick,
+  onTodayBtnClick,
+  monthsParams,
+}) => {
+  const { targetMonthName, targetYear, monthsWeeks } = monthsParams;
 
   return (
     <Container>
@@ -47,7 +27,7 @@ const Calendar: FC<IProps> = ({ events }) => {
       </ControlsContainer>
       <DaysContainer>
         <CalendarDaysNames monthsWeeks={monthsWeeks} />
-        <CalendarDaysList monthsWeeks={monthsWeeks} events={filteredEvents} />
+        <CalendarDaysList monthsWeeks={monthsWeeks} events={events} />
       </DaysContainer>
     </Container>
   );

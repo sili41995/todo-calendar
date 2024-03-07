@@ -20,12 +20,12 @@ const App: FC = () => {
   const { data: token } = useQuery<string>({
     queryKey: [QueryKeys.token],
   });
-  const { isLoading } = useQuery<User | null>({
+  const { isFetching } = useQuery<User | null>({
     queryKey: [QueryKeys.user, token],
     queryFn: () => operations.refreshUser(token),
   });
 
-  return isLoading ? (
+  return isFetching ? (
     <Loader />
   ) : (
     <Routes>
