@@ -1,4 +1,4 @@
-import CalenderEventDetails from '@/components/CalenderEventDetails';
+import CalendarEventDetails from '@/components/CalendarEventDetails';
 import DefaultMessage from '@/components/DefaultMessage';
 import Loader from '@/components/Loader';
 import { PagePaths } from '@/constants';
@@ -22,7 +22,7 @@ const EventDetailsPage: FC = () => {
   return (
     <>
       {isLoading && <Loader />}
-      {event && <CalenderEventDetails event={event} />}
+      {event && <CalendarEventDetails event={event} />}
       {isError && <DefaultMessage message={error.message} />}
     </>
   );

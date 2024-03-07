@@ -12,7 +12,7 @@ import { IProps } from './EditEventForm.types';
 import { Form, Title } from './EditEventForm.styled';
 
 const EditEventForm: FC<IProps> = ({ event }) => {
-  const { id, completed, deadline, task } = event;
+  const { _id, completed, deadline, task } = event;
   const [checked, setChecked] = useState<boolean>(() => completed);
   const { register, handleSubmit, reset } = useForm<NewEvent>();
   const { mutate: editEvent } = useMutation({
@@ -33,7 +33,7 @@ const EditEventForm: FC<IProps> = ({ event }) => {
   }
 
   const handleFormSubmit: SubmitHandler<NewEvent> = (data) => {
-    editEvent({ event: data, id });
+    editEvent({ data, id: _id });
   };
 
   const onCheckboxChange = () => {

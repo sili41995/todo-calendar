@@ -4,6 +4,7 @@ import {
   IEventsInfo,
   IFetchEventByIdProps,
   IToken,
+  IUpdateEventProps,
   NewUser,
   User,
 } from '@/types/types';
@@ -102,8 +103,47 @@ class EventsServiceApi {
         Authorization: `Bearer ${this.TOKEN}`,
       },
     };
-  
+
     return fetch(`${this.BASE_URL}/api/events/${id}`, options)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message) {
+          throw Error(data.message);
+        }
+        return data;
+      });
+  }
+
+  deleteEvent(id: string): Promise<IEvent> {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${this.TOKEN}`,
+      },
+    };
+
+    return fetch(`${this.BASE_URL}/api/events/${id}`, options)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message) {
+          throw Error(data.message);
+        }
+        return data;
+      });
+  }
+
+  updateEvent({ id, data }: IUpdateEventProps): Promise<IEvent> {
+    const options = {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${this.TOKEN}`,
+      },
+    };
+
+    return fetch(`${this.BASE_URL}/events/${id}`, options)
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {

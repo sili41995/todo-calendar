@@ -21,7 +21,7 @@ const CalendarEventsList: FC<IProps> = ({ events }) => {
   return (
     <List showFullList={showFullList}>
       {listOfEvents.map((event) => (
-        <CalendarEvent key={event.id} event={event} />
+        <CalendarEvent key={event._id} event={event} />
       ))}
       {isMoreMaxQuantity && (
         <ListItem>

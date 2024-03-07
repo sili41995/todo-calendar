@@ -20,11 +20,6 @@ export type Events = IEvent[];
 
 export type InputChangeEvent = ChangeEvent<HTMLInputElement>;
 
-export interface IUpdateEvent {
-  event: NewEvent;
-  id: string;
-}
-
 export interface IDeadlineParams {
   taskDeadline: string;
   isPastDate: boolean;
@@ -106,4 +101,9 @@ export interface IEventsInfo {
 
 export interface IFetchEventByIdProps {
   id: string;
+}
+
+export interface IUpdateEventProps {
+  id: string;
+  data: NewEvent;
 }

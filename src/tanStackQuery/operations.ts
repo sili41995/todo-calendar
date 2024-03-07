@@ -5,6 +5,7 @@ import {
   IEventsInfo,
   IFetchEventByIdProps,
   IToken,
+  IUpdateEventProps,
   NewUser,
   User,
 } from '@/types/types';
@@ -46,11 +47,11 @@ const getEventById = async (
 // const addEvent = async (data: NewEvent): Promise<IEvent> =>
 //   await eventsServiceApi.addEvent(data);
 
-// const deleteEvent = async (id: string): Promise<IEvent> =>
-//   await eventsServiceApi.deleteEvent(id);
+const deleteEvent = async (id: string): Promise<IEvent> =>
+  await eventsServiceApi.deleteEvent(id);
 
-// const updateEvent = async (data: IUpdateEvent): Promise<IEvent> =>
-//   await eventsServiceApi.updateEvent(data);
+const updateEvent = async (data: IUpdateEventProps): Promise<IEvent> =>
+  await eventsServiceApi.updateEvent(data);
 
 const operations = {
   signUp,
@@ -59,8 +60,8 @@ const operations = {
   getEvents,
   getEventById,
   // addEvent,
-  // deleteEvent,
-  // updateEvent,
+  deleteEvent,
+  updateEvent,
 };
 
 export default operations;

@@ -6,16 +6,16 @@ import { AriaLabels, IconBtnTypes, IconSizes } from '@/constants';
 import EventDetails from '@/components/EventDetails';
 import EditEventForm from '@/components/EditEventForm';
 import IconButton from '@/components/IconButton';
-import { IProps } from './CalenderEventDetails.types';
+import { IProps } from './CalendarEventDetails.types';
 import {
   ButtonsList,
   Container,
   ListItem,
-} from './CalenderEventDetails.styled';
+} from './CalendarEventDetails.styled';
 import DelEventBtn from '@/components/DelEventBtn';
 import { useDeleteEvent } from '@/hooks';
 
-const CalenderEventDetails: FC<IProps> = ({ event, setModalWinState }) => {
+const CalendarEventDetails: FC<IProps> = ({ event, setModalWinState }) => {
   const [editEvent, setEditEvent] = useState<boolean>(false);
   const deleteEvent = useDeleteEvent(setModalWinState);
   const toggleEditEventStatus = (e: ClickEvent) => {
@@ -25,7 +25,7 @@ const CalenderEventDetails: FC<IProps> = ({ event, setModalWinState }) => {
 
   const onDeleteBtnClick = (e: ClickEvent) => {
     makeBlur(e.currentTarget);
-    deleteEvent(event.id);
+    deleteEvent(event._id);
   };
 
   return (
@@ -57,4 +57,4 @@ const CalenderEventDetails: FC<IProps> = ({ event, setModalWinState }) => {
   );
 };
 
-export default CalenderEventDetails;
+export default CalendarEventDetails;

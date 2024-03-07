@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import ModalWin from '@/components/ModalWin';
-import CalenderEventDetails from '@/components/CalenderEventDetails';
+import CalenderEventDetails from '@/components/CalendarEventDetails';
 import { IProps } from './CalendarEvent.types';
 import { EventBtn, ListItem, Title } from './CalendarEvent.styled';
 
