@@ -1,10 +1,13 @@
 import {
+  Events,
   ICredentials,
   IEvent,
   IEventsInfo,
   IFetchEventByIdProps,
+  IFetchEventsByMonthProps,
   IToken,
   IUpdateEventProps,
+  NewEvent,
   NewUser,
   User,
 } from '@/types/types';
@@ -114,6 +117,52 @@ class EventsServiceApi {
       });
   }
 
+  fetchEventsByMonth({
+    month,
+    year,
+  }: IFetchEventsByMonthProps): Promise<Events> {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${this.TOKEN}`,
+      },
+    };
+
+    return fetch(
+      `${this.BASE_URL}/api/events/monthly?month=${month}&year=${year}`,
+      options
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message) {
+          throw Error(data.message);
+        }
+
+        return data;
+      });
+  }
+
+  addEvent(data: NewEvent): Promise<IEvent> {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${this.TOKEN}`,
+      },
+    };
+
+    return fetch(`${this.BASE_URL}/api/events`, options)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message) {
+          throw Error(data.message);
+        }
+        return data;
+      });
+  }
+
   deleteEvent(id: string): Promise<IEvent> {
     const options = {
       method: 'DELETE',
@@ -143,7 +192,7 @@ class EventsServiceApi {
       },
     };
 
-    return fetch(`${this.BASE_URL}/events/${id}`, options)
+    return fetch(`${this.BASE_URL}/api/events/${id}`, options)
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {
@@ -152,65 +201,6 @@ class EventsServiceApi {
         return data;
       });
   }
-
-  // private BASE_URL = 'https://65b0f4a5d16d31d11bdda9d4.mockapi.io/todos';
-  // fetchEvents(): Promise<Events> {
-  //   return fetch(`${this.BASE_URL}`).then((response) => {
-  //     if (!response.ok) {
-  //       throw new Error(Messages.fetchEventsErr);
-  //     }
-  //     return response.json();
-  //   });
-  // }
-  // fetchEventById(id: string): Promise<IEvent> {
-  //   return fetch(`${this.BASE_URL}/${id}`).then((response) => {
-  //     if (!response.ok) {
-  //       throw new Error(Messages.fetchEventByIdErr);
-  //     }
-  //     return response.json();
-  //   });
-  // }
-  // addEvent(data: NewEvent): Promise<IEvent> {
-  //   const options = {
-  //     method: 'POST',
-  //     body: JSON.stringify(data),
-  //     headers: {
-  //       'Content-Type': 'application/json; charset=UTF-8',
-  //     },
-  //   };
-  //   return fetch(`${this.BASE_URL}`, options).then((response) => {
-  //     if (!response.ok) {
-  //       throw new Error(Messages.addEventErr);
-  //     }
-  //     return response.json();
-  //   });
-  // }
-  // deleteEvent(id: string): Promise<IEvent> {
-  //   const options = {
-  //     method: 'DELETE',
-  //   };
-  //   return fetch(`${this.BASE_URL}/${id}`, options).then((response) => {
-  //     if (!response.ok) {
-  //       throw new Error(Messages.deleteEventErr);
-  //     }
-  //     return response.json();
-  //   });
-  // }
-  // updateEvent({ event, id }: IUpdateEvent): Promise<IEvent> {
-  //   const options = {
-  //     method: 'PUT',
-  //     body: JSON.stringify(event),
-  //     headers: {
-  //       'Content-Type': 'application/json; charset=UTF-8',
-  //     },
-  //   };
-  //   return fetch(`${this.BASE_URL}/${id}`, options).then((response) => {
-  //     if (!response.ok) {
-  //       throw new Error(Messages.updateEventErr);
-  //     }
-  //     return response.json();
-  //   });
-  // }
 }
 
 const eventsServiceApi = new EventsServiceApi();

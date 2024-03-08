@@ -7,7 +7,7 @@ import Input from '@/components/Input';
 import FormControls from '@/components/FormControls';
 import { ClickEvent, NewEvent } from '@/types/types';
 import { IconSizes, InputTypes, Messages } from '@/constants';
-import { makeBlur, toasts } from '@/utils';
+import { getDeadlineParams, makeBlur, toasts } from '@/utils';
 import { IProps } from './EditEventForm.types';
 import { Form, Title } from './EditEventForm.styled';
 
@@ -20,6 +20,7 @@ const EditEventForm: FC<IProps> = ({ event }) => {
     onSuccess: onSuccessHTTPRequest,
     onError: onFailedHTTPRequest,
   });
+  const { taskDeadline } = getDeadlineParams(deadline);
 
   function onFailedHTTPRequest(error: Error): void {
     toasts.errorToast(error.message);
@@ -29,6 +30,9 @@ const EditEventForm: FC<IProps> = ({ event }) => {
     toasts.successToast(Messages.updateEvent);
     queryClient.invalidateQueries({
       queryKey: [QueryKeys.events],
+    });
+    queryClient.invalidateQueries({
+      queryKey: [QueryKeys.monthlyEvents],
     });
   }
 
@@ -65,7 +69,7 @@ const EditEventForm: FC<IProps> = ({ event }) => {
           settings={{ ...register('deadline', { required: true }) }}
           type={InputTypes.dateTimeLocal}
           label='Deadline'
-          defaultValue={deadline}
+          defaultValue={taskDeadline}
         />
         <Input
           settings={{ ...register('completed') }}

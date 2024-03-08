@@ -14,18 +14,27 @@ const EventPlanningPage: FC = () => {
   const month = searchParams.get(SearchParamsKeys.month) ?? '';
   const year = searchParams.get(SearchParamsKeys.year) ?? '';
   const monthsParams = getMonthsParams({ year, month });
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: [QueryKeys.events],
-    queryFn: operations.getEvents,
+  const { targetDate, targetYear, targetMonthNumber } = monthsParams;
+  const {
+    data: events = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: [QueryKeys.monthlyEvents, targetMonthNumber, targetYear],
+    queryFn: () =>
+      operations.getEventsByMonth({
+        month: targetMonthNumber,
+        year: targetYear,
+      }),
   });
-  const calendarEvents = data?.events || [];
 
   useEffect(() => {
     isError && toasts.errorToast(error.message);
   }, [error, isError]);
 
   const onIncrementBtnClick = (e: ClickEvent) => {
-    const newDate = addMonths(monthsParams.targetDate, 1);
+    const newDate = addMonths(targetDate, 1);
     const month = format(newDate, GeneralParams.monthNumericFormat);
     const year = format(newDate, GeneralParams.yearNumericFormat);
     updateSearchParams({
@@ -41,7 +50,7 @@ const EventPlanningPage: FC = () => {
   };
 
   const onDecrementBtnClick = (e: ClickEvent) => {
-    const newDate = addMonths(monthsParams.targetDate, -1);
+    const newDate = addMonths(targetDate, -1);
     const month = format(newDate, GeneralParams.monthNumericFormat);
     const year = format(newDate, GeneralParams.yearNumericFormat);
     updateSearchParams({
@@ -80,7 +89,7 @@ const EventPlanningPage: FC = () => {
       onDecrementBtnClick={onDecrementBtnClick}
       onTodayBtnClick={onTodayBtnClick}
       monthsParams={monthsParams}
-      events={calendarEvents}
+      events={events}
     />
   );
 };

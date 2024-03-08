@@ -23,6 +23,9 @@ const useDeleteEvent = (onSuccess?: Func): DeleteFunc => {
   function onSuccessHTTPRequest() {
     toasts.successToast(Messages.deleteEvent);
     queryClient.invalidateQueries({ queryKey: [QueryKeys.events] });
+    queryClient.invalidateQueries({
+      queryKey: [QueryKeys.monthlyEvents],
+    });
     onSuccess && onSuccess();
 
     if (pathname.includes(eventId!)) {

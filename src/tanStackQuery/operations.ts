@@ -4,8 +4,10 @@ import {
   IEvent,
   IEventsInfo,
   IFetchEventByIdProps,
+  IFetchEventsByMonthProps,
   IToken,
   IUpdateEventProps,
+  NewEvent,
   NewUser,
   User,
 } from '@/types/types';
@@ -44,8 +46,11 @@ const getEventById = async (
   return result;
 };
 
-// const addEvent = async (data: NewEvent): Promise<IEvent> =>
-//   await eventsServiceApi.addEvent(data);
+const getEventsByMonth = async (data: IFetchEventsByMonthProps) =>
+  await eventsServiceApi.fetchEventsByMonth(data);
+
+const addEvent = async (data: NewEvent): Promise<IEvent> =>
+  await eventsServiceApi.addEvent(data);
 
 const deleteEvent = async (id: string): Promise<IEvent> =>
   await eventsServiceApi.deleteEvent(id);
@@ -59,7 +64,8 @@ const operations = {
   refreshUser,
   getEvents,
   getEventById,
-  // addEvent,
+  getEventsByMonth,
+  addEvent,
   deleteEvent,
   updateEvent,
 };

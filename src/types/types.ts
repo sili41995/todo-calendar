@@ -132,3 +132,8 @@ export interface IMonthParams {
   targetYear: string;
   targetDate: Date;
 }
+
+export interface IFetchEventsByMonthProps {
+  month: string;
+  year: string;
+}

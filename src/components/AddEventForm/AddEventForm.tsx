@@ -27,7 +27,12 @@ const AddEventForm: FC = () => {
     setChecked(false);
     reset();
     toasts.successToast(Messages.addEvent);
-    queryClient.invalidateQueries({ queryKey: [QueryKeys.events] });
+    queryClient.invalidateQueries({
+      queryKey: [QueryKeys.events],
+    });
+    queryClient.invalidateQueries({
+      queryKey: [QueryKeys.monthlyEvents],
+    });
   }
 
   const onCheckboxChange = () => {
