@@ -8,6 +8,7 @@ const enum AriaLabels {
   delete = 'delete event',
   accept = 'accept',
   reset = 'reset form',
+  signOut = 'Sign out',
 }
 
 export default AriaLabels;

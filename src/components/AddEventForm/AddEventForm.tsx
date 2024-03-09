@@ -5,10 +5,10 @@ import { FaCheck } from 'react-icons/fa';
 import { QueryKeys, operations, queryClient } from '@/tanStackQuery';
 import { makeBlur, toasts } from '@/utils';
 import { IconSizes, InputTypes, Messages } from '@/constants';
-import { ClickEvent, INewEvent } from '@/types/types';
+import { BtnClickEvent, INewEvent } from '@/types/types';
 import Input from '@/components/Input';
 import FormControls from '@/components/FormControls';
-import { Form, Title } from './AddEventForm.styled';
+import { Container, Form, Title } from './AddEventForm.styled';
 import { IProps } from './AddEventForm.types';
 
 const AddEventForm: FC<IProps> = ({ formType }) => {
@@ -45,18 +45,18 @@ const AddEventForm: FC<IProps> = ({ formType }) => {
     addEvent({ ...data, deadline });
   };
 
-  const onResetBtnClick = (e: ClickEvent) => {
+  const onResetBtnClick = (e: BtnClickEvent) => {
     makeBlur(e.currentTarget);
     setChecked(false);
     reset();
   };
 
-  const onAcceptBtnClick = (e: ClickEvent) => {
+  const onAcceptBtnClick = (e: BtnClickEvent) => {
     makeBlur(e.currentTarget);
   };
 
   return (
-    <>
+    <Container>
       <Title>Add contact</Title>
       <Form onSubmit={handleSubmit(handleFormSubmit)}>
         <Input
@@ -86,7 +86,7 @@ const AddEventForm: FC<IProps> = ({ formType }) => {
           onResetBtnClick={onResetBtnClick}
         />
       </Form>
-    </>
+    </Container>
   );
 };
 

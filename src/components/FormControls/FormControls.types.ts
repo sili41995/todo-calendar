@@ -1,6 +1,6 @@
-import { ClickEvent } from '@/types/types';
+import { BtnClickEvent } from '@/types/types';
 
 export interface IProps {
-  onAcceptBtnClick: (e: ClickEvent) => void;
-  onResetBtnClick: (e: ClickEvent) => void;
+  onAcceptBtnClick: (e: BtnClickEvent) => void;
+  onResetBtnClick: (e: BtnClickEvent) => void;
 }

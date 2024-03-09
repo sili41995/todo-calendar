@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { AiOutlineEdit } from 'react-icons/ai';
-import { ClickEvent } from '@/types/types';
+import { BtnClickEvent } from '@/types/types';
 import { makeBlur } from '@/utils';
 import { AriaLabels, FormTypes, IconBtnTypes, IconSizes } from '@/constants';
 import EventDetails from '@/components/EventDetails';
@@ -18,12 +18,12 @@ import { useDeleteEvent } from '@/hooks';
 const CalendarEventDetails: FC<IProps> = ({ event, setModalWinState }) => {
   const [editEvent, setEditEvent] = useState<boolean>(false);
   const deleteEvent = useDeleteEvent(setModalWinState);
-  const toggleEditEventStatus = (e: ClickEvent) => {
+  const toggleEditEventStatus = (e: BtnClickEvent) => {
     makeBlur(e.currentTarget);
     setEditEvent((prevState) => !prevState);
   };
 
-  const onDeleteBtnClick = (e: ClickEvent) => {
+  const onDeleteBtnClick = (e: BtnClickEvent) => {
     makeBlur(e.currentTarget);
     deleteEvent(event._id);
   };

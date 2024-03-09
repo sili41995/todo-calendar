@@ -1,7 +1,7 @@
 import { IconBtnTypes } from '@/constants';
-import { ClickEvent } from '@/types/types';
+import { BtnClickEvent } from '@/types/types';
 
 export interface IProps {
-  onClick: (e: ClickEvent) => void;
+  onClick: (e: BtnClickEvent) => void;
   iconBtnType: IconBtnTypes;
 }

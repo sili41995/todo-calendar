@@ -8,7 +8,7 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   & a {
     display: block;
-    width: 100px;
+    min-width: 100px;
     padding: ${({ theme }) => theme.spacing(3)};
     border-radius: ${({ theme }) => theme.borderRadius.secondaryBorderRadius}px;
     border: 1px solid;
@@ -20,9 +20,8 @@ export const ListItem = styled.li`
     text-align: center;
     transition: color ${({ theme }) => theme.transitionDurationAndFunc},
       background-color ${({ theme }) => theme.transitionDurationAndFunc};
-    &:hover,
-    &:focus,
-    &.active {
+
+    &:is(:hover, :focus, .active) {
       color: ${({ theme }) => theme.colors.otherColor};
       background-color: ${({ theme }) => theme.colors.whiteColor};
     }

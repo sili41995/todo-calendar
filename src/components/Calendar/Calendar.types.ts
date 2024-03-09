@@ -1,9 +1,9 @@
-import { ClickEvent, Events, IMonthParams } from '@/types/types';
+import { BtnClickEvent, Events, IMonthParams } from '@/types/types';
 
 export interface IProps {
   events: Events;
-  onIncrementBtnClick: (e: ClickEvent) => void;
-  onDecrementBtnClick: (e: ClickEvent) => void;
-  onTodayBtnClick: (e: ClickEvent) => void;
+  onIncrementBtnClick: (e: BtnClickEvent) => void;
+  onDecrementBtnClick: (e: BtnClickEvent) => void;
+  onTodayBtnClick: (e: BtnClickEvent) => void;
   monthsParams: IMonthParams;
 }

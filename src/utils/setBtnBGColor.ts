@@ -17,6 +17,9 @@ const setBtnBGColor = (iconBtnType: IconBtnTypes): string => {
     case IconBtnTypes.reset:
       return theme.colors.redBtnColor;
 
+    case IconBtnTypes.signOut:
+      return theme.colors.redBtnColor;
+
     default:
       return theme.colors.lightgreyColor;
   }

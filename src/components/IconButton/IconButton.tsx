@@ -1,13 +1,14 @@
 import { FC } from 'react';
 import { BtnTypes } from '@/constants';
 import { IProps } from './IconButton.types';
-import { Button } from './IconButton.styled';
+import { BtnTitle, Button } from './IconButton.styled';
 
 const IconButton: FC<IProps> = ({
   type = BtnTypes.button,
   ariaLabel,
   icon,
   iconBtnType,
+  title,
   onClick,
 }) => (
   <Button
@@ -16,7 +17,14 @@ const IconButton: FC<IProps> = ({
     onClick={onClick}
     iconBtnType={iconBtnType}
   >
-    {icon}
+    {title ? (
+      <>
+        {icon}
+        <BtnTitle>{title}</BtnTitle>
+      </>
+    ) : (
+      icon
+    )}
   </Button>
 );
 

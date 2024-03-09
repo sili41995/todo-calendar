@@ -6,7 +6,9 @@ export type Week = Date[];
 
 export type MonthsWeeks = Week[];
 
-export type ClickEvent = MouseEvent<HTMLButtonElement>;
+export type BtnClickEvent = MouseEvent<HTMLButtonElement>;
+
+export type LinkClickEvent = MouseEvent<HTMLAnchorElement>;
 
 export interface IEvent {
   deadline: string;

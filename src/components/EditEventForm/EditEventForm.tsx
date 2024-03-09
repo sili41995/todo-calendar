@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import { QueryKeys, operations, queryClient } from '@/tanStackQuery';
 import Input from '@/components/Input';
 import FormControls from '@/components/FormControls';
-import { ClickEvent, INewEvent } from '@/types/types';
+import { BtnClickEvent, INewEvent } from '@/types/types';
 import { IconSizes, InputTypes, Messages } from '@/constants';
 import { getDeadlineParams, makeBlur, toasts } from '@/utils';
 import { IProps } from './EditEventForm.types';
@@ -45,11 +45,11 @@ const EditEventForm: FC<IProps> = ({ event, formType }) => {
     setChecked((prevState) => !prevState);
   };
 
-  const onAcceptBtnClick = (e: ClickEvent) => {
+  const onAcceptBtnClick = (e: BtnClickEvent) => {
     makeBlur(e.currentTarget);
   };
 
-  const onResetBtnClick = (e: ClickEvent) => {
+  const onResetBtnClick = (e: BtnClickEvent) => {
     makeBlur(e.currentTarget);
     setChecked(completed);
     reset();

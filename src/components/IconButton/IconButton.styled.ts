@@ -8,7 +8,7 @@ export const Button = styled.button<IStyledProps>`
   align-items: center;
   width: 44px;
   height: 36px;
-  border-color: transparent;
+  border: none;
   border-radius: ${({ theme }) => theme.borderRadius.primaryBorderRadius}px;
   background-color: ${({ iconBtnType }) => setBtnBGColor(iconBtnType)};
   transition: box-shadow ${({ theme }) => theme.transitionDurationAndFunc};
@@ -21,3 +21,5 @@ export const Button = styled.button<IStyledProps>`
     color: ${({ iconBtnType }) => setBtnIconColor(iconBtnType)};
   }
 `;
+
+export const BtnTitle = styled.span``;

@@ -5,7 +5,7 @@ import ModalWin from '@/components/ModalWin';
 import AddEventForm from '@/components/AddEventForm';
 import { makeBlur } from '@/utils';
 import { AriaLabels, FormTypes } from '@/constants';
-import { ClickEvent } from '@/types/types';
+import { BtnClickEvent } from '@/types/types';
 import { IProps } from './CalendarControls.types';
 import {
   ButtonsContainer,
@@ -21,7 +21,7 @@ const CalendarControls: FC<IProps> = ({
 }) => {
   const [showAddEventForm, setShowAddEventForm] = useState<boolean>(false);
 
-  const onAddEventBtnClick = (e: ClickEvent) => {
+  const onAddEventBtnClick = (e: BtnClickEvent) => {
     setShowAddEventForm(true);
     makeBlur(e.currentTarget);
   };

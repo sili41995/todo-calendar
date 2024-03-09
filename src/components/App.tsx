@@ -14,6 +14,7 @@ const SignInPage = lazy(() => import('@/pages/SignInPage'));
 const EventsPage = lazy(() => import('@/pages/EventsPage'));
 const EventDetailsPage = lazy(() => import('@/pages/EventDetailsPage'));
 const EventPlanningPage = lazy(() => import('@/pages/EventPlanningPage'));
+const NewEventPage = lazy(() => import('@/pages/NewEventPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
 const App: FC = () => {
@@ -46,10 +47,11 @@ const App: FC = () => {
           path={PagePaths.eventsPath}
           element={<PrivateRoute element={<EventsPage />} />}
         >
+          <Route path={PagePaths.addNewEventPath} element={<NewEventPage />} />
           <Route
             path={`:${PagePaths.dynamicParam}`}
             element={<EventDetailsPage />}
-          ></Route>
+          />
         </Route>
         <Route
           path={PagePaths.eventPlanningPath}

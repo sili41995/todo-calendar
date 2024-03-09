@@ -1,5 +1,5 @@
 import { AriaLabels, BtnTypes, IconBtnTypes } from '@/constants';
-import { ClickEvent } from '@/types/types';
+import { BtnClickEvent } from '@/types/types';
 import { ReactNode } from 'react';
 
 export interface IProps {
@@ -7,7 +7,8 @@ export interface IProps {
   ariaLabel: AriaLabels;
   icon: ReactNode;
   iconBtnType: IconBtnTypes;
-  onClick?: (e: ClickEvent) => void;
+  title?: string;
+  onClick?: (e: BtnClickEvent) => void;
 }
 
 export interface IStyledProps {

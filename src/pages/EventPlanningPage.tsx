@@ -3,7 +3,7 @@ import Loader from '@/components/Loader';
 import { GeneralParams, SearchParamsKeys } from '@/constants';
 import useSetSearchParams from '@/hooks/useSetSearchParams';
 import { QueryKeys, operations } from '@/tanStackQuery';
-import { ClickEvent } from '@/types/types';
+import { BtnClickEvent } from '@/types/types';
 import { getMonthsParams, makeBlur, toasts } from '@/utils';
 import { useQuery } from '@tanstack/react-query';
 import { addMonths, format } from 'date-fns';
@@ -34,7 +34,7 @@ const EventPlanningPage: FC = () => {
     isError && toasts.errorToast(error.message);
   }, [error, isError]);
 
-  const onIncrementBtnClick = (e: ClickEvent) => {
+  const onIncrementBtnClick = (e: BtnClickEvent) => {
     const newDate = addMonths(targetDate, 1);
     const month = format(newDate, GeneralParams.monthNumericFormat);
     const year = format(newDate, GeneralParams.yearNumericFormat);
@@ -50,7 +50,7 @@ const EventPlanningPage: FC = () => {
     makeBlur(e.currentTarget);
   };
 
-  const onDecrementBtnClick = (e: ClickEvent) => {
+  const onDecrementBtnClick = (e: BtnClickEvent) => {
     const newDate = addMonths(targetDate, -1);
     const month = format(newDate, GeneralParams.monthNumericFormat);
     const year = format(newDate, GeneralParams.yearNumericFormat);
@@ -66,7 +66,7 @@ const EventPlanningPage: FC = () => {
     makeBlur(e.currentTarget);
   };
 
-  const onTodayBtnClick = (e: ClickEvent) => {
+  const onTodayBtnClick = (e: BtnClickEvent) => {
     const currentDate = new Date();
     const month = format(currentDate, GeneralParams.monthNumericFormat);
     const year = format(currentDate, GeneralParams.yearNumericFormat);

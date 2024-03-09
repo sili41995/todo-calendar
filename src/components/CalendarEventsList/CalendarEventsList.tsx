@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { getEvents, makeBlur } from '@/utils';
 import { GeneralParams } from '@/constants';
 import CalendarEvent from '@/components/CalendarEvent';
-import { ClickEvent } from '@/types/types';
+import { BtnClickEvent } from '@/types/types';
 import { IProps } from './CalendarEventsList.types';
 import { List, ListItem, ShowMoreBtn } from './CalendarEventsList.styled';
 
@@ -13,7 +13,7 @@ const CalendarEventsList: FC<IProps> = ({ events }) => {
   const listOfEvents = showFullList ? events : filteredEvents;
   const showMoreBtnTitle = showFullList ? 'Hide' : 'Show more';
 
-  const onShowMoreBtnClick = (e: ClickEvent) => {
+  const onShowMoreBtnClick = (e: BtnClickEvent) => {
     makeBlur(e.currentTarget);
     setShowFullList((prevState) => !prevState);
   };

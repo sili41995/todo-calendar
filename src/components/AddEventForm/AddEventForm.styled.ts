@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+export const Container = styled.div`
+  flex-grow: 1;
+`;
+
 export const Title = styled.p`
   margin-bottom: ${({ theme }) => theme.spacing(5)};
   color: ${({ theme }) => theme.colors.primaryFontColor};
