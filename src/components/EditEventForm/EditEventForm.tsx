@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import { QueryKeys, operations, queryClient } from '@/tanStackQuery';
 import Input from '@/components/Input';
 import FormControls from '@/components/FormControls';
-import { ClickEvent, NewEvent } from '@/types/types';
+import { ClickEvent, INewEvent } from '@/types/types';
 import { IconSizes, InputTypes, Messages } from '@/constants';
 import { getDeadlineParams, makeBlur, toasts } from '@/utils';
 import { IProps } from './EditEventForm.types';
@@ -14,7 +14,7 @@ import { Form, Title } from './EditEventForm.styled';
 const EditEventForm: FC<IProps> = ({ event }) => {
   const { _id, completed, deadline, task } = event;
   const [checked, setChecked] = useState<boolean>(() => completed);
-  const { register, handleSubmit, reset } = useForm<NewEvent>();
+  const { register, handleSubmit, reset } = useForm<INewEvent>();
   const { mutate: editEvent } = useMutation({
     mutationFn: operations.updateEvent,
     onSuccess: onSuccessHTTPRequest,
@@ -36,8 +36,9 @@ const EditEventForm: FC<IProps> = ({ event }) => {
     });
   }
 
-  const handleFormSubmit: SubmitHandler<NewEvent> = (data) => {
-    editEvent({ data, id: _id });
+  const handleFormSubmit: SubmitHandler<INewEvent> = (data) => {
+    const deadline = new Date(data.deadline);
+    editEvent({ data: { ...data, deadline }, id: _id });
   };
 
   const onCheckboxChange = () => {

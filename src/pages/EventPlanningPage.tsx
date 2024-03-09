@@ -27,6 +27,7 @@ const EventPlanningPage: FC = () => {
         month: targetMonthNumber,
         year: targetYear,
       }),
+    refetchOnMount: true,
   });
 
   useEffect(() => {

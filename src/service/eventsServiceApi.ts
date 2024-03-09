@@ -7,7 +7,7 @@ import {
   IFetchEventsByMonthProps,
   IToken,
   IUpdateEventProps,
-  NewEvent,
+  INewEvent,
   NewUser,
   User,
 } from '@/types/types';
@@ -143,7 +143,7 @@ class EventsServiceApi {
       });
   }
 
-  addEvent(data: NewEvent): Promise<IEvent> {
+  addEvent(data: INewEvent): Promise<IEvent> {
     const options = {
       method: 'POST',
       body: JSON.stringify(data),

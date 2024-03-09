@@ -7,7 +7,7 @@ import {
   IFetchEventsByMonthProps,
   IToken,
   IUpdateEventProps,
-  NewEvent,
+  INewEvent,
   NewUser,
   User,
 } from '@/types/types';
@@ -49,7 +49,7 @@ const getEventById = async (
 const getEventsByMonth = async (data: IFetchEventsByMonthProps) =>
   await eventsServiceApi.fetchEventsByMonth(data);
 
-const addEvent = async (data: NewEvent): Promise<IEvent> =>
+const addEvent = async (data: INewEvent): Promise<IEvent> =>
   await eventsServiceApi.addEvent(data);
 
 const deleteEvent = async (id: string): Promise<IEvent> =>

@@ -15,7 +15,11 @@ export interface IEvent {
   _id: string;
 }
 
-export type NewEvent = Omit<IEvent, 'id'>;
+export interface INewEvent {
+  deadline: Date;
+  task: string;
+  completed: boolean;
+}
 
 export type Events = IEvent[];
 
@@ -106,7 +110,7 @@ export interface IFetchEventByIdProps {
 
 export interface IUpdateEventProps {
   id: string;
-  data: NewEvent;
+  data: INewEvent;
 }
 
 export interface IUpdateSearchParamsProps {

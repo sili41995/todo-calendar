@@ -5,19 +5,19 @@ import { FaCheck } from 'react-icons/fa';
 import { QueryKeys, operations, queryClient } from '@/tanStackQuery';
 import { makeBlur, toasts } from '@/utils';
 import { IconSizes, InputTypes, Messages } from '@/constants';
-import { ClickEvent, NewEvent } from '@/types/types';
+import { ClickEvent, INewEvent } from '@/types/types';
 import Input from '@/components/Input';
 import FormControls from '@/components/FormControls';
 import { Form, Title } from './AddEventForm.styled';
 
 const AddEventForm: FC = () => {
   const [checked, setChecked] = useState<boolean>(false);
-  const { mutate: addNewEvent } = useMutation({
+  const { mutate: addEvent } = useMutation({
     mutationFn: operations.addEvent,
     onSuccess: onSuccessHTTPRequest,
     onError: onFailedHTTPRequest,
   });
-  const { register, handleSubmit, reset } = useForm<NewEvent>();
+  const { register, handleSubmit, reset } = useForm<INewEvent>();
 
   function onFailedHTTPRequest(error: Error): void {
     toasts.errorToast(error.message);
@@ -39,8 +39,9 @@ const AddEventForm: FC = () => {
     setChecked((prevState) => !prevState);
   };
 
-  const handleFormSubmit: SubmitHandler<NewEvent> = (data) => {
-    addNewEvent(data);
+  const handleFormSubmit: SubmitHandler<INewEvent> = (data) => {
+    const deadline = new Date(data.deadline);
+    addEvent({ ...data, deadline });
   };
 
   const onResetBtnClick = (e: ClickEvent) => {
