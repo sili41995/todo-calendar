@@ -11,7 +11,7 @@ import { getDeadlineParams, makeBlur, toasts } from '@/utils';
 import { IProps } from './EditEventForm.types';
 import { Form, Title } from './EditEventForm.styled';
 
-const EditEventForm: FC<IProps> = ({ event }) => {
+const EditEventForm: FC<IProps> = ({ event, formType }) => {
   const { _id, completed, deadline, task } = event;
   const [checked, setChecked] = useState<boolean>(() => completed);
   const { register, handleSubmit, reset } = useForm<INewEvent>();
@@ -64,12 +64,14 @@ const EditEventForm: FC<IProps> = ({ event }) => {
           type={InputTypes.text}
           placeholder='Task'
           label='Task'
+          formType={formType}
           defaultValue={task}
         />
         <Input
           settings={{ ...register('deadline', { required: true }) }}
           type={InputTypes.dateTimeLocal}
           label='Deadline'
+          formType={formType}
           defaultValue={taskDeadline}
         />
         <Input
@@ -77,6 +79,7 @@ const EditEventForm: FC<IProps> = ({ event }) => {
           type={InputTypes.checkbox}
           altElem={<FaCheck size={IconSizes.secondarySize} />}
           label='Completed'
+          formType={formType}
           checked={checked}
           onChange={onCheckboxChange}
         />

@@ -1,8 +1,9 @@
 import { ReactElement } from 'react';
-import { InputTypes } from '@/constants';
+import { FormTypes, InputTypes } from '@/constants';
 import { InputChangeEvent } from '@/types/types';
 
 export interface IProps {
+  formType: FormTypes;
   settings?: object;
   type: InputTypes;
   placeholder?: string;
@@ -15,6 +16,10 @@ export interface IProps {
   onChange?: (e: InputChangeEvent) => void;
 }
 
-export interface IStyledProps {
-  checked?: boolean;
+export interface IStyledInputProps {
+  formType: FormTypes;
+}
+
+export interface IStyledAltElemProps {
+  checked: boolean | undefined;
 }

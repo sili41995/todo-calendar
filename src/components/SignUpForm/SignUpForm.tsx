@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { getProfileFormData, onChangeAvatar, toasts } from '@/utils';
 import Input from '@/components/Input';
@@ -17,8 +17,9 @@ import { Form, Message, Title, Image } from './SignUpForm.styled';
 import { useMutation } from '@tanstack/react-query';
 import { operations } from '@/tanStackQuery';
 import { useNavigate } from 'react-router-dom';
+import { IProps } from './SignUpForm.types';
 
-const SignUpForm = () => {
+const SignUpForm: FC<IProps> = ({ formType }) => {
   const [userAvatar, setUserAvatar] = useState<FileList | null>(null);
   const { mutate: signUp } = useMutation({
     mutationFn: operations.signUp,
@@ -87,6 +88,7 @@ const SignUpForm = () => {
           accept='image/png, image/jpeg, image/jpg'
           onChange={onChangeInput}
           type={InputTypes.file}
+          formType={formType}
           altElem={
             <Image
               src={image}
@@ -105,6 +107,7 @@ const SignUpForm = () => {
           }}
           type={InputTypes.text}
           placeholder='Name'
+          formType={formType}
           autoFocus
           // icon={<FaEnvelope size={IconSizes.secondaryIconSize} />}
           // inputWrap
@@ -118,6 +121,7 @@ const SignUpForm = () => {
           }}
           type={InputTypes.email}
           placeholder='Email'
+          formType={formType}
           // icon={<FaEnvelope size={IconSizes.secondaryIconSize} />}
           // inputWrap
         />
@@ -130,7 +134,7 @@ const SignUpForm = () => {
           }}
           type={InputTypes.text}
           placeholder='Password'
-
+          formType={formType}
           // icon={<FaLock size={IconSizes.secondaryIconSize} />}
           // inputWrap
         />
@@ -142,6 +146,7 @@ const SignUpForm = () => {
           }}
           type={InputTypes.text}
           placeholder='Repeat password'
+          formType={formType}
           // icon={<FaLock size={IconSizes.secondaryIconSize} />}
           // inputWrap
         />

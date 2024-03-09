@@ -13,3 +13,4 @@ export { default as authNavLinks } from './authNavLinks';
 export { default as ProfileSettings } from './profileSettings';
 export { default as regExp } from './regExp';
 export { default as SearchParamsKeys } from './searchParamsKeys';
+export { default as FormTypes } from './formTypes';

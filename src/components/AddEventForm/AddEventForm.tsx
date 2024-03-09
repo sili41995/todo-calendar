@@ -9,8 +9,9 @@ import { ClickEvent, INewEvent } from '@/types/types';
 import Input from '@/components/Input';
 import FormControls from '@/components/FormControls';
 import { Form, Title } from './AddEventForm.styled';
+import { IProps } from './AddEventForm.types';
 
-const AddEventForm: FC = () => {
+const AddEventForm: FC<IProps> = ({ formType }) => {
   const [checked, setChecked] = useState<boolean>(false);
   const { mutate: addEvent } = useMutation({
     mutationFn: operations.addEvent,
@@ -63,17 +64,20 @@ const AddEventForm: FC = () => {
           type={InputTypes.text}
           placeholder='Task'
           label='Task'
+          formType={formType}
         />
         <Input
           settings={{ ...register('deadline', { required: true }) }}
           type={InputTypes.dateTimeLocal}
           label='Deadline'
+          formType={formType}
         />
         <Input
           settings={{ ...register('completed') }}
           type={InputTypes.checkbox}
           altElem={<FaCheck size={IconSizes.secondarySize} />}
           label='Completed'
+          formType={formType}
           checked={checked}
           onChange={onCheckboxChange}
         />

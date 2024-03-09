@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toasts } from '@/utils';
 import AuthFormMessage from '@/components/AuthFormMessage';
@@ -11,8 +11,9 @@ import { Form, Message, Title, Image } from './SignInForm.styled';
 import { useMutation } from '@tanstack/react-query';
 import { QueryKeys, operations, queryClient } from '@/tanStackQuery';
 import eventsServiceApi from '@/service/eventsServiceApi';
+import { IProps } from './SignInForm.types';
 
-const SignInForm = () => {
+const SignInForm: FC<IProps> = ({ formType }) => {
   const {
     register,
     formState: { errors, isSubmitting },
@@ -65,6 +66,7 @@ const SignInForm = () => {
           placeholder='Email'
           // icon={<FaEnvelope size={IconSizes.secondaryIconSize} />}
           // inputWrap
+          formType={formType}
           autoFocus
         />
         <Input
@@ -75,6 +77,7 @@ const SignInForm = () => {
             }),
           }}
           type={InputTypes.text}
+          formType={formType}
           placeholder='Password'
           // icon={<FaLock size={IconSizes.secondaryIconSize} />}
           // inputWrap

@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
-import { IStyledProps } from './Input.types';
+import { IStyledInputProps, IStyledAltElemProps } from './Input.types';
+import { setInputFontSize, setInputHeight } from '@/utils';
 
-export const StyledInput = styled.input<IStyledProps>`
+export const StyledInput = styled.input<IStyledInputProps>`
   width: 100%;
-  height: 60px;
+  height: ${({ formType }) => setInputHeight(formType)}px;
   background-color: transparent;
   border: 2px solid;
   border-color: ${({ theme }) => theme.colors.lightgreyColor};
@@ -13,7 +14,7 @@ export const StyledInput = styled.input<IStyledProps>`
   font-family: ${({ theme }) => theme.fontFamily.primaryFontFamily};
   color: ${({ theme }) => theme.colors.primaryFontColor};
   font-weight: ${({ theme }) => theme.fontWeight.otherFontWeight};
-  font-size: ${({ theme }) => theme.fontSize.secondaryFontSize}px;
+  font-size: ${({ formType }) => setInputFontSize(formType)}px;
   letter-spacing: 0.04em;
   transition: border-color ${({ theme }) => theme.transitionDurationAndFunc};
 
@@ -43,7 +44,7 @@ export const InputContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const AltElem = styled.label<IStyledProps>`
+export const AltElem = styled.label<IStyledAltElemProps>`
   display: flex;
   align-items: center;
   justify-content: center;

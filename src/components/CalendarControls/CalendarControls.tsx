@@ -4,7 +4,7 @@ import CalendarButtonsList from '@/components/CalendarButtonsList';
 import ModalWin from '@/components/ModalWin';
 import AddEventForm from '@/components/AddEventForm';
 import { makeBlur } from '@/utils';
-import { AriaLabels } from '@/constants';
+import { AriaLabels, FormTypes } from '@/constants';
 import { ClickEvent } from '@/types/types';
 import { IProps } from './CalendarControls.types';
 import {
@@ -47,7 +47,7 @@ const CalendarControls: FC<IProps> = ({
       {showAddEventForm && (
         <ModalWin
           setModalWinState={setModalWinState}
-          children={<AddEventForm />}
+          children={<AddEventForm formType={FormTypes.addEvent} />}
         />
       )}
     </Container>

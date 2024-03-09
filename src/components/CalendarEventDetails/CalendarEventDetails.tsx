@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { ClickEvent } from '@/types/types';
 import { makeBlur } from '@/utils';
-import { AriaLabels, IconBtnTypes, IconSizes } from '@/constants';
+import { AriaLabels, FormTypes, IconBtnTypes, IconSizes } from '@/constants';
 import EventDetails from '@/components/EventDetails';
 import EditEventForm from '@/components/EditEventForm';
 import IconButton from '@/components/IconButton';
@@ -49,7 +49,7 @@ const CalendarEventDetails: FC<IProps> = ({ event, setModalWinState }) => {
         </ListItem>
       </ButtonsList>
       {editEvent ? (
-        <EditEventForm event={event} />
+        <EditEventForm event={event} formType={FormTypes.editEvent} />
       ) : (
         <EventDetails event={event} />
       )}

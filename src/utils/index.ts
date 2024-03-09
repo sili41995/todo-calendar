@@ -14,3 +14,5 @@ export { default as getSortedEvents } from './getSortedEvents';
 export { default as getIsTargetPage } from './getIsTargetPage';
 export { default as getProfileFormData } from './getProfileFormData';
 export { default as onChangeAvatar } from './onChangeAvatar';
+export { default as setInputHeight } from './setInputHeight';
+export { default as setInputFontSize } from './setInputFontSize';
