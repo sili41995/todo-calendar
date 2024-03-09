@@ -53,7 +53,7 @@ const App: FC = () => {
         </Route>
         <Route
           path={PagePaths.eventPlanningPath}
-          element={<EventPlanningPage />}
+          element={<PrivateRoute element={<EventPlanningPage />} />}
         />
         <Route path='*' element={<NotFoundPage />} />
       </Route>

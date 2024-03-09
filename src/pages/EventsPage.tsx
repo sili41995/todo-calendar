@@ -9,7 +9,7 @@ import { FC, Suspense, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
 const EventsPage: FC = () => {
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError, error, isSuccess } = useQuery({
     queryKey: [QueryKeys.events],
     queryFn: operations.getEvents,
     refetchOnMount: true,
@@ -24,10 +24,14 @@ const EventsPage: FC = () => {
   return (
     <>
       {isLoading && <Loader />}
-      {showEventsList ? (
-        <EventsList events={sortedEvents} />
-      ) : (
-        <DefaultMessage message={Messages.emptyEventsList} />
+      {isSuccess && (
+        <>
+          {showEventsList ? (
+            <EventsList events={sortedEvents} />
+          ) : (
+            <DefaultMessage message={Messages.emptyEventsList} />
+          )}
+        </>
       )}
       <Suspense fallback={<Loader />}>
         <Outlet />
