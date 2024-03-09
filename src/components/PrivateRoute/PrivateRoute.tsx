@@ -6,15 +6,11 @@ import { QueryKeys } from '@/tanStackQuery';
 import { FC } from 'react';
 
 const PrivateRoute: FC<IProps> = ({ element }) => {
-  const { isLoading } = useQuery({
-    queryKey: [QueryKeys.user],
-  });
   const { data: isLoggedIn } = useQuery<boolean>({
     queryKey: [QueryKeys.isLoggedIn],
-    gcTime: Infinity,
   });
   const location = useLocation();
-  const shouldRedirect = !isLoggedIn && !isLoading;
+  const shouldRedirect = !isLoggedIn;
 
   return shouldRedirect ? (
     <Navigate to={PagePaths.homePath} state={{ from: location }} />
