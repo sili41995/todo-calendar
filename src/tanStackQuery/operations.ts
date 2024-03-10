@@ -34,6 +34,8 @@ const refreshUser = async (token: string | undefined): Promise<User | null> => {
   }
 };
 
+const signOut = async (): Promise<void> => await eventsServiceApi.signOut();
+
 const getEvents = async (): Promise<IEventsInfo> =>
   await eventsServiceApi.fetchEvents();
 
@@ -62,6 +64,7 @@ const operations = {
   signUp,
   signIn,
   refreshUser,
+  signOut,
   getEvents,
   getEventById,
   getEventsByMonth,

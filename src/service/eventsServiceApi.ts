@@ -78,6 +78,27 @@ class EventsServiceApi {
       });
   }
 
+  signOut(): Promise<void> {
+    const options = {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${this.TOKEN}`,
+      },
+    };
+
+    return fetch(`${this.BASE_URL}/api/auth/signout`, options)
+      .then((response) => {
+        if (!response.ok) {
+          return response.json();
+        }
+      })
+      .then((data) => {
+        if (data?.message) {
+          throw Error(data.message);
+        }
+      });
+  }
+
   fetchEvents(): Promise<IEventsInfo> {
     const options = {
       method: 'GET',

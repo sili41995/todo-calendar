@@ -9,6 +9,7 @@ import Loader from '@/components/Loader';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
+const AboutPage = lazy(() => import('@/pages/AboutPage'));
 const SignUpPage = lazy(() => import('@/pages/SignUpPage'));
 const SignInPage = lazy(() => import('@/pages/SignInPage'));
 const EventsPage = lazy(() => import('@/pages/EventsPage'));
@@ -56,6 +57,10 @@ const App: FC = () => {
         <Route
           path={PagePaths.eventPlanningPath}
           element={<PrivateRoute element={<EventPlanningPage />} />}
+        />
+        <Route
+          path={PagePaths.aboutPath}
+          element={<PrivateRoute element={<AboutPage />} />}
         />
         <Route path='*' element={<NotFoundPage />} />
       </Route>

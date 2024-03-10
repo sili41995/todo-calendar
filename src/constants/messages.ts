@@ -22,6 +22,7 @@ const enum Messages {
   authErr = 'Please, authenticate in the app',
   emptyEventsList = 'Events list is empty',
   emptyFilteredList = 'No ads match the filtering criteria',
+  goodbye = 'Goodbye!',
 }
 
 export default Messages;

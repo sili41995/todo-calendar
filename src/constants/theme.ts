@@ -88,7 +88,7 @@ const theme: ITheme = {
     primaryShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
   },
   cellGap: 1,
-  transitionDurationAndFunc: '2500ms cubic-bezier(0.4, 0, 0.2, 1)',
+  transitionDurationAndFunc: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
   spacing: (value = 1) => `${value * 4}px`,
   trimText: `word-wrap: break-word;
   overflow: hidden;
