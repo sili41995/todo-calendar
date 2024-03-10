@@ -165,3 +165,8 @@ export interface IGetPaginationBarSettings {
 export interface ISetBtnDisplayProps {
   [key: string]: number | undefined;
 }
+
+export interface ISortEventsByDeadlineProps {
+  events: Events | undefined;
+  sortType: string;
+}

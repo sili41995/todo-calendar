@@ -3,9 +3,9 @@ import EventsList from '@/components/EventsList';
 import Loader from '@/components/Loader';
 import PaginationBar from '@/components/PaginationBar';
 import { GeneralParams, Messages, SearchParamsKeys } from '@/constants';
-import useSetSearchParams from '@/hooks/useSetSearchParams';
+import { useSetSearchParams } from '@/hooks';
 import { QueryKeys, operations } from '@/tanStackQuery';
-import { getSortedEvents, toasts } from '@/utils';
+import { sortEventsByDeadline, toasts } from '@/utils';
 import { useQuery } from '@tanstack/react-query';
 import { FC, Suspense, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
@@ -13,12 +13,13 @@ import { Outlet } from 'react-router-dom';
 const EventsPage: FC = () => {
   const { searchParams } = useSetSearchParams();
   const page = searchParams.get(SearchParamsKeys.page);
+  const sortType = searchParams.get(SearchParamsKeys.sort) ?? '';
   const { data, isLoading, isError, error, isSuccess } = useQuery({
     queryKey: [QueryKeys.events, page],
     queryFn: () => operations.getEvents(page),
     refetchOnMount: true,
   });
-  const sortedEvents = getSortedEvents(data?.events);
+  const sortedEvents = sortEventsByDeadline({ events: data?.events, sortType });
   const showEventsList = sortedEvents && Boolean(sortedEvents.length);
   const showPaginationBar =
     data && data.count > GeneralParams.maxEventsListCount;

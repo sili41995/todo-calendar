@@ -15,11 +15,13 @@ import { BtnClickEvent, LinkClickEvent } from '@/types/types';
 import IconButton from '@/components/IconButton';
 import { useMutation } from '@tanstack/react-query';
 import { QueryKeys, operations, queryClient } from '@/tanStackQuery';
+import Filter from '@/components/Filter';
 
 const PrivateLinks: FC = () => {
   const { pathname } = useLocation();
   const addEventLink = `${PagePaths.eventsPath}/${PagePaths.addNewEventPath}`;
   const isEventPlaningPage = pathname.includes(PagePaths.eventPlanningPath);
+  const isEventsPage = pathname.includes(`${PagePaths.eventsPath}/`);
   const navigate = useNavigate();
   const { mutate: signOut } = useMutation({
     mutationFn: operations.signOut,
@@ -50,6 +52,7 @@ const PrivateLinks: FC = () => {
 
   return (
     <Container>
+      {isEventsPage && <Filter />}
       {!isEventPlaningPage && (
         <LinkWithQuery to={addEventLink} onClick={onNewEventLinkClick}>
           <SlPlus />

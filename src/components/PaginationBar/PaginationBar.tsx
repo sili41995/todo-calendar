@@ -3,7 +3,7 @@ import { IProps } from './PaginationBar.types';
 import { getPageNumbers, getPaginationBarSettings, makeBlur } from '@/utils';
 import { AriaLabels, SearchParamsKeys } from '@/constants';
 import { Button, Item, List, TemplateItem } from './PaginationBar.styled';
-import useSetSearchParams from '@/hooks/useSetSearchParams';
+import {useSetSearchParams} from '@/hooks';
 
 const PaginationBar: FC<IProps> = ({ itemsQuantity, quantity, step = 1 }) => {
   const { updateSearchParams, searchParams } = useSetSearchParams();

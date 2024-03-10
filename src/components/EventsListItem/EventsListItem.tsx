@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { IProps } from './EventsListItem.types';
-import { Link } from 'react-router-dom';
-import { PagePaths, IconBtnTypes } from '@/constants';
+import { IconBtnTypes } from '@/constants';
 import { ListItem, Task } from './EventsListItem.styled';
 import DelEventBtn from '@/components/DelEventBtn';
 import { useDeleteEvent } from '@/hooks';
+import LinkWithQuery from '@/components/LinkWithQuery';
 
 const EventsListItem: FC<IProps> = ({ event }) => {
   const { task, _id, completed } = event;
@@ -18,9 +18,9 @@ const EventsListItem: FC<IProps> = ({ event }) => {
           deleteEvent(_id);
         }}
       />
-      <Link to={`${PagePaths.eventsPath}/${_id}`}>
+      <LinkWithQuery to={_id}>
         <Task completed={completed}>{task}</Task>
-      </Link>
+      </LinkWithQuery>
     </ListItem>
   );
 };

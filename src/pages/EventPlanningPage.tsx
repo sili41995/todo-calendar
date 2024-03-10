@@ -1,7 +1,7 @@
 import Calendar from '@/components/Calendar';
 import Loader from '@/components/Loader';
 import { GeneralParams, SearchParamsKeys } from '@/constants';
-import useSetSearchParams from '@/hooks/useSetSearchParams';
+import { useSetSearchParams } from '@/hooks';
 import { QueryKeys, operations } from '@/tanStackQuery';
 import { BtnClickEvent } from '@/types/types';
 import { getMonthsParams, makeBlur, toasts } from '@/utils';

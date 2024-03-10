@@ -6,6 +6,7 @@ const enum IconBtnTypes {
   reset = 'reset',
   deleteTransparent = 'deleteTransparent',
   signOut = 'signOut',
+  filter = 'filter',
 }
 
 export default IconBtnTypes;
