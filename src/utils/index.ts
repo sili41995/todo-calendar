@@ -16,3 +16,6 @@ export { default as getProfileFormData } from './getProfileFormData';
 export { default as onChangeAvatar } from './onChangeAvatar';
 export { default as setInputHeight } from './setInputHeight';
 export { default as setInputFontSize } from './setInputFontSize';
+export { default as getPageNumbers } from './getPageNumbers';
+export { default as getPaginationBarSettings } from './getPaginationBarSettings';
+export { default as setBtnDisplayProp } from './setBtnDisplayProp';

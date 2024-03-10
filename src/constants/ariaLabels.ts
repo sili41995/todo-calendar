@@ -9,6 +9,7 @@ const enum AriaLabels {
   accept = 'accept',
   reset = 'reset form',
   signOut = 'Sign out',
+  pageBtn = 'go to page number',
 }
 
 export default AriaLabels;

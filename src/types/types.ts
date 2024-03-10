@@ -143,3 +143,25 @@ export interface IFetchEventsByMonthProps {
   month: string;
   year: string;
 }
+
+export interface IGetPaginationBarSettingsProps {
+  pageNumbers: number[];
+  currentPage: number;
+  step: number;
+}
+
+export interface IGetPaginationBarSettings {
+  isValidPage: boolean;
+  firstPage: number;
+  lastPage: number;
+  isBackNavBtnDisable: boolean;
+  isNextNavBtnDisable: boolean;
+  isShowNextTemplateBtn: boolean;
+  isShowLastPageBtn: boolean;
+  isShowFirstPageBtn: boolean;
+  isShowPrevTemplateBtn: boolean;
+}
+
+export interface ISetBtnDisplayProps {
+  [key: string]: number | undefined;
+}

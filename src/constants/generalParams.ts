@@ -8,6 +8,7 @@ const enum GeneralParams {
   calendarRows = 6,
   calendarColumns = 7,
   maxEventsCount = 3,
+  maxEventsListCount = 10,
 }
 
 export default GeneralParams;

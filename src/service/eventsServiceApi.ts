@@ -99,7 +99,7 @@ class EventsServiceApi {
       });
   }
 
-  fetchEvents(): Promise<IEventsInfo> {
+  fetchEvents(page: string | null = '1'): Promise<IEventsInfo> {
     const options = {
       method: 'GET',
       headers: {
@@ -108,7 +108,7 @@ class EventsServiceApi {
       },
     };
 
-    return fetch(`${this.BASE_URL}/api/events`, options)
+    return fetch(`${this.BASE_URL}/api/events?page=${page}`, options)
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {
