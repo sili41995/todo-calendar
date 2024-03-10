@@ -12,7 +12,7 @@ import { Outlet } from 'react-router-dom';
 
 const EventsPage: FC = () => {
   const { searchParams } = useSetSearchParams();
-  const page = searchParams.get(SearchParamsKeys.page);
+  const page = searchParams.get(SearchParamsKeys.page) ?? '1';
   const sortType = searchParams.get(SearchParamsKeys.sort) ?? '';
   const { data, isLoading, isError, error, isSuccess } = useQuery({
     queryKey: [QueryKeys.events, page],

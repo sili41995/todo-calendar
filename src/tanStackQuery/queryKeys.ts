@@ -4,6 +4,7 @@ const enum QueryKeys {
   token = 'token',
   user = 'user',
   isLoggedIn = 'isLoggedIn',
+  eventById = 'eventById',
 }
 
 export default QueryKeys;

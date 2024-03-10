@@ -99,7 +99,7 @@ class EventsServiceApi {
       });
   }
 
-  fetchEvents(page: string | null = '1'): Promise<IEventsInfo> {
+  fetchEvents(page: string): Promise<IEventsInfo> {
     const options = {
       method: 'GET',
       headers: {

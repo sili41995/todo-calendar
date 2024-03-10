@@ -36,7 +36,7 @@ const refreshUser = async (token: string | undefined): Promise<User | null> => {
 
 const signOut = async (): Promise<void> => await eventsServiceApi.signOut();
 
-const getEvents = async (page: string | null): Promise<IEventsInfo> =>
+const getEvents = async (page: string): Promise<IEventsInfo> =>
   await eventsServiceApi.fetchEvents(page);
 
 const getEventById = async (

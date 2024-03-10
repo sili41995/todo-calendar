@@ -15,7 +15,7 @@ const EventDetailsPage: FC = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: [QueryKeys.events, id],
+    queryKey: [QueryKeys.eventById],
     queryFn: () => operations.getEventById({ id }),
   });
 

@@ -63,6 +63,11 @@ export type Func = () => void;
 
 export type DeleteFunc = (id: string) => void;
 
+export interface IUseDeleteEvent {
+  deleteEvent: DeleteFunc;
+  isLoading: boolean;
+}
+
 export interface IQueryKey {
   queryKey: [string, string];
 }

@@ -8,7 +8,7 @@ import LinkWithQuery from '@/components/LinkWithQuery';
 
 const EventsListItem: FC<IProps> = ({ event }) => {
   const { task, _id, completed } = event;
-  const deleteEvent = useDeleteEvent();
+  const { deleteEvent } = useDeleteEvent();
 
   return (
     <ListItem>

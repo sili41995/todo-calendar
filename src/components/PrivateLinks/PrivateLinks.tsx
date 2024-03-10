@@ -23,7 +23,7 @@ const PrivateLinks: FC = () => {
   const isEventPlaningPage = pathname.includes(PagePaths.eventPlanningPath);
   const isEventsPage = pathname.includes(`${PagePaths.eventsPath}/`);
   const navigate = useNavigate();
-  const { mutate: signOut } = useMutation({
+  const { mutate: signOut, isPending: isLoading } = useMutation({
     mutationFn: operations.signOut,
     onSuccess: onSuccessHTTPRequest,
     onError: onFailedHTTPRequest,
@@ -65,6 +65,7 @@ const PrivateLinks: FC = () => {
         icon={<SlLogout size={IconSizes.secondarySize} />}
         title='Sign Out'
         ariaLabel={AriaLabels.signOut}
+        disabled={isLoading}
       />
     </Container>
   );

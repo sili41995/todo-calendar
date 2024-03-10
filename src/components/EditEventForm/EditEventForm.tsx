@@ -15,7 +15,7 @@ const EditEventForm: FC<IProps> = ({ event, formType }) => {
   const { _id, completed, deadline, task } = event;
   const [checked, setChecked] = useState<boolean>(() => completed);
   const { register, handleSubmit, reset } = useForm<INewEvent>();
-  const { mutate: editEvent } = useMutation({
+  const { mutate: editEvent, isPending: isLoading } = useMutation({
     mutationFn: operations.updateEvent,
     onSuccess: onSuccessHTTPRequest,
     onError: onFailedHTTPRequest,
@@ -86,6 +86,7 @@ const EditEventForm: FC<IProps> = ({ event, formType }) => {
         <FormControls
           onAcceptBtnClick={onAcceptBtnClick}
           onResetBtnClick={onResetBtnClick}
+          disabled={isLoading}
         />
       </Form>
     </>

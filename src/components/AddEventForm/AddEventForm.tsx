@@ -13,7 +13,7 @@ import { IProps } from './AddEventForm.types';
 
 const AddEventForm: FC<IProps> = ({ formType }) => {
   const [checked, setChecked] = useState<boolean>(false);
-  const { mutate: addEvent } = useMutation({
+  const { mutate: addEvent, isPending: isLoading } = useMutation({
     mutationFn: operations.addEvent,
     onSuccess: onSuccessHTTPRequest,
     onError: onFailedHTTPRequest,
@@ -84,6 +84,7 @@ const AddEventForm: FC<IProps> = ({ formType }) => {
         <FormControls
           onAcceptBtnClick={onAcceptBtnClick}
           onResetBtnClick={onResetBtnClick}
+          disabled={isLoading}
         />
       </Form>
     </Container>

@@ -8,6 +8,7 @@ export interface IProps {
   icon: ReactNode;
   iconBtnType: IconBtnTypes;
   title?: string;
+  disabled?: boolean;
   onClick?: (e: BtnClickEvent) => void;
 }
 

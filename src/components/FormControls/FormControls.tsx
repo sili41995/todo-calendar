@@ -5,7 +5,11 @@ import IconButton from '@/components/IconButton';
 import { AriaLabels, BtnTypes, IconBtnTypes, IconSizes } from '@/constants';
 import { IProps } from './FormControls.types';
 
-const FormControls: FC<IProps> = ({ onAcceptBtnClick, onResetBtnClick }) => (
+const FormControls: FC<IProps> = ({
+  onAcceptBtnClick,
+  onResetBtnClick,
+  disabled,
+}) => (
   <ButtonsList>
     <ListItem>
       <IconButton
@@ -14,6 +18,7 @@ const FormControls: FC<IProps> = ({ onAcceptBtnClick, onResetBtnClick }) => (
         icon={<FaCheck size={IconSizes.secondarySize} />}
         ariaLabel={AriaLabels.accept}
         onClick={onAcceptBtnClick}
+        disabled={disabled}
       />
     </ListItem>
     <ListItem>
@@ -22,6 +27,7 @@ const FormControls: FC<IProps> = ({ onAcceptBtnClick, onResetBtnClick }) => (
         icon={<FaTimes size={IconSizes.secondarySize} />}
         ariaLabel={AriaLabels.reset}
         onClick={onResetBtnClick}
+        disabled={disabled}
       />
     </ListItem>
   </ButtonsList>
