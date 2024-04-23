@@ -11,6 +11,8 @@ export const Header = styled.header`
 
 export const Container = styled.div<IStyledProps>`
   display: ${({ isEventsPage }) => (isEventsPage ? 'flex' : 'block')};
+  flex-direction: column;
+  align-items: center;
   gap: ${({ theme }) => theme.spacing(5)};
   width: ${({ theme }) =>
     theme.containerWidth.desktop + theme.padding.containerPadding * 2}px;

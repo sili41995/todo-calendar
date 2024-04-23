@@ -52,13 +52,11 @@ const App: FC = () => {
         <Route
           path={PagePaths.eventsPath}
           element={<PrivateRoute element={<EventsPage />} />}
-        >
-          <Route path={PagePaths.addNewEventPath} element={<NewEventPage />} />
-          <Route
-            path={`:${PagePaths.dynamicParam}`}
-            element={<EventDetailsPage />}
-          />
-        </Route>
+        />
+        <Route
+          path={`${PagePaths.eventsPath}/:${PagePaths.dynamicParam}`}
+          element={<PrivateRoute element={<EventDetailsPage />} />}
+        />
         <Route
           path={PagePaths.eventPlanningPath}
           element={<PrivateRoute element={<EventPlanningPage />} />}
@@ -70,6 +68,10 @@ const App: FC = () => {
         <Route
           path={PagePaths.profile}
           element={<PrivateRoute element={<ProfilePage />} />}
+        />
+        <Route
+          path={`${PagePaths.eventsPath}/${PagePaths.addNewEventPath}`}
+          element={<PrivateRoute element={<NewEventPage />} />}
         />
         <Route path='*' element={<NotFoundPage />} />
       </Route>

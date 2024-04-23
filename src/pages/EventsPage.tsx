@@ -1,6 +1,5 @@
 import DefaultMessage from '@/components/DefaultMessage';
 import EventsList from '@/components/EventsList';
-import Loader from '@/components/Loader';
 import PaginationBar from '@/components/PaginationBar';
 import { GeneralParams, Messages, SearchParamsKeys } from '@/constants';
 import { useSetSearchParams } from '@/hooks';
@@ -8,8 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { fetchEvents } from '@/redux/events/operations';
 import { selectCount, selectEvents } from '@/redux/events/selectors';
 import { sortEventsByDeadline } from '@/utils';
-import { FC, Suspense, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { FC, useEffect } from 'react';
 
 const EventsPage: FC = () => {
   const { searchParams } = useSetSearchParams();
@@ -29,25 +27,20 @@ const EventsPage: FC = () => {
 
   return (
     <>
-      <>
-        {showEventsList ? (
-          <div>
-            <EventsList events={sortedEvents} />
-            {showPaginationBar && (
-              <PaginationBar
-                quantity={Number(GeneralParams.maxEventsListCount)}
-                itemsQuantity={count}
-                step={2}
-              />
-            )}
-          </div>
-        ) : (
-          <DefaultMessage message={Messages.emptyEventsList} />
-        )}
-      </>
-      <Suspense fallback={<Loader />}>
-        <Outlet />
-      </Suspense>
+      {showEventsList ? (
+        <>
+          <EventsList events={sortedEvents} />
+          {showPaginationBar && (
+            <PaginationBar
+              quantity={Number(GeneralParams.maxEventsListCount)}
+              itemsQuantity={count}
+              step={2}
+            />
+          )}
+        </>
+      ) : (
+        <DefaultMessage message={Messages.emptyEventsList} />
+      )}
     </>
   );
 };

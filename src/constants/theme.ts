@@ -50,6 +50,7 @@ interface ITheme {
 
 const theme: ITheme = {
   colors: {
+    
     secondaryFontColor: '#7c7c7c',
     primaryColor: '#3470ff',
     otherColor: '#38b6ff',

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  flex-grow: 1;
+  width: 500px;
 `;
 
 export const ButtonsList = styled.ul`
