@@ -17,8 +17,9 @@ import Filter from '@/components/Filter';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { signOutUser } from '@/redux/auth/operations';
 import { selectIsLoading } from '@/redux/events/selectors';
+import { IProps } from './PrivateLinks.types';
 
-const PrivateLinks: FC = () => {
+const PrivateLinks: FC<IProps> = ({ setShowMobileMenu }) => {
   const { pathname } = useLocation();
   const addEventLink = `${PagePaths.eventsPath}/${PagePaths.addNewEventPath}`;
   const isEventPlaningPage = pathname.includes(PagePaths.eventPlanningPath);
@@ -29,6 +30,7 @@ const PrivateLinks: FC = () => {
 
   const onNewEventLinkClick = (e: LinkClickEvent) => {
     makeBlur(e.currentTarget);
+    setShowMobileMenu && setShowMobileMenu();
   };
 
   const onSignOutBtnClick = (e: BtnClickEvent) => {

@@ -14,6 +14,6 @@ export { default as SearchParamsKeys } from './searchParamsKeys';
 export { default as FormTypes } from './formTypes';
 export { default as SortTypes } from './sortTypes';
 export { default as FetchStatuses } from './fetchStatuses';
-export { default as navLinks } from './navLinks';
+export { default as publicNavLinks } from './publicNavLinks';
 export { default as privateNavLinks } from './privateNavLinks';
 export { default as authNavLinks } from './authNavLinks';

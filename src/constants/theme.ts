@@ -35,7 +35,8 @@ interface ITheme {
     secondaryFontSize: number;
   };
   padding: {
-    containerPadding: number;
+    container: number;
+    authForm: number;
   };
   borderRadius: { primaryBorderRadius: number; secondaryBorderRadius: number };
   containerWidth: { desktop: number };
@@ -50,7 +51,6 @@ interface ITheme {
 
 const theme: ITheme = {
   colors: {
-    
     secondaryFontColor: '#7c7c7c',
     primaryColor: '#3470ff',
     otherColor: '#38b6ff',
@@ -82,7 +82,8 @@ const theme: ITheme = {
     secondaryFontSize: 20,
   },
   padding: {
-    containerPadding: 16,
+    container: 16,
+    authForm: 32,
   },
   borderRadius: {
     primaryBorderRadius: 8,

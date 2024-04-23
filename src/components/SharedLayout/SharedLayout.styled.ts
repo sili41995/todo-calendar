@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { IStyledProps } from './SharedLayout.types';
 
 export const Header = styled.header`
   display: inline-block;
@@ -9,22 +8,9 @@ export const Header = styled.header`
   background-color: ${({ theme }) => theme.colors.otherColor};
 `;
 
-export const Container = styled.div<IStyledProps>`
-  display: ${({ isEventsPage }) => (isEventsPage ? 'flex' : 'block')};
-  flex-direction: column;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing(5)};
-  width: ${({ theme }) =>
-    theme.containerWidth.desktop + theme.padding.containerPadding * 2}px;
-  padding-left: ${({ theme }) => `${theme.padding.containerPadding}px`};
-  padding-right: ${({ theme }) => `${theme.padding.containerPadding}px`};
-  margin-left: auto;
-  margin-right: auto;
-`;
-
 export const Main = styled.main``;
 
 export const Section = styled.section`
-  padding-top: ${({ theme }) => theme.padding.containerPadding}px;
-  padding-bottom: ${({ theme }) => theme.padding.containerPadding}px;
+  padding-top: ${({ theme }) => theme.padding.container}px;
+  padding-bottom: ${({ theme }) => theme.padding.container}px;
 `;

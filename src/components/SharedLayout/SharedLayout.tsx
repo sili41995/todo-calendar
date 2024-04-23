@@ -1,10 +1,11 @@
 import { FC, Suspense } from 'react';
-import { Container, Header, Main, Section } from './SharedLayout.styled';
+import { Header, Main, Section } from './SharedLayout.styled';
 import Loader from '@/components/Loader';
 import { Outlet, useLocation } from 'react-router-dom';
 import NavigationBar from '@/components/NavigationBar';
 import { PagePaths } from '@/constants';
 import { getIsTargetPage } from '@/utils';
+import Container from '@/components/Container';
 
 const SharedLayout: FC = () => {
   const { pathname } = useLocation();
