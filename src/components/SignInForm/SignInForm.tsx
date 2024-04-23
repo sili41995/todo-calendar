@@ -4,14 +4,14 @@ import { toasts } from '@/utils';
 import AuthFormMessage from '@/components/AuthFormMessage';
 import Input from '@/components/Input';
 import AuthFormBtn from '@/components/AuthFormBtn';
-import { ICredentials, IToken } from '@/types/types';
+import { ICredentials,  } from '@/types/types';
 import { Messages, InputTypes, PagePaths, ProfileSettings } from '@/constants';
 import defaultAvatar from '@/images/default-signin-avatar.png';
 import { Form, Message, Title, Image } from './SignInForm.styled';
-import { useMutation } from '@tanstack/react-query';
-import { QueryKeys, operations, queryClient } from '@/tanStackQuery';
-import eventsServiceApi from '@/service/eventsServiceApi';
 import { IProps } from './SignInForm.types';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { signInUser } from '@/redux/auth/operations';
+import { selectIsLoading } from '@/redux/auth/selectors';
 
 const SignInForm: FC<IProps> = ({ formType }) => {
   const {
@@ -19,21 +19,8 @@ const SignInForm: FC<IProps> = ({ formType }) => {
     formState: { errors, isSubmitting },
     handleSubmit,
   } = useForm<ICredentials>();
-  const { mutate: signIn } = useMutation({
-    mutationFn: operations.signIn,
-    onSuccess: onSuccessHTTPRequest,
-    onError: onFailedHTTPRequest,
-  });
-
-  function onSuccessHTTPRequest(data: IToken): void {
-    queryClient.setQueryData([QueryKeys.token], data.token);
-    eventsServiceApi.token = data.token;
-    toasts.successToast(Messages.successfulSignIn);
-  }
-
-  function onFailedHTTPRequest(error: Error): void {
-    toasts.errorToast(error.message);
-  }
+  const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(selectIsLoading);
 
   useEffect(() => {
     errors.email &&
@@ -51,7 +38,14 @@ const SignInForm: FC<IProps> = ({ formType }) => {
   }, [isSubmitting, errors]);
 
   const onSubmit: SubmitHandler<ICredentials> = (data) => {
-    signIn(data);
+    dispatch(signInUser(data))
+      .unwrap()
+      .then(() => {
+        toasts.successToast('Hello, my friend!');
+      })
+      .catch((error) => {
+        toasts.errorToast(error);
+      });
   };
 
   return (
@@ -64,8 +58,6 @@ const SignInForm: FC<IProps> = ({ formType }) => {
           settings={{ ...register('email', { required: true }) }}
           type={InputTypes.email}
           placeholder='Email'
-          // icon={<FaEnvelope size={IconSizes.secondaryIconSize} />}
-          // inputWrap
           formType={formType}
           autoFocus
         />
@@ -79,18 +71,13 @@ const SignInForm: FC<IProps> = ({ formType }) => {
           type={InputTypes.text}
           formType={formType}
           placeholder='Password'
-          // icon={<FaLock size={IconSizes.secondaryIconSize} />}
-          // inputWrap
         />
         <AuthFormMessage
           action='Sign up'
           pageLink={PagePaths.signUpPath}
           message="if you don't have an account yet"
         />
-        <AuthFormBtn
-          title='Sign in'
-          // disabled={isLoading}
-        />
+        <AuthFormBtn title='Sign in' disabled={isLoading} />
       </Form>
     </>
   );

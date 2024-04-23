@@ -15,7 +15,7 @@ import {
 import DelEventBtn from '@/components/DelEventBtn';
 import { useDeleteEvent } from '@/hooks';
 
-const CalendarEventDetails: FC<IProps> = ({ event, setModalWinState }) => {
+const CalendarEventDetails: FC<IProps> = ({ event, setModalWinState,setEvent }) => {
   const [editEvent, setEditEvent] = useState<boolean>(false);
   const { deleteEvent, isLoading } = useDeleteEvent(setModalWinState);
   const toggleEditEventStatus = (e: BtnClickEvent) => {
@@ -50,7 +50,7 @@ const CalendarEventDetails: FC<IProps> = ({ event, setModalWinState }) => {
         </ListItem>
       </ButtonsList>
       {editEvent ? (
-        <EditEventForm event={event} formType={FormTypes.editEvent} />
+        <EditEventForm event={event} formType={FormTypes.editEvent} setEvent={setEvent} />
       ) : (
         <EventDetails event={event} />
       )}

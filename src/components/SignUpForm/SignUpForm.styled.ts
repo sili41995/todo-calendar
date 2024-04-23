@@ -24,6 +24,7 @@ export const Message = styled.p`
 export const Image = styled.img`
   border-radius: 50%;
   cursor: pointer;
+  object-fit: cover;
   transition: box-shadow ${({ theme }) => theme.transitionDurationAndFunc};
 
   &:hover,

@@ -2,14 +2,12 @@ import { NavContainer } from './NavigationBar.styled';
 import { FC } from 'react';
 import NavLinks from '@/components/NavLinks';
 import { authNavLinks, navLinks } from '@/constants';
-import { useQuery } from '@tanstack/react-query';
-import { QueryKeys } from '@/tanStackQuery';
 import PrivateLinks from '@/components/PrivateLinks';
+import { useAppSelector } from '@/hooks/redux';
+import { selectIsLoggedIn } from '@/redux/auth/selectors';
 
 const NavigationBar: FC = () => {
-  const { data: isLoggedIn } = useQuery<boolean>({
-    queryKey: [QueryKeys.isLoggedIn],
-  });
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
   return (
     <NavContainer>

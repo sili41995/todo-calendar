@@ -1,13 +1,13 @@
-import { FC, lazy } from 'react';
+import { FC, lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { PagePaths } from '@/constants';
 import SharedLayout from './SharedLayout';
-import { QueryKeys, operations } from '@/tanStackQuery';
-import { useQuery } from '@tanstack/react-query';
-import { User } from '@/types/types';
 import Loader from '@/components/Loader';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { selectIsRefreshing, selectToken } from '@/redux/auth/selectors';
+import { refreshUser } from '@/redux/auth/operations';
 
 const AboutPage = lazy(() => import('@/pages/AboutPage'));
 const SignUpPage = lazy(() => import('@/pages/SignUpPage'));
@@ -19,15 +19,19 @@ const NewEventPage = lazy(() => import('@/pages/NewEventPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
 const App: FC = () => {
-  const { data: token } = useQuery<string>({
-    queryKey: [QueryKeys.token],
-  });
-  const { isFetching } = useQuery<User | null>({
-    queryKey: [QueryKeys.user, token],
-    queryFn: () => operations.refreshUser(token),
-  });
+  const dispatch = useAppDispatch();
+  const isRefreshing = useAppSelector(selectIsRefreshing);
+  const token = useAppSelector(selectToken);
 
-  return isFetching ? (
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+
+    dispatch(refreshUser());
+  }, [dispatch, token]);
+
+  return isRefreshing ? (
     <Loader />
   ) : (
     <Routes>

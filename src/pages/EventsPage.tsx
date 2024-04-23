@@ -4,9 +4,10 @@ import Loader from '@/components/Loader';
 import PaginationBar from '@/components/PaginationBar';
 import { GeneralParams, Messages, SearchParamsKeys } from '@/constants';
 import { useSetSearchParams } from '@/hooks';
-import { QueryKeys, operations } from '@/tanStackQuery';
-import { sortEventsByDeadline, toasts } from '@/utils';
-import { useQuery } from '@tanstack/react-query';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { fetchEvents } from '@/redux/events/operations';
+import { selectCount, selectEvents } from '@/redux/events/selectors';
+import { sortEventsByDeadline } from '@/utils';
 import { FC, Suspense, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
@@ -14,41 +15,36 @@ const EventsPage: FC = () => {
   const { searchParams } = useSetSearchParams();
   const page = searchParams.get(SearchParamsKeys.page) ?? '1';
   const sortType = searchParams.get(SearchParamsKeys.sort) ?? '';
-  const { data, isLoading, isError, error, isSuccess } = useQuery({
-    queryKey: [QueryKeys.events, page],
-    queryFn: () => operations.getEvents(page),
-    refetchOnMount: true,
-  });
-  const sortedEvents = sortEventsByDeadline({ events: data?.events, sortType });
+  const dispatch = useAppDispatch();
+  const events = useAppSelector(selectEvents);
+  const sortedEvents = sortEventsByDeadline({ events, sortType });
   const showEventsList = sortedEvents && Boolean(sortedEvents.length);
+  const count = useAppSelector(selectCount);
   const showPaginationBar =
-    data && data.count > GeneralParams.maxEventsListCount;
+    events && count && count > GeneralParams.maxEventsListCount;
 
   useEffect(() => {
-    isError && toasts.errorToast(error.message);
-  }, [data, error, isError]);
+    dispatch(fetchEvents(page));
+  }, [dispatch, page]);
 
   return (
     <>
-      {isLoading && <Loader />}
-      {isSuccess && (
-        <>
-          {showEventsList ? (
-            <div>
-              <EventsList events={sortedEvents} />
-              {showPaginationBar && (
-                <PaginationBar
-                  quantity={Number(GeneralParams.maxEventsListCount)}
-                  itemsQuantity={data.count}
-                  step={2}
-                />
-              )}
-            </div>
-          ) : (
-            <DefaultMessage message={Messages.emptyEventsList} />
-          )}
-        </>
-      )}
+      <>
+        {showEventsList ? (
+          <div>
+            <EventsList events={sortedEvents} />
+            {showPaginationBar && (
+              <PaginationBar
+                quantity={Number(GeneralParams.maxEventsListCount)}
+                itemsQuantity={count}
+                step={2}
+              />
+            )}
+          </div>
+        ) : (
+          <DefaultMessage message={Messages.emptyEventsList} />
+        )}
+      </>
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>

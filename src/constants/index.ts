@@ -15,3 +15,4 @@ export { default as regExp } from './regExp';
 export { default as SearchParamsKeys } from './searchParamsKeys';
 export { default as FormTypes } from './formTypes';
 export { default as SortTypes } from './sortTypes';
+export { default as FetchStatuses } from './fetchStatuses';

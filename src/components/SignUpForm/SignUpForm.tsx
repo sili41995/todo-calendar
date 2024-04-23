@@ -14,18 +14,14 @@ import {
 } from '@/constants';
 import image from '@/images/default-profile-avatar.png';
 import { Form, Message, Title, Image } from './SignUpForm.styled';
-import { useMutation } from '@tanstack/react-query';
-import { operations } from '@/tanStackQuery';
 import { useNavigate } from 'react-router-dom';
 import { IProps } from './SignUpForm.types';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { signUpUser } from '@/redux/auth/operations';
+import { selectIsLoading } from '@/redux/auth/selectors';
 
 const SignUpForm: FC<IProps> = ({ formType }) => {
   const [userAvatar, setUserAvatar] = useState<FileList | null>(null);
-  const { mutate: signUp } = useMutation({
-    mutationFn: operations.signUp,
-    onSuccess: onSuccessHTTPRequest,
-    onError: onFailedHTTPRequest,
-  });
   const {
     register,
     formState: { errors, isSubmitting },
@@ -33,15 +29,9 @@ const SignUpForm: FC<IProps> = ({ formType }) => {
   } = useForm<ISignUpCredentials>();
   const navigate = useNavigate();
   const userAvatarRef = useRef<HTMLImageElement>(null);
-
-  function onSuccessHTTPRequest(): void {
-    toasts.successToast(Messages.successfulSignUp);
-    navigate(PagePaths.signInPath);
-  }
-
-  function onFailedHTTPRequest(error: Error): void {
-    toasts.errorToast(error.message);
-  }
+  const dispatch = useAppDispatch();
+  const signInPageLink = PagePaths.signInPath;
+  const isLoading = useAppSelector(selectIsLoading);
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files?.length) {
@@ -57,9 +47,34 @@ const SignUpForm: FC<IProps> = ({ formType }) => {
       data.avatar = userAvatar;
     }
 
-    const userData = getProfileFormData(data);
-    signUp(userData);
+    const userFormData = getProfileFormData(data);
+
+    dispatch(signUpUser(userFormData))
+      .unwrap()
+      .then(() => {
+        toasts.successToast('User has been successfully registered');
+        navigate(signInPageLink);
+      })
+      .catch((error) => {
+        toasts.errorToast(error);
+      });
   };
+
+  useEffect(() => {
+    errors.name && toasts.errorToast('First name is required');
+    errors.email &&
+      toasts.errorToast(
+        errors.email.type === 'required'
+          ? Messages.emailReqErr
+          : Messages.emailRegExpErr
+      );
+    errors.password &&
+      toasts.errorToast(
+        errors.password.type === 'required'
+          ? Messages.passwordReqErr
+          : Messages.passwordMinLengthErr
+      );
+  }, [errors, isSubmitting]);
 
   useEffect(() => {
     errors.name && toasts.errorToast(Messages.nameReqErr);
@@ -109,8 +124,6 @@ const SignUpForm: FC<IProps> = ({ formType }) => {
           placeholder='Name'
           formType={formType}
           autoFocus
-          // icon={<FaEnvelope size={IconSizes.secondaryIconSize} />}
-          // inputWrap
         />
         <Input
           settings={{
@@ -122,8 +135,6 @@ const SignUpForm: FC<IProps> = ({ formType }) => {
           type={InputTypes.email}
           placeholder='Email'
           formType={formType}
-          // icon={<FaEnvelope size={IconSizes.secondaryIconSize} />}
-          // inputWrap
         />
         <Input
           settings={{
@@ -135,8 +146,6 @@ const SignUpForm: FC<IProps> = ({ formType }) => {
           type={InputTypes.text}
           placeholder='Password'
           formType={formType}
-          // icon={<FaLock size={IconSizes.secondaryIconSize} />}
-          // inputWrap
         />
         <Input
           settings={{
@@ -147,18 +156,13 @@ const SignUpForm: FC<IProps> = ({ formType }) => {
           type={InputTypes.text}
           placeholder='Repeat password'
           formType={formType}
-          // icon={<FaLock size={IconSizes.secondaryIconSize} />}
-          // inputWrap
         />
         <AuthFormMessage
           action='Sign in'
           pageLink={PagePaths.signInPath}
           message='if you have an account'
         />
-        <AuthFormBtn
-          title='Enlist'
-          // disabled={isLoading}
-        />
+        <AuthFormBtn title='Enlist' disabled={isLoading} />
       </Form>
     </>
   );

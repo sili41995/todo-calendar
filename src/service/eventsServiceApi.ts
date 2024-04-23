@@ -3,13 +3,13 @@ import {
   ICredentials,
   IEvent,
   IEventsInfo,
-  IFetchEventByIdProps,
   IFetchEventsByMonthProps,
   IToken,
   IUpdateEventProps,
   INewEvent,
   NewUser,
   User,
+  IAvatar,
 } from '@/types/types';
 
 class EventsServiceApi {
@@ -99,6 +99,25 @@ class EventsServiceApi {
       });
   }
 
+  updateUserAvatar(data: FormData): Promise<IAvatar> {
+    const options = {
+      method: 'PATCH',
+      body: data,
+      headers: {
+        Authorization: `Bearer ${this.TOKEN}`,
+      },
+    };
+
+    return fetch(`${this.BASE_URL}/auth/avatars`, options)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message) {
+          throw Error(data.message);
+        }
+        return data;
+      });
+  }
+
   fetchEvents(page: string): Promise<IEventsInfo> {
     const options = {
       method: 'GET',
@@ -119,7 +138,7 @@ class EventsServiceApi {
       });
   }
 
-  fetchEventById({ id }: IFetchEventByIdProps): Promise<IEvent> {
+  fetchEventById(id: string): Promise<IEvent> {
     const options = {
       method: 'GET',
       headers: {

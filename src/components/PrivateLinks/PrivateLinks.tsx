@@ -13,9 +13,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { makeBlur, toasts } from '@/utils';
 import { BtnClickEvent, LinkClickEvent } from '@/types/types';
 import IconButton from '@/components/IconButton';
-import { useMutation } from '@tanstack/react-query';
-import { QueryKeys, operations, queryClient } from '@/tanStackQuery';
 import Filter from '@/components/Filter';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { signOutUser } from '@/redux/auth/operations';
+import { selectIsLoading } from '@/redux/events/selectors';
 
 const PrivateLinks: FC = () => {
   const { pathname } = useLocation();
@@ -23,23 +24,8 @@ const PrivateLinks: FC = () => {
   const isEventPlaningPage = pathname.includes(PagePaths.eventPlanningPath);
   const isEventsPage = pathname.includes(`${PagePaths.eventsPath}/`);
   const navigate = useNavigate();
-  const { mutate: signOut, isPending: isLoading } = useMutation({
-    mutationFn: operations.signOut,
-    onSuccess: onSuccessHTTPRequest,
-    onError: onFailedHTTPRequest,
-  });
-
-  function onFailedHTTPRequest(error: Error): void {
-    toasts.errorToast(error.message);
-  }
-
-  function onSuccessHTTPRequest() {
-    navigate(PagePaths.homePath);
-    toasts.successToast(Messages.goodbye);
-    queryClient.setQueryData([QueryKeys.isLoggedIn], false);
-    queryClient.setQueryData([QueryKeys.user], null);
-    queryClient.setQueryData([QueryKeys.token], null);
-  }
+  const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(selectIsLoading);
 
   const onNewEventLinkClick = (e: LinkClickEvent) => {
     makeBlur(e.currentTarget);
@@ -47,7 +33,15 @@ const PrivateLinks: FC = () => {
 
   const onSignOutBtnClick = (e: BtnClickEvent) => {
     makeBlur(e.currentTarget);
-    signOut();
+    dispatch(signOutUser())
+      .unwrap()
+      .then(() => {
+        toasts.successToast(Messages.goodbye);
+        navigate(PagePaths.homePath);
+      })
+      .catch((error) => {
+        toasts.errorToast(error);
+      });
   };
 
   return (

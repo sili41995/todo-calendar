@@ -175,3 +175,51 @@ export interface ISortEventsByDeadlineProps {
   events: Events | undefined;
   sortType: string;
 }
+
+export interface IAuthState {
+  user: IUserState;
+  token: null | string;
+  isLoggedIn: boolean;
+  isRefreshing: boolean;
+  isLoading: boolean;
+  error: string | null;
+}
+
+interface IUserState {
+  name: string | null;
+  email: string | null;
+  avatar: string | null;
+}
+
+export interface IEventsState {
+  items: IEvent[];
+  count: number | null;
+  isLoading: boolean;
+  error: string | null;
+}
+
+export interface IState {
+  events: IEventsState;
+  auth: IAuthState;
+}
+
+export interface IUser {
+  name: string;
+  email: string;
+  avatar: string;
+}
+
+export interface ISignInRes extends IUser {
+  token: string;
+  user: IUser;
+}
+
+export interface IAvatar {
+  [key: string]: FileList | string | undefined;
+  _id?: string;
+  avatar: FileList | string;
+}
+
+export interface ISignUpRes extends IUser {
+  user: IUser;
+}

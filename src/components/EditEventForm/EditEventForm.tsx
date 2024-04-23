@@ -1,8 +1,6 @@
 import { FC, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FaCheck } from 'react-icons/fa';
-import { useMutation } from '@tanstack/react-query';
-import { QueryKeys, operations, queryClient } from '@/tanStackQuery';
 import Input from '@/components/Input';
 import FormControls from '@/components/FormControls';
 import { BtnClickEvent, INewEvent } from '@/types/types';
@@ -10,35 +8,29 @@ import { IconSizes, InputTypes, Messages } from '@/constants';
 import { getDeadlineParams, makeBlur, toasts } from '@/utils';
 import { IProps } from './EditEventForm.types';
 import { Form, Title } from './EditEventForm.styled';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { updateEvent } from '@/redux/events/operations';
+import { selectIsLoading } from '@/redux/events/selectors';
 
-const EditEventForm: FC<IProps> = ({ event, formType }) => {
-  const { _id, completed, deadline, task } = event;
+const EditEventForm: FC<IProps> = ({ event, formType, setEvent }) => {
+  const { _id: id, completed, deadline, task } = event;
   const [checked, setChecked] = useState<boolean>(() => completed);
   const { register, handleSubmit, reset } = useForm<INewEvent>();
-  const { mutate: editEvent, isPending: isLoading } = useMutation({
-    mutationFn: operations.updateEvent,
-    onSuccess: onSuccessHTTPRequest,
-    onError: onFailedHTTPRequest,
-  });
   const { taskDeadline } = getDeadlineParams(deadline);
-
-  function onFailedHTTPRequest(error: Error): void {
-    toasts.errorToast(error.message);
-  }
-
-  function onSuccessHTTPRequest(): void {
-    toasts.successToast(Messages.updateEvent);
-    queryClient.invalidateQueries({
-      queryKey: [QueryKeys.events],
-    });
-    queryClient.invalidateQueries({
-      queryKey: [QueryKeys.monthlyEvents],
-    });
-  }
+  const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(selectIsLoading);
 
   const handleFormSubmit: SubmitHandler<INewEvent> = (data) => {
     const deadline = new Date(data.deadline);
-    editEvent({ data: { ...data, deadline }, id: _id });
+    dispatch(updateEvent({ data: { ...data, deadline }, id }))
+      .unwrap()
+      .then((data) => {
+        toasts.successToast(Messages.updateEvent);
+        setEvent && setEvent(data);
+      })
+      .catch((error) => {
+        toasts.errorToast(error);
+      });
   };
 
   const onCheckboxChange = () => {
