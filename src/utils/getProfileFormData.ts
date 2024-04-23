@@ -1,6 +1,9 @@
-import { ISignUpCredentials } from '@/types/types';
+interface IFuncProps {
+  [key: string]: string | boolean | undefined | FileList;
+  avatar: FileList | string;
+}
 
-const getProfileFormData = (profile: ISignUpCredentials): FormData => {
+const getProfileFormData = (profile: IFuncProps): FormData => {
   const formData = new FormData();
 
   if (profile.avatar.length) {

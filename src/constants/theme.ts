@@ -4,6 +4,7 @@ declare module '@emotion/react' {
 
 interface ITheme {
   colors: {
+    secondaryFontColor: string;
     primaryColor: string;
     otherColor: string;
     accentColor: string;
@@ -28,6 +29,7 @@ interface ITheme {
     otherFontWeight: number;
   };
   fontSize: {
+    subtitleFontSize: number;
     titleFontSize: number;
     primaryFontSize: number;
     secondaryFontSize: number;
@@ -48,6 +50,7 @@ interface ITheme {
 
 const theme: ITheme = {
   colors: {
+    secondaryFontColor: '#7c7c7c',
     primaryColor: '#3470ff',
     otherColor: '#38b6ff',
     primaryFontColor: '#141414',
@@ -72,6 +75,7 @@ const theme: ITheme = {
     otherFontWeight: 500,
   },
   fontSize: {
+    subtitleFontSize: 25,
     titleFontSize: 36,
     primaryFontSize: 16,
     secondaryFontSize: 20,

@@ -17,6 +17,7 @@ const EventDetailsPage = lazy(() => import('@/pages/EventDetailsPage'));
 const EventPlanningPage = lazy(() => import('@/pages/EventPlanningPage'));
 const NewEventPage = lazy(() => import('@/pages/NewEventPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
+const ProfilePage = lazy(() => import('@/pages/ProfilePage'));
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -65,6 +66,10 @@ const App: FC = () => {
         <Route
           path={PagePaths.aboutPath}
           element={<PrivateRoute element={<AboutPage />} />}
+        />
+        <Route
+          path={PagePaths.profile}
+          element={<PublicRoute element={<ProfilePage />} />}
         />
         <Route path='*' element={<NotFoundPage />} />
       </Route>

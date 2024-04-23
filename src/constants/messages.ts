@@ -23,6 +23,7 @@ const enum Messages {
   emptyEventsList = 'Events list is empty',
   emptyFilteredList = 'No ads match the filtering criteria',
   goodbye = 'Goodbye!',
+  updateAvatar = 'Avatar updated successfully',
 }
 
 export default Messages;

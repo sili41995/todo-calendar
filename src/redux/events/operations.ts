@@ -1,8 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import eventsServiceApi from '@/service/eventsServiceApi';
 import {
+  Events,
   IEvent,
   IEventsInfo,
+  IFetchEventsByMonthProps,
   INewEvent,
   IUpdateEventProps,
 } from '@/types/types';
@@ -15,8 +17,26 @@ export const fetchEvents = createAsyncThunk<
   'events/fetchAll',
   async (page, { rejectWithValue }: { rejectWithValue: Function }) => {
     try {
-      const contacts = await eventsServiceApi.fetchEvents(page);
-      return contacts;
+      const result = await eventsServiceApi.fetchEvents(page);
+      return result;
+    } catch (error) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+export const fetchEventsByMonth = createAsyncThunk<
+  Events,
+  IFetchEventsByMonthProps,
+  { rejectValue: string }
+>(
+  'events/fetchEventsByMonth',
+  async (data, { rejectWithValue }: { rejectWithValue: Function }) => {
+    try {
+      const result = await eventsServiceApi.fetchEventsByMonth(data);
+      return result;
     } catch (error) {
       if (error instanceof Error) {
         return rejectWithValue(error.message);
@@ -33,8 +53,8 @@ export const addEvent = createAsyncThunk<
   'events/addEvent',
   async (data, { rejectWithValue }: { rejectWithValue: Function }) => {
     try {
-      const response = await eventsServiceApi.addEvent(data);
-      return response;
+      const result = await eventsServiceApi.addEvent(data);
+      return result;
     } catch (error) {
       if (error instanceof Error) {
         return rejectWithValue(error.message);
@@ -51,8 +71,8 @@ export const deleteEvent = createAsyncThunk<
   'events/deleteEvent',
   async (id: string, { rejectWithValue }: { rejectWithValue: Function }) => {
     try {
-      const response = await eventsServiceApi.deleteEvent(id);
-      return response;
+      const result = await eventsServiceApi.deleteEvent(id);
+      return result;
     } catch (error) {
       if (error instanceof Error) {
         return rejectWithValue(error.message);
@@ -69,8 +89,8 @@ export const updateEvent = createAsyncThunk<
   'events/updateEvent',
   async (data, { rejectWithValue }: { rejectWithValue: Function }) => {
     try {
-      const response = await eventsServiceApi.updateEvent(data);
-      return response;
+      const result = await eventsServiceApi.updateEvent(data);
+      return result;
     } catch (error) {
       if (error instanceof Error) {
         return rejectWithValue(error.message);

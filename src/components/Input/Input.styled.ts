@@ -22,6 +22,11 @@ export const StyledInput = styled.input<IStyledInputProps>`
     outline: none;
     border-color: ${({ theme }) => theme.colors.primaryColor};
   }
+
+  &:is(:hover, :focus) + svg {
+    transition: color ${({ theme }) => theme.transitionDurationAndFunc};
+    color: ${({ theme }) => theme.colors.primaryColor};
+  }
 `;
 
 export const Label = styled.label`

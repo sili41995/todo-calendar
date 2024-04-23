@@ -27,8 +27,8 @@ const Input: FC<IProps> = ({
       <InputContainer>
         <Title>{label}</Title>
         <AltElem checked={checked}>
-          {altElem}
           {input}
+          {altElem}
         </AltElem>
       </InputContainer>
     );
@@ -37,8 +37,8 @@ const Input: FC<IProps> = ({
   if (type === InputTypes.file) {
     return (
       <ImgAltElem>
-        {altElem}
         {input}
+        {altElem}
       </ImgAltElem>
     );
   }

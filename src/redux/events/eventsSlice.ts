@@ -1,6 +1,12 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import initialState from '@/redux/initialState';
-import { addEvent, deleteEvent, fetchEvents, updateEvent } from './operations';
+import {
+  addEvent,
+  deleteEvent,
+  fetchEvents,
+  fetchEventsByMonth,
+  updateEvent,
+} from './operations';
 import { signOutUser } from '@/redux/auth/operations';
 import { IEventsState } from '@/types/types';
 
@@ -19,6 +25,14 @@ const eventsSlice = createSlice({
         error: initialState.events.error,
         items: payload.events,
         count: payload.count,
+      }))
+      .addCase(fetchEventsByMonth.fulfilled, (state, { payload }) => ({
+        ...state,
+        isLoading: false,
+        isLoaded: true,
+        error: initialState.events.error,
+        items: payload,
+        count: initialState.events.count,
       }))
       .addCase(addEvent.fulfilled, (state, { payload }) => ({
         ...state,
@@ -47,6 +61,7 @@ const eventsSlice = createSlice({
       .addMatcher(
         isAnyOf(
           fetchEvents.pending,
+          fetchEventsByMonth.pending,
           addEvent.pending,
           deleteEvent.pending,
           updateEvent.pending
@@ -59,6 +74,7 @@ const eventsSlice = createSlice({
       .addMatcher(
         isAnyOf(
           fetchEvents.rejected,
+          fetchEventsByMonth.rejected,
           addEvent.rejected,
           deleteEvent.rejected,
           updateEvent.rejected

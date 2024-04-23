@@ -1,6 +1,6 @@
 import { FormTypes } from '@/constants';
 
-const setInputHeight = (formType: FormTypes): number => {
+const setInputHeight = (formType: FormTypes | undefined): number => {
   switch (formType) {
     case FormTypes.auth:
       return 60;

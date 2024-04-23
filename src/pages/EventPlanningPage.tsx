@@ -1,11 +1,11 @@
 import Calendar from '@/components/Calendar';
-import Loader from '@/components/Loader';
 import { GeneralParams, SearchParamsKeys } from '@/constants';
 import { useSetSearchParams } from '@/hooks';
-import { QueryKeys, operations } from '@/tanStackQuery';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { fetchEventsByMonth } from '@/redux/events/operations';
+import { selectEvents } from '@/redux/events/selectors';
 import { BtnClickEvent } from '@/types/types';
-import { getMonthsParams, makeBlur, toasts } from '@/utils';
-import { useQuery } from '@tanstack/react-query';
+import { getMonthsParams, makeBlur } from '@/utils';
 import { addMonths, format } from 'date-fns';
 import { FC, useEffect } from 'react';
 
@@ -15,24 +15,21 @@ const EventPlanningPage: FC = () => {
   const year = searchParams.get(SearchParamsKeys.year) ?? '';
   const monthsParams = getMonthsParams({ year, month });
   const { targetDate, targetYear, targetMonthNumber } = monthsParams;
-  const {
-    data: events = [],
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: [QueryKeys.monthlyEvents, targetMonthNumber, targetYear],
-    queryFn: () =>
-      operations.getEventsByMonth({
-        month: targetMonthNumber,
-        year: targetYear,
-      }),
-    refetchOnMount: true,
-  });
+  const dispatch = useAppDispatch();
+  const events = useAppSelector(selectEvents);
 
   useEffect(() => {
-    isError && toasts.errorToast(error.message);
-  }, [error, isError]);
+    dispatch(
+      fetchEventsByMonth({
+        month: targetMonthNumber,
+        year: targetYear,
+      })
+    );
+  }, [dispatch, targetMonthNumber, targetYear]);
+
+  useEffect(() => {
+    console.log(events);
+  });
 
   const onIncrementBtnClick = (e: BtnClickEvent) => {
     const newDate = addMonths(targetDate, 1);
@@ -82,9 +79,7 @@ const EventPlanningPage: FC = () => {
     makeBlur(e.currentTarget);
   };
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <Calendar
       onIncrementBtnClick={onIncrementBtnClick}
       onDecrementBtnClick={onDecrementBtnClick}

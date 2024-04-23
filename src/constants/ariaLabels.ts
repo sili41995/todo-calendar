@@ -11,6 +11,8 @@ const enum AriaLabels {
   signOut = 'Sign out',
   pageBtn = 'go to page number',
   sort = 'change sort type',
+  cancel = 'cancel',
+  avatar = 'attach an image',
 }
 
 export default AriaLabels;

@@ -8,8 +8,8 @@ import {
   IUpdateEventProps,
   INewEvent,
   NewUser,
-  User,
   IAvatar,
+  IUser,
 } from '@/types/types';
 
 class EventsServiceApi {
@@ -59,7 +59,7 @@ class EventsServiceApi {
       });
   }
 
-  refreshUser(): Promise<User> {
+  refreshUser(): Promise<IUser> {
     const options = {
       method: 'GET',
       headers: {
@@ -108,7 +108,7 @@ class EventsServiceApi {
       },
     };
 
-    return fetch(`${this.BASE_URL}/auth/avatars`, options)
+    return fetch(`${this.BASE_URL}/api/auth/avatars`, options)
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {

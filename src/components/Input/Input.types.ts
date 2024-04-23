@@ -3,7 +3,7 @@ import { FormTypes, InputTypes } from '@/constants';
 import { InputChangeEvent } from '@/types/types';
 
 export interface IProps {
-  formType: FormTypes;
+  formType?: FormTypes;
   settings?: object;
   type: InputTypes;
   placeholder?: string;
@@ -17,7 +17,7 @@ export interface IProps {
 }
 
 export interface IStyledInputProps {
-  formType: FormTypes;
+  formType?: FormTypes;
 }
 
 export interface IStyledAltElemProps {
