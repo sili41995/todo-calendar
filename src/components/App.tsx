@@ -69,7 +69,7 @@ const App: FC = () => {
         />
         <Route
           path={PagePaths.profile}
-          element={<PublicRoute element={<ProfilePage />} />}
+          element={<PrivateRoute element={<ProfilePage />} />}
         />
         <Route path='*' element={<NotFoundPage />} />
       </Route>
