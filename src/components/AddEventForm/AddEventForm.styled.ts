@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  width: 100%;
+  max-width: 500px;
+`;
 
 export const Title = styled.p`
   margin-bottom: ${({ theme }) => theme.spacing(5)};
@@ -15,6 +18,4 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(5)};
-  width: 100%;
-  max-width: 500px;
 `;
