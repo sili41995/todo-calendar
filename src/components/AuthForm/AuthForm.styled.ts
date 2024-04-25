@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   display: flex;
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(5)};
   padding: ${({ theme }) => theme.spacing(8)};

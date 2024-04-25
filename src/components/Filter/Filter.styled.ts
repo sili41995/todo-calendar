@@ -21,5 +21,9 @@ export const Container = styled.div`
         color: ${({ theme }) => theme.colors.whiteColor};
       }
     }
+
+    @media screen and (max-width: 1279px) {
+      padding: ${({ theme }) => theme.spacing(2)};
+    }
   }
 `;

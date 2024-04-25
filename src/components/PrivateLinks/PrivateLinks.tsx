@@ -23,7 +23,7 @@ const PrivateLinks: FC<IProps> = ({ setShowMobileMenu }) => {
   const { pathname } = useLocation();
   const addEventLink = `${PagePaths.eventsPath}/${PagePaths.addNewEventPath}`;
   const isEventPlaningPage = pathname.includes(PagePaths.eventPlanningPath);
-  const isEventsPage = pathname.includes(`${PagePaths.eventsPath}/`);
+  const isEventsPage = pathname.includes(`${PagePaths.eventsPath}`);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectIsLoading);

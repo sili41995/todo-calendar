@@ -6,6 +6,7 @@ import NavigationBar from '@/components/NavigationBar';
 import { PagePaths } from '@/constants';
 import { getIsTargetPage } from '@/utils';
 import Container from '@/components/Container';
+import MobileMenu from '@/components/MobileMenu';
 
 const SharedLayout: FC = () => {
   const { pathname } = useLocation();
@@ -19,6 +20,7 @@ const SharedLayout: FC = () => {
       <Header>
         <Container>
           <NavigationBar />
+          <MobileMenu />
         </Container>
       </Header>
       <Main>

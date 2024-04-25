@@ -3,6 +3,11 @@ import styled from '@emotion/styled';
 export const List = styled.ul`
   display: flex;
   gap: ${({ theme }) => theme.spacing(5)};
+
+  @media screen and (max-width: 1279px) {
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 
 export const ListItem = styled.li`

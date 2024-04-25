@@ -5,10 +5,14 @@ import { getFlexBasisValue } from '@/utils';
 export const DaysList = styled.ul`
   display: flex;
   gap: ${({ theme }) => theme.cellGap}px;
+
+  @media screen and (max-width: 1279px) {
+    display: none;
+  }
 `;
 
 export const Day = styled.li<IStyledProps>`
-  flex-basis: ${({ theme }) => getFlexBasisValue(theme.cellGap)};
+  flex-basis: ${({ theme }) => getFlexBasisValue({ cellGap: theme.cellGap })};
   background-color: ${({ isWeekend, theme }) =>
     isWeekend
       ? theme.colors.weekendBgColor

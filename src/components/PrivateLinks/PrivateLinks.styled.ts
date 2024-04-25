@@ -7,6 +7,7 @@ export const Container = styled.div`
   & > a {
     display: flex;
     gap: ${({ theme }) => theme.spacing(5)};
+    justify-content: center;
     align-items: center;
     border-radius: ${({ theme }) => theme.borderRadius.secondaryBorderRadius}px;
     background-color: ${({ theme }) => theme.colors.greenBtnColor};
@@ -20,6 +21,10 @@ export const Container = styled.div`
 
     &:is(:hover, :focus) {
       background-color: ${({ theme }) => theme.colors.greenColor};
+    }
+
+    @media screen and (max-width: 1279px) {
+      padding: ${({ theme }) => theme.spacing(4)};
     }
   }
 
@@ -51,6 +56,19 @@ export const Container = styled.div`
         color: ${({ theme }) => theme.colors.whiteColor};
         transition: color ${({ theme }) => theme.transitionDurationAndFunc};
       }
+    }
+
+    @media screen and (max-width: 1279px) {
+      padding: ${({ theme }) => theme.spacing(4)};
+    }
+  }
+
+  @media screen and (max-width: 1279px) {
+    flex-direction: column;
+    width: 100%;
+
+    & > div {
+      display: none;
     }
   }
 `;

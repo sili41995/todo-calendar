@@ -8,11 +8,13 @@ import { getFlexBasisValue } from '@/utils';
 
 export const DaysList = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   gap: ${({ theme }) => theme.cellGap}px;
 `;
 
 export const Day = styled.li<ICellStyledProps>`
-  flex-basis: ${({ theme }) => getFlexBasisValue(theme.cellGap)};
+  flex-basis: ${({ theme }) =>
+    getFlexBasisValue({ cellGap: theme.cellGap, columns: 2 })};
   background-color: ${({ isWeekend, theme }) =>
     isWeekend
       ? theme.colors.weekendBgColor
@@ -20,6 +22,10 @@ export const Day = styled.li<ICellStyledProps>`
   border-radius: ${({ theme }) => theme.borderRadius.primaryBorderRadius}px;
   padding: ${({ theme }) => theme.spacing()};
   min-height: 76px;
+
+  @media screen and (min-width: 1280px) {
+    flex-basis: ${({ theme }) => getFlexBasisValue({ cellGap: theme.cellGap })};
+  }
 `;
 
 export const Marker = styled.div<IMarkerStyledProps>`

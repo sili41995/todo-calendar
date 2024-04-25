@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
 `;
 
 export const ButtonsList = styled.ul`
